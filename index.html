@@ -21,18 +21,33 @@ async function loadSMHI() {
 
     const json = await response.json();
 
-    const data = json.timeSeries[0].data;
+    const rows = json.timeSeries
+        .slice(0, 24)
+        .map(item => `
+
+        <tr>
+            <td>${item.time}</td>
+            <td>${item.data.air_temperature}</td>
+            <td>${item.data.wind_speed}</td>
+            <td>${item.data.wind_speed_of_gust}</td>
+            <td>${item.data.precipitation_amount_mean_deterministic}</td>
+        </tr>
+
+        `)
+        .join("");
 
     document.getElementById("output").innerHTML = `
-        <p>Temperatur: ${data.air_temperature} °C</p>
-        <p>Vind: ${data.wind_speed} m/s</p>
-        <p>Kastvind: ${data.wind_speed_of_gust} m/s</p>
-        <p>Tryck: ${data.air_pressure_at_mean_sea_level} hPa</p>
-        <p>Molnighet: ${data.cloud_area_fraction}</p>
-        <p>Regn: ${data.precipitation_amount_mean_deterministic} mm</p>
-        <p>Väderkod: ${data.symbol_code}</p>
+        <table border="1">
+            <tr>
+                <th>Tid</th>
+                <th>Temp</th>
+                <th>Vind</th>
+                <th>Kastvind</th>
+                <th>Regn</th>
+            </tr>
+            ${rows}
+        </table>
     `;
-
 }
 
 loadSMHI();
