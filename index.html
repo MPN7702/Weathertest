@@ -26,7 +26,15 @@ async function loadSMHI() {
     );
 
 const json = await response.json();
+console.log(
+    json.properties.timeseries.length
+);
 
+console.log(
+    json.properties.timeseries[
+        json.properties.timeseries.length - 1
+    ].time
+);
 console.log(json.timeSeries.length);
 
 console.log(
