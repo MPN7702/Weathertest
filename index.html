@@ -20,9 +20,8 @@ async function loadSMHI() {
     );
 
     const json = await response.json();
-console.log(
-  Object.keys(
-    json.timeSeries[0].data
+console.log(json.referenceTime);
+console.log(json.createdTime);
   )
 );
     const rows = json.timeSeries
