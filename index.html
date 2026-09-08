@@ -19,10 +19,14 @@ async function loadSMHI() {
         "https://smhi-proxy.mr-magoo21.workers.dev/"
     );
 
-    const json = await response.json();
-console.log(json.referenceTime);
-console.log(json.createdTime);
-  )
+const json = await response.json();
+
+console.log(json.timeSeries.length);
+
+console.log(
+    json.timeSeries[
+        json.timeSeries.length - 1
+    ].time
 );
     const rows = json.timeSeries
         .slice(0, 999)
