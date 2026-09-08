@@ -40,7 +40,12 @@ async function loadSMHI() {
                 <td>${item.data.precipitation_amount_mean}</td>
                 <td>${item.data.probability_of_precipitation}</td>
                 <td>${item.data.thunderstorm_probability}</td>
-                <td>${item.data.symbol_code}</td>
+
+<td>${item.data.symbol_code}</td>
+
+<td>${item.data.probability_of_frozen_precipitation}</td>
+
+<td>${item.data.predominant_precipitation_type_at_surface}</td>
             </tr>
         `)
         .join("");
