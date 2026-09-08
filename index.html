@@ -10,7 +10,13 @@
 <h1>SMHI Test</h1>
 
 <div id="output">Laddar...</div>
+<hr>
 
+<h1>YR Test</h1>
+
+<div id="yrOutput">
+Laddar YR...
+</div>
 <script>
 
 async function loadSMHI() {
@@ -85,8 +91,75 @@ console.log(
         </table>
     `;
 }
+async function loadYR() {
 
+    const response = await fetch(
+        "https://yr-proxy.mr-magoo21.workers.dev/"
+    );
+
+    const json = await response.json();
+
+    const rows = json.properties.timeseries
+        .slice(0, 24)
+        .map(item => `
+
+            <tr>
+                <td>${item.time}</td>
+
+                <td>${item.data.instant.details.air_temperature}</td>
+
+                <td>${item.data.instant.details.wind_speed}</td>
+
+                <td>${item.data.instant.details.wind_speed_of_gust}</td>
+
+                <td>${item.data.instant.details.wind_from_direction}</td>
+
+                <td>${item.data.instant.details.air_pressure_at_sea_level}</td>
+
+                <td>${item.data.instant.details.relative_humidity}</td>
+
+                <td>${item.data.instant.details.cloud_area_fraction}</td>
+
+                <td>${item.data.next_1_hours?.details?.precipitation_amount ?? 0}</td>
+
+                <td>${item.data.next_1_hours?.details?.probability_of_precipitation ?? 0}</td>
+
+                <td>${item.data.next_1_hours?.details?.probability_of_thunder ?? 0}</td>
+
+                <td>${item.data.next_1_hours?.summary?.symbol_code ?? "-"}</td>
+
+            </tr>
+
+        `)
+        .join("");
+
+    document.getElementById("yrOutput").innerHTML = `
+        <table border="1">
+
+            <tr>
+
+                <th>Tid</th>
+                <th>Temp</th>
+                <th>Vind</th>
+                <th>Kastvind</th>
+                <th>Vindriktning</th>
+                <th>Tryck</th>
+                <th>Fukt</th>
+                <th>Moln</th>
+                <th>Regn</th>
+                <th>Regn %</th>
+                <th>Åska %</th>
+                <th>Väderkod</th>
+
+            </tr>
+
+            ${rows}
+
+        </table>
+    `;
+}
 loadSMHI();
+loadYR();
 
 </script>
 
