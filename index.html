@@ -21,33 +21,73 @@ async function loadSMHI() {
 
     const json = await response.json();
 
-    const rows = json.timeSeries
-        .slice(0, 24)
-        .map(item => `
+<tr>
+    <td>${item.time}</td>
 
-        <tr>
-            <td>${item.time}</td>
-            <td>${item.data.air_temperature}</td>
-            <td>${item.data.wind_speed}</td>
-            <td>${item.data.wind_speed_of_gust}</td>
-            <td>${item.data.precipitation_amount_mean}</td>
-        </tr>
+    <td>${item.data.air_temperature}</td>
 
-        `)
-        .join("");
+    <td>${item.data.wind_speed}</td>
 
-    document.getElementById("output").innerHTML = `
-        <table border="1">
-            <tr>
-                <th>Tid</th>
-                <th>Temp</th>
-                <th>Vind</th>
-                <th>Kastvind</th>
-                <th>Regn</th>
-            </tr>
-            ${rows}
-        </table>
-    `;
+    <td>${item.data.wind_speed_of_gust}</td>
+
+    <td>${item.data.wind_from_direction}</td>
+
+    <td>${item.data.air_pressure_at_mean_sea_level}</td>
+
+    <td>${item.data.relative_humidity}</td>
+
+    <td>${item.data.cloud_area_fraction}</td>
+
+    <td>${item.data.low_type_cloud_area_fraction}</td>
+
+    <td>${item.data.medium_type_cloud_area_fraction}</td>
+
+    <td>${item.data.high_type_cloud_area_fraction}</td>
+
+    <td>${item.data.visibility_in_air}</td>
+
+    <td>${item.data.precipitation_amount_mean}</td>
+
+    <td>${item.data.probability_of_precipitation}</td>
+
+    <td>${item.data.thunderstorm_probability}</td>
+
+    <td>${item.data.symbol_code}</td>
+</tr>
+
+<tr>
+    <th>Tid</th>
+
+    <th>Temp</th>
+
+    <th>Vind</th>
+
+    <th>Kastvind</th>
+
+    <th>Vindriktning</th>
+
+    <th>Tryck</th>
+
+    <th>Fukt</th>
+
+    <th>Moln</th>
+
+    <th>Låga moln</th>
+
+    <th>Mellanmoln</th>
+
+    <th>Höga moln</th>
+
+    <th>Sikt</th>
+
+    <th>Regn</th>
+
+    <th>Regn %</th>
+
+    <th>Åska %</th>
+
+    <th>Väderkod</th>
+</tr>
 }
 
 loadSMHI();
