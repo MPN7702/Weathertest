@@ -20,9 +20,9 @@ async function loadSMHI() {
     );
 
     const json = await response.json();
-
+console.log(json.timeSeries.length);
     const rows = json.timeSeries
-        .slice(0, 72)
+        .slice(0, 999)
         .map(item => `
             <tr>
                 <td>${item.time}</td>
