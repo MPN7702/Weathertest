@@ -431,9 +431,8 @@ for i in range(3):
         history[key][date] = {}
 
     history[key][date]["smhi"] = daily_summary(
-    weather["Torsby"]["smhi"]["hourly"],
-    date
-)
+        weather["Torsby"]["smhi"]     date
+    )
 
     history[key][date]["yr"] = daily_summary(
         weather["Torsby"]["yr"]["hourly"],
@@ -449,7 +448,8 @@ for i in range(3):
         weather["Torsby"]["icon_eu"]["hourly"],
         date
     )
-    today = datetime.utcnow().strftime("%Y-%m-%d")
+
+today = datetime.utcnow().strftime("%Y-%m-%d")
 
 try:
     history["actual"][today] = fetch_actual_day(
@@ -468,6 +468,7 @@ except Exception as e:
         "Actual-data kunde inte hämtas:",
         e
     )
+
 with open(
     "forecast-history.json",
     "w",
