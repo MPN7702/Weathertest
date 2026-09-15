@@ -367,6 +367,28 @@ else:
         "day2": {},
         "day3": {}
     }
+    weekly = weather["Torsby"]["weekly"]["daily"]
+
+for i in range(3):
+
+    key = f"day{i + 1}"
+
+    history[key][weekly["time"][i]] = {
+        "minTemp": weekly["temperature_2m_min"][i],
+        "maxTemp": weekly["temperature_2m_max"][i],
+        "rainAmount": weekly["precipitation_sum"][i]
+    }
+    with open(
+    "forecast-history.json",
+    "w",
+    encoding="utf-8"
+) as f:
+    json.dump(
+        history,
+        f,
+        ensure_ascii=False,
+        indent=2
+    )
 with open("weather.json", "w", encoding="utf-8") as f:
     json.dump(
         weather,
