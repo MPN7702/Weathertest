@@ -432,12 +432,6 @@ def calculate_model_stats(history):
                 "rain_error": avg_rain,
                 "score": score
             }
-stats[model] = {
-    "samples": len(temp_errors),
-    "temp_error": avg_temp,
-    "rain_error": avg_rain,
-    "score": score
-}
 
     return stats
 
