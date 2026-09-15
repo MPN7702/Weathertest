@@ -409,23 +409,29 @@ def calculate_model_stats(history):
 
         if temp_errors:
 
-avg_temp = round(
-    sum(temp_errors) / len(temp_errors),
-    2
-)
+            avg_temp = round(
+                sum(temp_errors) / len(temp_errors),
+                2
+            )
 
-avg_rain = round(
-    sum(rain_errors) / len(rain_errors),
-    2
-)
+            avg_rain = round(
+                sum(rain_errors) / len(rain_errors),
+                2
+            )
 
-score = round(
-    100
-    - (avg_temp * 10)
-    - avg_rain,
-    1
-)
+            score = round(
+                100
+                - (avg_temp * 10)
+                - avg_rain,
+                1
+            )
 
+            stats[model] = {
+                "samples": len(temp_errors),
+                "temp_error": avg_temp,
+                "rain_error": avg_rain,
+                "score": score
+            }
 stats[model] = {
     "samples": len(temp_errors),
     "temp_error": avg_temp,
