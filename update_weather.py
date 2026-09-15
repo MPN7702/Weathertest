@@ -425,23 +425,27 @@ smhi_day = daily_summary(
 
 history[key][date]["smhi"] = smhi_day
 
-    history[key][date]["yr"] = {
-        "minTemp": None,
-        "maxTemp": None,
-        "rainAmount": None
-    }
+yr_day = daily_summary(
+    weather["Torsby"]["yr"]["hourly"],
+    i
+)
 
-    history[key][date]["dmi_seamless"] = {
-        "minTemp": None,
-        "maxTemp": None,
-        "rainAmount": None
-    }
+history[key][date]["yr"] = yr_day
 
-    history[key][date]["icon_eu"] = {
-        "minTemp": None,
-        "maxTemp": None,
-        "rainAmount": None
-    }
+dmi_day = daily_summary(
+    weather["Torsby"]["dmi_seamless"]["hourly"],
+    i
+)
+
+history[key][date]["dmi_seamless"] = dmi_day
+`
+
+icon_day = daily_summary(
+    weather["Torsby"]["icon_eu"]["hourly"],
+    i
+)
+
+history[key][date]["icon_eu"] = icon_day
 
 with open(
     "forecast-history.json",
