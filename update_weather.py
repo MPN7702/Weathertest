@@ -371,6 +371,7 @@ def calculate_model_stats(history):
 
         temp_errors = []
         rain_errors = []
+        temp_biases = []
 
         for bucket in ["day1", "day2", "day3"]:
 
@@ -395,7 +396,19 @@ def calculate_model_stats(history):
                     model_data["maxTemp"]
                     - actual["maxTemp"]
                 )
+min_bias = (
+    model_data["minTemp"]
+    - actual["minTemp"]
+)
 
+max_bias = (
+    model_data["maxTemp"]
+    - actual["maxTemp"]
+)
+
+temp_biases.append(
+    (min_bias + max_bias) / 2
+)
                 rain_err = abs(
                     model_data["rainAmount"]
                     - actual["rainAmount"]
@@ -418,7 +431,10 @@ def calculate_model_stats(history):
                 sum(rain_errors) / len(rain_errors),
                 2
             )
-
+avg_bias = round(
+    sum(temp_biases) / len(temp_biases),
+    2
+)
             score = round(
                 100
                 - (avg_temp * 10)
