@@ -407,8 +407,6 @@ for i in range(3):
     weather["Torsby"]["smhi"]["hourly"],
     date
 )
-        date
-    )
 
     history[key][date]["yr"] = daily_summary(
         weather["Torsby"]["yr"]["hourly"],
