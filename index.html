@@ -2187,7 +2187,14 @@ async function startDashboard(){
     },1000);
 
 }
-
+fetch("forecast-history.json")
+    .then(r => r.json())
+    .then(data => {
+        console.log("Forecast History File:", data);
+    })
+    .catch(err => {
+        console.error("Fel vid läsning av forecast-history.json", err);
+    });
 startDashboard();
 
 </script>
