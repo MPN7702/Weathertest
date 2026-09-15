@@ -2276,7 +2276,7 @@ Score: ${score.toFixed(1)}
 Bias:
 ${
     data.temp_bias === undefined
-        ? "Saknas"
+        ? "Ej tillräcklig historik"
         : data.temp_bias > 0
         ? `För varm med ${data.temp_bias.toFixed(1)}°C`
         : data.temp_bias < 0
