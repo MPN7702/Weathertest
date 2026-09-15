@@ -449,6 +449,25 @@ for i in range(3):
         weather["Torsby"]["icon_eu"]["hourly"],
         date
     )
+    today = datetime.utcnow().strftime("%Y-%m-%d")
+
+try:
+    history["actual"][today] = fetch_actual_day(
+        60.136,
+        13.006,
+        today
+    )
+
+    print(
+        "Actual:",
+        history["actual"][today]
+    )
+
+except Exception as e:
+    print(
+        "Actual-data kunde inte hämtas:",
+        e
+    )
 with open(
     "forecast-history.json",
     "w",
