@@ -418,10 +418,10 @@ for i in range(3):
     if date not in history[key]:
         history[key][date] = {}
 
-    smhi_day = daily_summary(
-        weatheri"]["hourly"],
-        i
-    )
+smhi_day = daily_summary(
+    weather["Torsby"]["smhi"]["hourly"],
+    i
+)
 
     history[key][date]["smhi"] = smhi_day
 
@@ -445,7 +445,7 @@ for i in range(3):
     )
 
     history[key][date]["icon_eu"] = icon_day
-`
+
 with open(
     "forecast-history.json",
     "w",
