@@ -3,21 +3,81 @@
     "2026-09-15": {
       "minTemp": 11.1,
       "maxTemp": 15.0,
-      "rainAmount": 12.6
+      "rainAmount": 12.6,
+      "smhi": {
+        "minTemp": 14.1,
+        "maxTemp": 15.4,
+        "rainAmount": 5.9
+      },
+      "yr": {
+        "minTemp": 14.1,
+        "maxTemp": 15.4,
+        "rainAmount": 4.5
+      },
+      "dmi_seamless": {
+        "minTemp": 11.2,
+        "maxTemp": 15.7,
+        "rainAmount": 16.9
+      },
+      "icon_eu": {
+        "minTemp": 9.4,
+        "maxTemp": 16.1,
+        "rainAmount": 17.3
+      }
     }
   },
   "day2": {
     "2026-09-16": {
       "minTemp": 10.2,
       "maxTemp": 16.9,
-      "rainAmount": 2.1
+      "rainAmount": 2.1,
+      "smhi": {
+        "minTemp": 7.6,
+        "maxTemp": 17.1,
+        "rainAmount": 1.1
+      },
+      "yr": {
+        "minTemp": 8.6,
+        "maxTemp": 17.6,
+        "rainAmount": 0.0
+      },
+      "dmi_seamless": {
+        "minTemp": 9.7,
+        "maxTemp": 17.9,
+        "rainAmount": 4.0
+      },
+      "icon_eu": {
+        "minTemp": 10.3,
+        "maxTemp": 15.8,
+        "rainAmount": 2.7
+      }
     }
   },
   "day3": {
     "2026-09-17": {
       "minTemp": 8.6,
       "maxTemp": 16.4,
-      "rainAmount": 0.1
+      "rainAmount": 0.1,
+      "smhi": {
+        "minTemp": 7.5,
+        "maxTemp": 15.5,
+        "rainAmount": 0.5
+      },
+      "yr": {
+        "minTemp": 8.2,
+        "maxTemp": 16.2,
+        "rainAmount": 1.4
+      },
+      "dmi_seamless": {
+        "minTemp": 9.3,
+        "maxTemp": 16.5,
+        "rainAmount": 0.1
+      },
+      "icon_eu": {
+        "minTemp": 8.7,
+        "maxTemp": 15.0,
+        "rainAmount": 2.0
+      }
     }
   },
   "actual": {}
