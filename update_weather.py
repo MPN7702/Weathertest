@@ -331,6 +331,33 @@ def daily_summary(hourly, target_date):
         "rainAmount": round(sum(day_rain), 1)
     }
 
+
+def fetch_actual_day(lat, lon, date):
+
+    url = (
+        "https://archive-api.open-meteo.com/v1/archive"
+        f"?latitude={lat}"
+        f"&longitude={lon}"
+        f"&start_date={date}"
+        f"&end_date={date}"
+        "&daily="
+        "temperature_2m_min,"
+        "temperature_2m_max,"
+        "precipitation_sum"
+        "&timezone=auto"
+    )
+
+    data = fetch_json(url)
+
+    daily = data["daily"]
+
+    return {
+        "minTemp": daily["temperature_2m_min"][0],
+        "maxTemp": daily["temperature_2m_max"][0],
+        "rainAmount": daily["precipitation_sum"][0]
+    }
+
+
 weather = {
     "updated": datetime.utcnow().strftime(
         "%Y-%m-%dT%H:%M:%SZ"
