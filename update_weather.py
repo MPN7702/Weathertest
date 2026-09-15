@@ -433,6 +433,11 @@ def calculate_model_stats(history):
                 sum(rain_errors) / len(rain_errors),
                 2
             )
+
+            avg_bias = round(
+                sum(temp_biases) / len(temp_biases),
+                2
+            )
 avg_bias = round(
     sum(temp_biases) / len(temp_biases),
     2
