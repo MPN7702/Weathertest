@@ -403,31 +403,31 @@ for i in range(3):
     if date not in history[key]:
         history[key][date] = {}
 
-smhi_day = daily_summary(
-    weather["Torsby"]["smhi"]["hourly"],
-    date
-)
+    smhi_day = daily_summary(
+        weatheri"]["hourly"],
+        date
+    )
 
     history[key][date]["smhi"] = smhi_day
 
-yr_day = daily_summary(
-    weather["Torsby"]["yr"]["hourly"],
-    date
-)
+    yr_day = daily_summary(
+        weather["Torsby"]["yr"]["hourly"],
+        date
+    )
 
     history[key][date]["yr"] = yr_day
 
-dmi_day = daily_summary(
-    weather["Torsby"]["dmi_seamless"]["hourly"],
-    date
-)
+    dmi_day = daily_summary(
+        weather["Torsby"]["dmi_seamless"]["hourly"],
+        date
+    )
 
     history[key][date]["dmi_seamless"] = dmi_day
 
-icon_day = daily_summary(
-    weather["Torsby"]["icon_eu"]["hourly"],
-    date
-)
+    icon_day = daily_summary(
+        weather["Torsby"]["icon_eu"]["hourly"],
+        date
+    )
 
     history[key][date]["icon_eu"] = icon_day
 
