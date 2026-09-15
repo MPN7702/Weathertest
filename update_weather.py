@@ -307,35 +307,20 @@ def fetch_weekly(lat, lon):
     )
 
     return fetch_json(url)
-def daily_summary(hourly, day_index):
+def daily_summary(hourly, target_date):
 
     times = hourly["time"]
     temps = hourly["temperature_2m"]
     rain = hourly["precipitation"]
 
-    day = times[0][:10]
-
-    unique_days = []
-
-    for t in times:
-        d = t[:10]
-
-        if d not in unique_days:
-            unique_days.append(d)
-
-    if day_index >= len(unique_days):
-        return None
-
-    target_day = unique_days[day_index]
-
     day_temps = []
     day_rain = []
 
-    for i, t in enumerate(times):
+    for idx, t in enumerate(times):
 
-        if t[:10] == target_day:
-            day_temps.append(temps[i])
-            day_rain.append(rain[i])
+        if t[:10] == target_date:
+            day_temps.append(temps[idx])
+            day_rain.append(rain[idx])
 
     if not day_temps:
         return None
@@ -420,29 +405,29 @@ for i in range(3):
 
 smhi_day = daily_summary(
     weather["Torsby"]["smhi"]["hourly"],
-    i
+    date
 )
 
     history[key][date]["smhi"] = smhi_day
 
-    yr_day = daily_summary(
-        weather["Torsby"]["yr"]["hourly"],
-        i
-    )
+yr_day = daily_summary(
+    weather["Torsby"]["yr"]["hourly"],
+    date
+)
 
     history[key][date]["yr"] = yr_day
 
-    dmi_day = daily_summary(
-        weather["Torsby"]["dmi_seamless"]["hourly"],
-        i
-    )
+dmi_day = daily_summary(
+    weather["Torsby"]["dmi_seamless"]["hourly"],
+    date
+)
 
     history[key][date]["dmi_seamless"] = dmi_day
 
-    icon_day = daily_summary(
-        weather["Torsby"]["icon_eu"]["hourly"],
-        i
-    )
+icon_day = daily_summary(
+    weather["Torsby"]["icon_eu"]["hourly"],
+    date
+)
 
     history[key][date]["icon_eu"] = icon_day
 
