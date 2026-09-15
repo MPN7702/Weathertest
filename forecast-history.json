@@ -5,9 +5,9 @@
       "maxTemp": 15.0,
       "rainAmount": 12.6,
       "smhi": {
-        "minTemp": 14.1,
+        "minTemp": 14.5,
         "maxTemp": 15.4,
-        "rainAmount": 5.9
+        "rainAmount": 5.2
       },
       "yr": {
         "minTemp": 14.1,
@@ -80,5 +80,11 @@
       }
     }
   },
-  "actual": {}
+  "actual": {
+    "2026-09-15": {
+      "minTemp": 9.1,
+      "maxTemp": 15.4,
+      "rainAmount": 8.4
+    }
+  }
 }
