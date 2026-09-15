@@ -450,25 +450,35 @@ for i in range(3):
         date
     )
 
-today = datetime.utcnow().strftime("%Y-%m-%d")
+dates_to_check = set()
 
-try:
-    history["actual"][today] = fetch_actual_day(
-        60.136,
-        13.006,
-        today
+for bucket in ["day1", "day2", "day3"]:
+    dates_to_check.update(
+        history.get(bucket, {}).keys()
     )
 
-    print(
-        "Actual:",
-        history["actual"][today]
-    )
+for date in sorted(dates_to_check):
 
-except Exception as e:
-    print(
-        "Actual-data kunde inte hämtas:",
-        e
-    )
+    if date in history["actual"]:
+        continue
+
+    try:
+        history["actual"][date] = fetch_actual_day(
+            60.136,
+            13.006,
+            date
+        )
+
+        print(
+            f"Actual sparad för {date}:",
+            history["actual"][date]
+        )
+
+    except Exception as e:
+        print(
+            f"Actual-data kunde inte hämtas för {date}:",
+            e
+        )
 
 with open(
     "forecast-history.json",
