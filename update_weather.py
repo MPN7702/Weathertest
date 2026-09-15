@@ -454,14 +454,15 @@ def calculate_model_stats(history):
                 "score": score
             }
 
-
-        sorted_stats = dict(
+    sorted_stats = dict(
         sorted(
             stats.items(),
             key=lambda x: x[1]["score"],
             reverse=True
         )
     )
+
+    return sorted_stats
 
     return sorted_stats
 
