@@ -307,7 +307,44 @@ def fetch_weekly(lat, lon):
     )
 
     return fetch_json(url)
+def daily_summary(hourly, day_index):
 
+    times = hourly["time"]
+    temps = hourly["temperature_2m"]
+    rain = hourly["precipitation"]
+
+    day = times[0][:10]
+
+    unique_days = []
+
+    for t in times:
+        d = t[:10]
+
+        if d not in unique_days:
+            unique_days.append(d)
+
+    if day_index >= len(unique_days):
+        return None
+
+    target_day = unique_days[day_index]
+
+    day_temps = []
+    day_rain = []
+
+    for i, t in enumerate(times):
+
+        if t[:10] == target_day:
+            day_temps.append(temps[i])
+            day_rain.append(rain[i])
+
+    if not day_temps:
+        return None
+
+    return {
+        "minTemp": round(min(day_temps), 1),
+        "maxTemp": round(max(day_temps), 1),
+        "rainAmount": round(sum(day_rain), 1)
+    }
 
 weather = {
     "updated": datetime.utcnow().strftime(
