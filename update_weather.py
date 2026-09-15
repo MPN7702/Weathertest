@@ -442,12 +442,14 @@ avg_bias = round(
                 1
             )
 
-            stats[model] = {
-                "samples": len(temp_errors),
-                "temp_error": avg_temp,
-                "rain_error": avg_rain,
-                "score": score
-            }
+stats[model] = {
+    "samples": len(temp_errors),
+    "temp_error": avg_temp,
+    "temp_bias": avg_bias,
+    "rain_error": avg_rain,
+    "score": score
+}
+
 
         sorted_stats = dict(
         sorted(
