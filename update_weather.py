@@ -356,7 +356,72 @@ def fetch_actual_day(lat, lon, date):
         "maxTemp": daily["temperature_2m_max"][0],
         "rainAmount": daily["precipitation_sum"][0]
     }
+def calculate_model_stats(history):
 
+    models = [
+        "smhi",
+        "yr",
+        "dmi_seamless",
+        "icon_eu"
+    ]
+
+    stats = {}
+
+    for model in models:
+
+        temp_errors = []
+        rain_errors = []
+
+        for bucket in ["day1", "day2", "day3"]:
+
+            for date, forecast in history.get(bucket, {}).items():
+
+                actual = history.get("actual", {}).get(date)
+
+                if not actual:
+                    continue
+
+                model_data = forecast.get(model)
+
+                if not model_data:
+                    continue
+
+                min_err = abs(
+                    model_data["minTemp"]
+                    - actual["minTemp"]
+                )
+
+                max_err = abs(
+                    model_data["maxTemp"]
+                    - actual["maxTemp"]
+                )
+
+                rain_err = abs(
+                    model_data["rainAmount"]
+                    - actual["rainAmount"]
+                )
+
+                temp_errors.append(
+                    (min_err + max_err) / 2
+                )
+
+                rain_errors.append(rain_err)
+
+        if temp_errors:
+
+            stats[model] = {
+                "samples": len(temp_errors),
+                "temp_error": round(
+                    sum(temp_errors) / len(temp_errors),
+                    2
+                ),
+                "rain_error": round(
+                    sum(rain_errors) / len(rain_errors),
+                    2
+                )
+            }
+
+    return stats
 
 weather = {
     "updated": datetime.utcnow().strftime(
