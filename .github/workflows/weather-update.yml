@@ -39,7 +39,7 @@ jobs:
           git config user.name "github-actions"
           git config user.email "github-actions@github.com"
 
-          git add weather.json
+          git add weather.json forecast-history.json
 
           git commit -m "Update weather cache" || true
 
