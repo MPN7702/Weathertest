@@ -2247,7 +2247,13 @@ ${
 }
                     </strong>
                     <br>
-                    Score: ${data.score}
+                    Score: ${
+(
+    100
+    - (data.temp_error * 10)
+    - (data.rain_error * 2)
+).toFixed(1)
+}
                     <br>
                     Tempfel: ${data.temp_error}°C
                     <br>
