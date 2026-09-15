@@ -431,7 +431,8 @@ for i in range(3):
         history[key][date] = {}
 
     history[key][date]["smhi"] = daily_summary(
-        weather["Torsby"]["smhi"]     date
+    weather["Torsby"]["smhi"]["hourly"],
+    date
     )
 
     history[key][date]["yr"] = daily_summary(
