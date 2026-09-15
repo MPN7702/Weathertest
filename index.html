@@ -2273,6 +2273,15 @@ Score: ${score.toFixed(1)}
                     <br>
                     Tempfel: ${data.temp_error}°C
                     <br>
+Bias:
+${
+    data.temp_bias > 0
+        ? `För varm med ${data.temp_bias.toFixed(1)}°C`
+        : data.temp_bias < 0
+        ? `För kall med ${Math.abs(data.temp_bias).toFixed(1)}°C`
+        : "Neutral"
+}
+                    <br>
                     Regnfel: ${data.rain_error} mm
                     <br>
                     Historik: ${data.samples}
