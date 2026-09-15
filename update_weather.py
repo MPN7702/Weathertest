@@ -438,10 +438,7 @@ def calculate_model_stats(history):
                 sum(temp_biases) / len(temp_biases),
                 2
             )
-avg_bias = round(
-    sum(temp_biases) / len(temp_biases),
-    2
-)
+
             score = round(
                 100
                 - (avg_temp * 10)
