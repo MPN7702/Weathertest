@@ -1,6 +1,7 @@
 import json
 import requests
 from datetime import datetime
+from pathlib import Path
 
 LOCATIONS = [
     ("Torsby", 60.136, 13.006),
@@ -351,6 +352,21 @@ for i in range(3):
         weekly["temperature_2m_max"][i],
         weekly["precipitation_sum"][i]
     )
+    history_file = Path("forecast-history.json")
+
+if history_file.exists():
+    with open(
+        "forecast-history.json",
+        "r",
+        encoding="utf-8"
+    ) as f:
+        history = json.load(f)
+else:
+    history = {
+        "day1": {},
+        "day2": {},
+        "day3": {}
+    }
 with open("weather.json", "w", encoding="utf-8") as f:
     json.dump(
         weather,
