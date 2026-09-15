@@ -398,15 +398,15 @@ weekly = weather["Torsby"]["weekly"]["daily"]
 for i in range(3):
 
     key = f"day{i + 1}"
-    date = weekly["time"][i]
+    date = weekly["time"][i][:10]
 
     if date not in history[key]:
         history[key][date] = {}
 
-    smhi_day = daily_summary(
-        weatheri"]["hourly"],
-        date
-    )
+smhi_day = daily_summary(
+    weather["Torsby"]["smhi"]["hourly"],
+    date
+)
 
     history[key][date]["smhi"] = smhi_day
 
