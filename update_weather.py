@@ -457,10 +457,33 @@ for bucket in ["day1", "day2", "day3"]:
         history.get(bucket, {}).keys()
     )
 
+today = datetime.utcnow().strftime("%Y-%m-%d")
+
 for date in sorted(dates_to_check):
+
+    if date > today:
+        continue
 
     if date in history["actual"]:
         continue
+
+    try:
+        history["actual"][date] = fetch_actual_day(
+            60.136,
+            13.006,
+            date
+        )
+
+        print(
+            f"Actual sparad för {date}:",
+            history["actual"][date]
+        )
+
+    except Exception as e:
+        print(
+            f"Actual-data kunde inte hämtas för {date}:",
+            e
+        )
 
     try:
         history["actual"][date] = fetch_actual_day(
