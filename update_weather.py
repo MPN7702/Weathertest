@@ -433,7 +433,15 @@ def calculate_model_stats(history):
                 "score": score
             }
 
-    return stats
+        sorted_stats = dict(
+        sorted(
+            stats.items(),
+            key=lambda x: x[1]["score"],
+            reverse=True
+        )
+    )
+
+    return sorted_stats
 
 weather = {
     "updated": datetime.utcnow().strftime(
