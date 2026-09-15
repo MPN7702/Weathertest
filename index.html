@@ -438,12 +438,16 @@ if (!data || !data.daily)
     return;
 
         let html = "";
+        if (!window.forecastHistory) {
+    window.forecastHistory = [];
+}
         let pressureHistory = [];
 let tempHistory = [];
 let windHistory = [];
 let rainHistory = [];
         for (let i = 0; i < 7; i++) {
-
+if (i > 2)
+    continue;
 const date =
     new Date(
         data.daily.time[i]
@@ -459,6 +463,7 @@ const dayDate =
                 });
 const currentDay =
     data.daily.time[i];
+            const dayOffset = i + 1;
 const sunrise =
     new Date(data.daily.sunrise[i])
     .toLocaleTimeString("sv-SE",{
@@ -1206,7 +1211,13 @@ const weatherTextColored =
         "⚡ Åska",
         '<span style="color:#ef4444;">⚡ Åska</span>'
     );
-
+window.forecastHistory.push({
+    dayOffset,
+    forecastDate: currentDay,
+    minTemp: Number(minTemp),
+    maxTemp: Number(maxTemp),
+    rainAmount: Number(rainAmount)
+});
 html += `
                 <div class="forecast-day">
 
@@ -1294,7 +1305,7 @@ color:#fbbf24;
 
         document.getElementById("forecastContent").innerHTML =
             html;
-
+console.log("ForecastHistory", window.forecastHistory);
     } catch (error) {
 
         document.getElementById("forecastContent").innerHTML =
