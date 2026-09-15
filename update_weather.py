@@ -544,11 +544,11 @@ for date in sorted(dates_to_check):
             history["actual"][date]
         )
 
-except Exception as e:
-    print(
-        f"Actual-data kunde inte hämtas för {date}:",
-        e
-    )
+    except Exception as e:
+        print(
+            f"Actual-data kunde inte hämtas för {date}:",
+            e
+        )
 
 history["model_stats"] = calculate_model_stats(
     history
