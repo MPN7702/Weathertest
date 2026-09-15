@@ -2220,10 +2220,12 @@ const rankedModels =
     Object.entries(stats)
         .map(([model,data]) => {
 
-            const score =
-                100
-                - (data.temp_error * 10)
-                - (data.rain_error * 2);
+const score = Math.max(
+    0,
+    100
+    - (data.temp_error * 10)
+    - (data.rain_error * 2)
+);
 
             return {
                 model,
