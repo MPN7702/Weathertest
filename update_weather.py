@@ -392,40 +392,33 @@ def calculate_model_stats(history):
                     - actual["minTemp"]
                 )
 
-min_err = abs(
-    model_data["minTemp"]
-    - actual["minTemp"]
-)
+                max_err = abs(
+                    model_data["maxTemp"]
+                    - actual["maxTemp"]
+                )
 
-max_err = abs(
-    model_data["maxTemp"]
-    - actual["maxTemp"]
-)
+                min_bias = (
+                    model_data["minTemp"]
+                    - actual["minTemp"]
+                )
 
-min_bias = (
-    model_data["minTemp"]
-    - actual["minTemp"]
-)
+                max_bias = (
+                    model_data["maxTemp"]
+                    - actual["maxTemp"]
+                )
 
-max_bias = (
-    model_data["maxTemp"]
-    - actual["maxTemp"]
-)
+                temp_biases.append(
+                    (min_bias + max_bias) / 2
+                )
 
-temp_biases.append(
-    (min_bias + max_bias) / 2
-)
+                rain_err = abs(
+                    model_data["rainAmount"]
+                    - actual["rainAmount"]
+                )
 
-rain_err = abs(
-    model_data["rainAmount"]
-    - actual["rainAmount"]
-)
-
-temp_errors.append(
-    (min_err + max_err) / 2
-)
-
-rain_errors.append(rain_err)
+                temp_errors.append(
+                    (min_err + max_err) / 2
+                )
 
                 rain_errors.append(rain_err)
 
