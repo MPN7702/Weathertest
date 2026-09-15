@@ -1,0 +1,2228 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>🌤️ Vädercenter Torsby</title>
+    <link rel="manifest" href="manifest.json">
+    <link rel="icon" href="icon-192.png" type="image/png">
+<meta name="theme-color" content="#0f172a">
+<link rel="apple-touch-icon" href="icon-192.png">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Vädercenter Torsby">
+<style>
+#weeklyForecast{
+    margin-top:0;
+    margin-left:auto;
+    margin-right:auto;
+    padding:15px;
+    font-size:16px;
+    line-height:1.6;
+
+    background:#1e293b;
+    color:#e2e8f0;
+    border-radius:12px;
+    box-shadow:0 4px 12px rgba(0,0,0,.4);
+}
+
+#weeklyForecast h2 {
+    color:#60a5fa;
+    border-bottom:1px solid #334155;
+    padding-bottom:8px;
+    margin-bottom:15px;
+    text-align:center;
+}
+
+.forecast-day {
+    position:relative;
+    padding:12px;
+    margin-bottom:0;
+    border-radius:10px;
+    background:rgba(255,255,255,0.03);
+    border:1px solid rgba(255,255,255,0.05);
+    text-align:center;
+}
+    
+body{
+    margin:0;
+    padding:20px;
+    background:#0f172a;
+    color:#e2e8f0;
+    font-family:Arial,sans-serif;
+    overflow-x:hidden;
+}
+
+h1{
+    text-align:center;
+    color:#60a5fa;
+    margin-bottom:10px;
+}
+
+#currentHour{
+    text-align:center;
+    font-size:24px;
+    font-weight:bold;
+    color:#bfdbfe;
+}
+
+
+#countdown{
+    text-align:center;
+    font-size:26px;
+    margin-bottom:25px;
+    color:#cbd5e1;
+}
+
+.container{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:15px;
+}
+.bottom-container{
+    display:grid;
+    grid-template-columns: 1fr;
+    gap:15px;
+    margin-top:20px;
+    align-items:start;
+    justify-items:center;
+}
+.weather-box{
+    background:#1e293b;
+    color:#e2e8f0;
+    padding:15px;
+    border-radius:12px;
+    box-shadow:0 4px 12px rgba(0,0,0,.4);
+    transition:all .3s;
+}
+
+#box7{
+    text-align:center;
+}
+
+#box7,
+#weeklyForecast{
+    width:60%;
+    box-sizing:border-box;
+}
+
+.weather-box h2{
+    color:#60a5fa;
+    border-bottom:1px solid #334155;
+    padding-bottom:8px;
+}
+
+.temp-hot{
+    color:#d50000;
+}
+
+.temp-mid{
+    color:#ff9800;
+}
+
+.temp-cold{
+    color:#1565c0;
+}
+
+.rain-low{
+    color:#ffffff;
+}
+.rain-mid{
+    color:#ff9800;
+}
+
+.rain-high{
+    color:#d50000;
+}
+
+.wind-mid{
+    color:#ff9800;
+}
+
+.wind-high{
+    color:#d50000;
+}
+
+    .conf-high{
+    color:#22c55e;
+}
+
+.conf-medium{
+    color:#f59e0b;
+}
+
+.conf-low{
+    color:#ef4444;
+}
+  .conf-medium-box{
+    background:#facc15;
+    color:#000;
+    font-weight:bold;
+    padding:2px 6px;
+    border-radius:4px;
+    font-size:10px;
+}
+
+.conf-low-box{
+    background:#ef4444;
+    color:#fff;
+    font-weight:bold;
+    padding:2px 6px;
+    border-radius:4px;
+    font-size:10px;
+}  
+.value{
+    font-weight:bold;
+}
+.dashboard-button{
+    background:#1e293b;
+    color:#e2e8f0;
+    border:1px solid #334155;
+    border-radius:12px;
+    padding:12px 24px;
+    font-size:16px;
+    cursor:pointer;
+    transition:all .2s;
+    box-shadow:0 4px 12px rgba(0,0,0,.4);
+
+    height:48px;
+    line-height:24px;
+}
+
+
+.dashboard-button:hover{
+    background:#334155;
+}
+
+.dashboard-button:active{
+    transform:scale(0.98);
+}
+@media (max-width: 768px){
+
+    .container{
+        grid-template-columns: 1fr;
+    }
+
+    .bottom-container{
+        grid-template-columns: 1fr;
+    }
+
+    h1{
+        font-size:24px;
+    }
+
+    #currentHour,
+    #countdown{
+        font-size:18px;
+    }
+
+    #weeklyForecast{
+        padding:15px;
+        width:95%;
+    }
+
+#forecastContent{
+    display:grid;
+    grid-template-columns:1fr !important;
+}
+
+    .weather-box{
+        padding:12px;
+    }
+
+    #locationSelect{
+        width:90%;
+        max-width:400px;
+    }
+
+    #box7{
+        width:95%;
+    }
+
+    .forecast-wrapper{
+        display:block;
+    }
+
+.forecast-day{
+padding:8px;
+font-size:14px;
+line-height:1.3;
+margin-bottom:6px;
+}
+
+    .conf-span{
+        display:block;
+        margin-top:3px;
+        font-size:12px;
+        color:#94a3b8;
+    }
+
+}
+#forecastContent{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:8px;
+}
+.forecast-wrapper{
+    position:relative;
+    width:100%;
+}
+.conf-span{
+    display:block;
+    margin-top:3px;
+    color:#94a3b8;
+    font-size:12px;
+}
+</style>
+
+</head>
+<body>
+<div style="
+text-align:center;
+margin-bottom:10px;
+">
+
+<h1 style="margin:0;">
+🌤️ Vädercenter Torsby
+</h1>
+<div style="color:#94a3b8;font-size:14px;margin-top:4px;">
+🌍 Sammanvägda prognoser från SMHI, YR, DMI och ICON EU
+</div>
+<div style="margin-top:8px;">
+
+<div
+    id="installBtn"
+    onclick="installPWA()"
+    style="
+        display:none;
+        cursor:pointer;
+        text-align:center;
+    ">
+
+    <img
+        src="icon-192.png"
+        alt="Installera app"
+        style="
+            width:48px;
+            height:48px;
+            display:block;
+            margin:auto;
+        ">
+
+    <span style="
+        font-size:12px;
+        color:#60a5fa;
+        display:block;
+        margin-top:2px;
+    ">
+        Installera
+    </span>
+
+</div>
+
+</div>
+
+</div>
+
+<div style="
+display:flex;
+justify-content:center;
+align-items:center;
+gap:25px;
+margin-bottom:15px;
+">
+
+<select id="locationSelect"
+        style="font-size:18px;padding:6px 12px;border-radius:8px;">
+
+        <option value="60.136,13.006">Torsby</option>
+        <option value="60.729,13.006">Sysslebäck</option>
+        <option value="60.416,13.256">Stöllet</option>
+        <option value="60.640,13.220">Likenäs</option>
+        <option value="60.314,12.996">Östmark</option>
+        <option value="60.815,12.790">Höljes</option>
+        <option value="60.480,13.115">Ambjörby</option>
+        <option value="60.285,13.173">Värnäs</option>
+        <option value="60.542,13.017">Vitsand</option>
+        <option value="60.689,13.189">Branäs</option>
+
+</select>
+
+
+</div>
+
+
+<div id="currentHour" style="display:none;"></div>
+
+<div id="countdown" style="display:none;"></div>
+
+<div class="container" id="modelsContainer" style="display:none;">
+    <div class="weather-box" id="box1"></div>
+    <div class="weather-box" id="box2"></div>
+    <div class="weather-box" id="box3"></div>
+    <div class="weather-box" id="box4"></div>
+</div>
+<div class="bottom-container">
+
+<div class="weather-box" id="box7">
+    Hämtar prognos...
+</div>
+
+
+<div class="forecast-wrapper">
+
+
+        <div id="weeklyForecast">
+            <h2>🗓️ 7-dygnsprognos</h2>
+
+            <div id="forecastContent">
+                Hämtar prognos...
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+<div style="text-align:center;
+            margin-top:20px;
+            font-size:14px;
+            color:#94a3b8;">
+
+    Väderdata från
+
+    <a href="https://open-meteo.com"
+       target="_blank"
+       rel="noopener noreferrer"
+       style="color:#60a5fa;">
+        Open-Meteo.com
+    </a>
+<div style="margin-top:12px;">
+    Besökare:
+</div>
+
+<img src="https://www.hitwebcounter.com/counter/counter.php?page=21516963&style=0019&nbdigits=5&type=page"
+     alt="Besöksräknare"
+     style="border:0;transform:scale(0.5);">
+</div>
+<script type="module">
+
+async function updateWeeklyForecast() {
+
+
+    try {
+
+let cache;
+
+if(window.cachedWeather){
+
+    cache = window.cachedWeather;
+
+}else{
+
+    const response =
+        await fetch("weather.json");
+
+    cache =
+        await response.json();
+
+    window.cachedWeather = cache;
+
+}
+
+const data =
+    cache?.[currentLocation]?.weekly;
+        
+if (!data || !data.daily)
+    return;
+
+        let html = "";
+        let pressureHistory = [];
+let tempHistory = [];
+let windHistory = [];
+let rainHistory = [];
+        for (let i = 0; i < 7; i++) {
+
+const date =
+    new Date(
+        data.daily.time[i]
+    );
+const dayDate =
+    date.toLocaleDateString("sv-SE", {
+        day: "numeric",
+        month: "short"
+    });
+            const weekday =
+                date.toLocaleDateString("sv-SE", {
+                    weekday: "long"
+                });
+const currentDay =
+    data.daily.time[i];
+const sunrise =
+    new Date(data.daily.sunrise[i])
+    .toLocaleTimeString("sv-SE",{
+        hour:"2-digit",
+        minute:"2-digit"
+    });
+
+const sunset =
+    new Date(data.daily.sunset[i])
+    .toLocaleTimeString("sv-SE",{
+        hour:"2-digit",
+        minute:"2-digit"
+    });
+const forecastMonth =
+    new Date(currentDay).getMonth() + 1;
+
+let maxTemps = [];
+let minTemps = [];
+
+models.forEach(model => {
+
+    const hourly =
+        model.data?.hourly;
+
+    if (!hourly?.time || !hourly?.temperature_2m)
+        return;
+
+    const dayTemps = [];
+
+    for (let h = 0; h < hourly.time.length; h++) {
+
+        if (hourly.time[h].startsWith(currentDay)) {
+
+            const temp =
+                hourly.temperature_2m[h];
+
+            if (typeof temp === "number") {
+                dayTemps.push(temp);
+            }
+        }
+    }
+
+    if (dayTemps.length) {
+
+        maxTemps.push(
+            Math.max(...dayTemps)
+        );
+
+        minTemps.push(
+            Math.min(...dayTemps)
+        );
+    }
+
+});
+if(!maxTemps.length || !minTemps.length)
+    continue;
+
+const maxTemp =
+    (
+        maxTemps.reduce((a,b)=>a+b,0)
+        / maxTemps.length
+    ).toFixed(1);
+
+const minTemp =
+    (
+        minTemps.reduce((a,b)=>a+b,0)
+        / minTemps.length
+    ).toFixed(1);
+            tempHistory.push(
+    (Number(maxTemp) + Number(minTemp)) / 2
+);
+
+let tempClass = "";
+
+if(Number(maxTemp) <= -20)
+    tempClass = "temp-cold";
+
+if(Number(maxTemp) >= 30)
+    tempClass = "temp-hot";
+
+let rainHours = [];
+
+const hourlyTimes =
+    models.find(m => m.data?.hourly?.time)
+          ?.data.hourly.time;
+
+if (!hourlyTimes)
+    continue;
+
+let rainTotals = [];
+
+models.forEach(model => {
+
+    const hourly =
+        model.data?.hourly;
+
+    if (!hourly?.time ||
+        !hourly?.precipitation)
+        return;
+
+    let modelRainSum = 0;
+
+    for (let h = 0; h < hourly.time.length; h++) {
+
+        if (hourly.time[h].startsWith(currentDay)) {
+
+            modelRainSum +=
+                hourly.precipitation[h] ?? 0;
+        }
+    }
+
+    rainTotals.push(modelRainSum);
+
+});
+if(!rainTotals.length)
+    continue;
+const rainAmount =
+(
+    rainTotals.reduce(
+        (a,b) => a + b,
+        0
+    ) / rainTotals.length
+).toFixed(1);
+
+let rainAmountClass = "rain-low";
+
+if(Number(rainAmount) >= 2 &&
+   Number(rainAmount) < 10)
+{
+    rainAmountClass = "rain-mid";
+}
+
+if(Number(rainAmount) >= 10)
+{
+    rainAmountClass = "rain-high";
+}
+
+for (let h = 0; h < hourlyTimes.length; h++) {
+
+    const hourlyTime =
+        hourlyTimes[h];
+
+    let supportWeight = 0;
+
+    models.forEach(model => {
+
+const idx =
+    getIndexForTime(
+        model.data?.hourly,
+        hourlyTime
+    );
+
+if(idx === -1)
+    return;
+
+const rain =
+    model.data.hourly.precipitation?.[idx] ?? 0;
+
+if (rain >= 0.1)
+    supportWeight += weights[model.model] ?? 0;
+
+    });
+if (
+    hourlyTime.startsWith(currentDay) &&
+    supportWeight >= 0.40
+)
+{
+
+        rainHours.push(
+            hourlyTime.substring(11,16)
+        );
+
+    }
+}
+
+let rainPeriods = [];
+            let rainTimes = "Inget regn";
+
+if (rainHours.length > 0) {
+
+    let start = rainHours[0];
+    let previous = rainHours[0];
+
+    for (let r = 1; r < rainHours.length; r++) {
+
+        const current =
+            rainHours[r];
+
+        const previousHour =
+            Number(previous.substring(0,2));
+
+        const currentHour =
+            Number(current.substring(0,2));
+
+        if (currentHour === previousHour + 1) {
+
+            previous = current;
+
+        } else {
+
+if(start === previous){
+
+    rainPeriods.push(start);
+
+}else{
+
+    rainPeriods.push(
+        `${start}-${previous}`
+    );
+}
+            start = current;
+            previous = current;
+        }
+    }
+
+if(start === previous){
+
+    rainPeriods.push(start);
+
+}else{
+
+    rainPeriods.push(
+        `${start}-${previous}`
+    );
+}
+
+}
+
+rainTimes =
+    rainPeriods.length
+        ? rainPeriods.join(", ")
+        : "Inget regn";
+
+if(
+    Number(rainAmount) > 0 &&
+    rainPeriods.length === 0
+){
+    rainTimes = "Osäkra tider";
+}
+let windSpeeds = [];
+let windGusts = [];
+let windX = 0;
+let windY = 0;
+
+models.forEach(model => {
+
+    const hourly =
+        model.data?.hourly;
+
+    if (!hourly?.time)
+        return;
+
+    const dayWinds = [];
+    const dayGusts = [];
+
+    for (let h = 0; h < hourly.time.length; h++) {
+
+        if (hourly.time[h].startsWith(currentDay)) {
+
+let wind =
+    hourly.wind_speed_10m?.[h];
+
+            const gust =
+                hourly.wind_gusts_10m?.[h];
+
+            const dir =
+                hourly.wind_direction_10m?.[h];
+
+            if (typeof wind === "number") {
+                dayWinds.push(wind);
+            }
+
+            if (typeof gust === "number") {
+                dayGusts.push(gust);
+            }
+
+            if (
+                typeof dir === "number" &&
+                typeof wind === "number"
+            ) {
+
+                const rad =
+                    dir * Math.PI / 180;
+
+const weight =
+    weights[model.model] ?? 0;
+
+windX +=
+    -Math.sin(rad) * wind * weight;
+
+windY +=
+    -Math.cos(rad) * wind * weight;
+            }
+        }
+    }
+
+    if (dayWinds.length) {
+
+        windSpeeds.push(
+            dayWinds.reduce((a,b)=>a+b,0)
+            / dayWinds.length
+        );
+
+    }
+
+    if (dayGusts.length) {
+
+        windGusts.push(
+            Math.max(...dayGusts)
+        );
+
+    }
+
+});
+
+const windSpeed =
+    windSpeeds.length
+        ? (
+            (
+                windSpeeds.reduce((a,b)=>a+b,0)
+                / windSpeeds.length
+            ) * WIND_FACTOR
+          ).toFixed(1)
+        : "--";
+
+if(windSpeed !== "--"){
+    windHistory.push(Number(windSpeed));
+}else{
+    windHistory.push(0);
+}
+
+let windClass = "";
+
+if(Number(windSpeed) >= 10)
+    windClass = "wind-high";
+
+else if(Number(windSpeed) >= 5)
+    windClass = "wind-mid";
+const windGust =
+    windGusts.length
+        ? (
+            (
+                windGusts.reduce((a,b)=>a+b,0)
+                / windGusts.length
+            ) * WIND_FACTOR
+          ).toFixed(1)
+        : "--";
+
+const windDirection =
+(
+    Math.atan2(windY, windX)
+    * 180 / Math.PI
+    + 360
+) % 360;
+
+let windModelValues = [];
+let rainModelValues = [];
+
+models.forEach(model => {
+
+    const hourly = model.data?.hourly;
+
+    if(!hourly?.time)
+        return;
+
+    const dayWinds = [];
+    let dayRain = 0;
+
+    for(let h = 0; h < hourly.time.length; h++){
+
+        if(hourly.time[h].startsWith(currentDay)){
+
+            if(typeof hourly.wind_speed_10m?.[h] === "number"){
+
+let adjustedWind =
+    hourly.wind_speed_10m[h];
+
+dayWinds.push(
+    adjustedWind * WIND_FACTOR
+);
+            }
+
+            dayRain +=
+                hourly.precipitation?.[h] ?? 0;
+
+        }
+
+    }
+
+    if(dayWinds.length){
+
+        windModelValues.push(
+            dayWinds.reduce((a,b)=>a+b,0)
+            / dayWinds.length
+        );
+
+    }
+
+    rainModelValues.push(dayRain);
+
+});
+const windSpread =
+    Math.max(...windModelValues)
+    -
+    Math.min(...windModelValues);
+const windMin =
+    Math.min(...windModelValues).toFixed(1);
+
+const windMax =
+    Math.max(...windModelValues).toFixed(1);
+const rainSpread =
+    Math.max(...rainModelValues)
+    -
+    Math.min(...rainModelValues);
+const rainMin =
+    Math.min(...rainModelValues).toFixed(1);
+
+const rainMax =
+    Math.max(...rainModelValues).toFixed(1);
+const maxTempSpread =
+    Math.max(...maxTemps)
+    -
+    Math.min(...maxTemps);
+
+const minTempSpread =
+    Math.max(...minTemps)
+    -
+    Math.min(...minTemps);
+const tempMinSpan =
+    Math.min(...minTemps).toFixed(1);
+
+const tempMaxSpan =
+    Math.max(...maxTemps).toFixed(1);
+const tempSpread = Math.max(
+    maxTempSpread,
+    minTempSpread
+);
+let confidenceText = "Hög";
+let confidenceClass = "conf-high";
+
+let windDisplayClass = windClass;
+let rainDisplayClass = rainAmountClass;
+
+let confidenceBoxClass = "conf-high";
+
+let tempFlag = "";
+let windFlag = "";
+let rainFlag = "";
+
+if(
+    tempSpread > 6 ||
+    windSpread > 5.0 ||
+    rainSpread > 8
+){
+
+    confidenceText = "Låg";
+    confidenceClass = "conf-low";
+    confidenceBoxClass = "conf-low-box";
+
+    if(tempSpread > 6){
+        tempFlag =
+            '<span class="conf-low-box">Låg</span>';
+    }
+
+    if(windSpread > 5.0){
+        windFlag =
+            '<span class="conf-low-box">Låg</span>';
+    }
+
+    if(rainSpread > 8){
+        rainFlag =
+            '<span class="conf-low-box">Låg</span>';
+    }
+
+}
+else if(
+    tempSpread > 4 ||
+    windSpread > 3.0 ||
+    rainSpread > 3
+){
+
+    confidenceText = "Medel";
+    confidenceClass = "conf-medium";
+    confidenceBoxClass = "conf-medium-box";
+
+    if(tempSpread > 4){
+        tempFlag =
+            '<span class="conf-medium-box">Medel</span>';
+    }
+
+    if(windSpread > 3.0){
+        windFlag =
+            '<span class="conf-medium-box">Medel</span>';
+    }
+
+    if(rainSpread > 3){
+        rainFlag =
+            '<span class="conf-medium-box">Medel</span>';
+    }
+
+}
+
+let pressures = [];
+
+models.forEach(model => {
+
+    const hourly =
+        model.data?.hourly;
+
+    if (!hourly?.time || !hourly?.surface_pressure)
+        return;
+
+    const dayPressures = [];
+
+    for (let h = 0; h < hourly.time.length; h++) {
+
+        if (hourly.time[h].startsWith(currentDay)) {
+
+            const pressure =
+                hourly.surface_pressure[h];
+
+            if (typeof pressure === "number") {
+
+                dayPressures.push(
+                    pressure
+                );
+
+            }
+        }
+    }
+
+    if (dayPressures.length) {
+
+        pressures.push(
+
+            dayPressures.reduce(
+                (a,b) => a + b,
+                0
+            ) / dayPressures.length
+
+        );
+
+    }
+
+});
+if(!pressures.length)
+    continue;
+const pressure =
+    (
+        pressures.reduce(
+            (a,b) => a + b,
+            0
+        ) / pressures.length
+    ).toFixed(1);
+            pressureHistory.push(
+    Number(pressure)
+);
+let pressureTrend = "±0";
+
+if(i > 0){
+
+    const diff =
+        Number(pressure)
+        -
+        pressureHistory[i - 1];
+
+if(diff >= 2)
+    pressureTrend =
+        `+${diff.toFixed(1)}`;
+
+else if(diff <= -2)
+    pressureTrend =
+        `${diff.toFixed(1)}`;
+
+else
+    pressureTrend =
+        `${diff.toFixed(1)}`;
+}
+      rainHistory.push(
+    Number(rainAmount)
+);     
+               
+let weatherVotes = {};
+
+models.forEach(model => {
+
+    const hourly =
+        model.data?.hourly;
+
+    if (!hourly?.time || !hourly?.weathercode)
+        return;
+
+    hourlyTimes.forEach(hourlyTime => {
+
+        if(!hourlyTime.startsWith(currentDay))
+            return;
+
+        const idx =
+            getIndexForTime(
+                hourly,
+                hourlyTime
+            );
+
+        if(idx === -1)
+            return;
+
+        const code =
+            hourly.weathercode?.[idx];
+
+        if(code === undefined)
+            return;
+
+        weatherVotes[code] =
+            (weatherVotes[code] ?? 0)
+            + (weights[model.model] ?? 0);
+
+    });
+
+});
+
+const sortedWeatherCodes =
+    Object.entries(weatherVotes)
+        .sort((a,b) => b[1] - a[1])
+        .slice(0,3)
+        .map(x => Number(x[0]));
+
+const weatherMap = {
+
+    0: "☀️ Klart",
+    1: "🌤️ Mest klart",
+    2: "⛅ Delvis molnigt",
+    3: "☁️ Mulet",
+
+    45: "🌫️ Dimma",
+    48: "🌫️ Dimma",
+
+    51: "🌦️ Duggregn",
+    53: "🌦️ Duggregn",
+    55: "🌦️ Duggregn",
+    56: "🌦️ Duggregn",
+    57: "🌦️ Duggregn",
+
+    61: "🌧️ Regn",
+    63: "🌧️ Regn",
+    65: "🌧️ Regn",
+    66: "🌧️ Regn",
+    67: "🌧️ Regn",
+
+    71: "❄️ Snö",
+    73: "❄️ Snö",
+    75: "❄️ Snö",
+    77: "❄️ Snö",
+
+    80: "🌦️ Regnskurar",
+    81: "🌦️ Regnskurar",
+    82: "🌦️ Regnskurar",
+
+    85: "🌨️ Snöbyar",
+    86: "🌨️ Snöbyar",
+
+    95: "⚡ Åska",
+    96: "⚡ Åska",
+    99: "⚡ Åska"
+
+};
+
+const weatherDescriptions = [];
+
+function getPeriodWeather(startHour,endHour,emoji,label){
+
+    let votes = {};
+
+    for(let h = 0; h < hourlyTimes.length; h++){
+
+        const hourlyTime = hourlyTimes[h];
+
+        if(!hourlyTime.startsWith(currentDay))
+            continue;
+
+        const hour =
+            Number(hourlyTime.substring(11,13));
+
+        if(hour < startHour || hour >= endHour)
+            continue;
+
+        models.forEach(model => {
+
+const idx =
+    getIndexForTime(
+        model.data?.hourly,
+        hourlyTime
+    );
+
+if(idx === -1)
+    return;
+
+const code =
+    model.data.hourly.weathercode?.[idx];
+
+            if(code !== undefined){
+
+votes[code] =
+    (votes[code] ?? 0)
+    + (weights[model.model] ?? 0);
+
+
+            }
+
+        });
+
+    }
+
+    const topCode =
+        Object.entries(votes)
+            .sort((a,b)=>b[1]-a[1])[0]?.[0];
+if(topCode === undefined){
+
+    weatherDescriptions.push(
+        `${emoji} ${label}: Okänt väder`
+    );
+
+    return;
+}
+if(topCode !== undefined){
+
+    weatherDescriptions.push(
+        `${emoji} ${label}: ${
+            weatherMap[Number(topCode)] ?? "Okänt väder"
+        }`
+    );
+
+}
+
+}
+
+getPeriodWeather(0,6,"🌙","00-06");
+getPeriodWeather(6,16,"☀️","06-16");
+getPeriodWeather(16,24,"🌆","16-00");
+
+const weatherText =
+    weatherDescriptions.join("<br>");
+
+const weatherTextColored =
+    weatherText.replaceAll(
+        "⚡ Åska",
+        '<span style="color:#ef4444;">⚡ Åska</span>'
+    );
+
+html += `
+                <div class="forecast-day">
+
+<strong style="color:#60a5fa;font-size:18px;">
+${weekday} ${dayDate}
+</strong><br>
+🌡️
+<span class="${tempClass}">
+<strong>${minTemp}°C till ${maxTemp}°C</strong>
+</span>
+${tempFlag}
+
+${tempFlag
+    ? `<span class="conf-span">Spann: ${tempMinSpan}–${tempMaxSpan}°C</span>`
+    : ""}
+
+<br>
+🌬️ Medelvind:
+<span class="${windDisplayClass}">
+<strong>
+${windSpeed} m/s
+${getWindArrow(windDirection)}
+${getWindDirection(windDirection)}
+
+</strong>
+</span>
+${windFlag}
+
+${windFlag
+    ? `<span class="conf-span">Spann: ${windMin}–${windMax} m/s</span>`
+    : ""}
+
+<br>
+
+
+💨 Kastvind:
+<strong>${windGust} m/s</strong><br>
+📈 Lufttryck:
+<strong>${pressure} hPa ${pressureTrend}</strong><br>
+
+💧 Regnmängd:
+<span class="${rainDisplayClass}">
+<strong>${rainAmount} mm</strong>
+</span>
+${rainFlag}
+
+${rainFlag
+    ? `<span class="conf-span">Spann: ${rainMin}–${rainMax} mm</span>`
+    : ""}
+
+<br>
+
+
+🌧️ Regntider:
+<strong>${rainTimes}</strong>
+<br>
+
+🎯 Prognossäkerhet:
+<span class="${confidenceBoxClass}">
+<strong>${confidenceText}</strong>
+</span>
+<br><br>
+
+🌦️ Översikt:
+<br>
+<strong>${weatherTextColored}</strong>
+
+<br><br>
+
+<div style="
+font-size:13px;
+color:#fbbf24;
+">
+☀️ Sol<br>
+🌅 ${sunrise}<br>
+🌇 ${sunset}
+</div>
+
+<br>
+
+
+                </div>
+            `;
+        }
+
+        document.getElementById("forecastContent").innerHTML =
+            html;
+
+    } catch (error) {
+
+        document.getElementById("forecastContent").innerHTML =
+            "Kunde inte hämta prognosen.";
+
+        console.error(error);
+    }
+}
+
+let LAT = 60.136;
+let LON = 13.006;
+    let currentLocation = "Torsby";
+document.getElementById("locationSelect")
+.addEventListener("change", async function() {
+
+const ortnamn =
+    this.options[this.selectedIndex].text;
+
+currentLocation = ortnamn;
+
+
+forecastIndex = startIndex;
+
+    await loadAllData();
+
+});
+const weights = {
+
+    icon_eu: 0.10,
+    dmi_seamless: 0.10,
+    smhi: 0.40,
+    yr: 0.40
+
+};
+    const WIND_FACTOR = 0.27778;
+
+const models = [
+
+{
+    id:"box1",
+    namn:"🇩🇪 ICON EU",
+    model:"icon_eu",
+    data:null
+},
+{
+    id:"box2",
+    namn:"🇩🇰 DMI",
+    model:"dmi_seamless",
+    data:null
+},
+{
+    id:"box3",
+    namn:"🇸🇪 SMHI",
+    model:"smhi",
+    data:null
+},
+{
+    id:"box4",
+    namn:"🇳🇴 YR",
+    model:"yr",
+    data:null
+}
+
+];
+
+const startIndex = new Date().getHours();
+let forecastIndex = startIndex;
+
+let countdown = 5;
+async function loadWeather(source){
+
+    try{
+
+        if(!window.cachedWeather){
+
+            const response =
+                await fetch("./weather.json");
+
+            window.cachedWeather =
+                await response.json();
+
+        }
+
+source.data =
+    window.cachedWeather?.[currentLocation]?.[source.model];
+
+
+    }
+    catch(error){
+
+        console.error(error);
+
+        document.getElementById(source.id).innerHTML =
+        `<h2>${source.namn}</h2>
+        Fel vid hämtning av data`;
+
+    }
+
+}
+function getWindDirection(degrees) {
+
+    const directions = [
+        "N",
+        "NO",
+        "O",
+        "SO",
+        "S",
+        "SV",
+        "V",
+        "NV"
+    ];
+
+    return directions[
+        Math.round(degrees / 45) % 8
+    ];
+}
+function getWindArrow(degrees) {
+
+    if (degrees === undefined || degrees === null)
+        return "";
+
+    const arrows = [
+    "⬆️", // N
+    "↗️", // NO
+    "➡️", // O
+    "↘️", // SO
+    "⬇️", // S
+    "↙️", // SV
+    "⬅️", // V
+    "↖️"  // NV
+];
+
+    return arrows[
+        Math.round(degrees / 45) % 8
+    ];
+}
+
+    function getIndexForTime(hourly, targetTime){
+
+    if(!hourly?.time)
+        return -1;
+
+    return hourly.time.findIndex(
+        t => t.substring(0,16) === targetTime.substring(0,16)
+    );
+}
+function showHour(hour){
+
+if(!models.some(m => m.data?.hourly))
+    return;
+
+const forecastTime =
+    models.find(m => m.data?.hourly?.time)
+          ?.data.hourly.time?.[hour];
+
+const displayTime =
+    new Date(forecastTime)
+        .toLocaleString("sv-SE", {
+            hour: "2-digit",
+            minute: "2-digit"
+        });
+    const shortDate =
+    new Date(forecastTime)
+        .toLocaleDateString("sv-SE", {
+            weekday: "long",
+            day: "numeric",
+            month: "short"
+        });
+
+const modelDateInfo =
+    `📅 ${
+        shortDate.charAt(0).toUpperCase() +
+        shortDate.slice(1)
+    }<br>🕓 ${displayTime}`;
+
+document.getElementById("currentHour").innerHTML =
+`Klockan: ${displayTime} (24-timmarsprognos)`;
+
+models.forEach(model=>{
+
+if(!model.data) return;
+
+const h = model.data.hourly;
+
+const idx =
+    getIndexForTime(
+        h,
+        forecastTime
+    );
+
+if(idx === -1)
+    return;
+
+const temperature =
+    h.temperature_2m?.[idx] ?? "-";
+
+
+let wind =
+    h.wind_speed_10m?.[idx] ?? 0;
+wind =
+    (wind * WIND_FACTOR).toFixed(1);
+    let windClass = "";
+
+if(Number(wind) >= 20)
+    windClass = "wind-high";
+
+else if(Number(wind) >= 10)
+    windClass = "wind-mid";
+const windDirection =
+h.wind_direction_10m?.[idx] ?? 0;
+
+const pressure =
+h.surface_pressure?.[idx] ?? "-";
+
+const rainAmount =
+    h.precipitation?.[idx] ?? 0;
+const rainRisk =
+    h.precipitation_probability?.[idx] ?? 0;
+const thunderRisk =
+Math.min(Math.round(rainRisk * 0.6),100);
+
+let rainAmountClass = "rain-low";
+
+if (rainAmount >= 2)
+    rainAmountClass = "rain-mid";
+
+if (rainAmount >= 5)
+    rainAmountClass = "rain-high";
+
+let tempClass = "";
+
+if(temperature <= -20)
+    tempClass = "temp-cold";
+
+if(temperature >= 30)
+    tempClass = "temp-hot";
+
+const box =
+document.getElementById(model.id);
+
+box.innerHTML = `
+
+<div style="
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-start;
+">
+    <h2 style="margin:0; padding-right:40px;">
+        ${model.namn}
+    </h2>
+
+<div style="
+    text-align:right;
+    font-size:15px;
+    color:#93c5fd;
+    line-height:1.4;
+    margin-left:15px;
+">
+        ${modelDateInfo}
+    </div>
+</div>
+
+<br>
+
+Temperatur:
+<span class="${tempClass}">
+<b>${temperature} °C</b>
+</span>
+
+<br><br>
+
+Vind:
+<span class="${windClass}">
+<b>${wind} m/s ${getWindArrow(windDirection)} ${getWindDirection(windDirection)}</b>
+</span>
+
+<br><br>
+
+Lufttryck:
+<b>${pressure} hPa</b>
+
+<br><br>
+
+Regnmängd:
+<span class="${rainAmountClass}">
+<b>${rainAmount} mm</b>
+</span>
+
+<br><br>
+
+Åskrisk:
+<b>${thunderRisk} %</b>
+
+`;
+
+});
+ 
+updateAIBox(hour);
+
+}
+
+ 
+
+function updateAIBox(hour){
+
+if(!models.some(m => m.data?.hourly))
+    return;
+
+const forecastTime =
+    models.find(m => m.data?.hourly?.time)
+          ?.data.hourly.time?.[hour];
+
+if(!forecastTime)
+    return;
+function getPeriodWeatherText(startHour, endHour){
+
+    let votes = {};
+
+    models.forEach(model => {
+
+        const h = model.data?.hourly;
+
+        if(!h?.time || !h?.weathercode)
+            return;
+
+        for(let i = 0; i < h.time.length; i++){
+
+            const hour =
+                new Date(h.time[i]).getHours();
+
+            if(hour < startHour || hour >= endHour)
+                continue;
+
+            const code =
+                h.weathercode[i];
+
+            votes[code] =
+                (votes[code] ?? 0)
+                + (weights[model.model] ?? 0);
+
+        }
+
+    });
+
+    const topCode =
+        Object.entries(votes)
+              .sort((a,b) => b[1]-a[1])[0]?.[0];
+
+    const weatherMap = {
+
+        0:"☀️ Klart",
+        1:"🌤️ Mest klart",
+        2:"⛅ Delvis molnigt",
+        3:"☁️ Mulet",
+
+        45:"🌫️ Dimma",
+        48:"🌫️ Dimma",
+
+        51:"🌦️ Duggregn",
+        53:"🌦️ Duggregn",
+        55:"🌦️ Duggregn",
+
+        61:"🌧️ Regn",
+        63:"🌧️ Regn",
+        65:"🌧️ Kraftigt regn",
+
+        71:"❄️ Snö",
+        73:"❄️ Snö",
+        75:"❄️ Kraftig snö",
+
+        80:"🌦️ Regnskurar",
+        81:"🌦️ Regnskurar",
+        82:"🌧️ Kraftiga skurar",
+
+        95:"⚡ Åska",
+        96:"⚡ Åska",
+        99:"⚡ Kraftig åska"
+
+    };
+
+    return weatherMap[topCode] ?? "❓ Okänt";
+}
+    function getPeriodData(startHour,endHour){
+    let tempSum = 0;
+    let windSum = 0;
+    let rainSum = 0;
+    let windX = 0;
+    let windY = 0;
+    let weightSum = 0;
+
+    models.forEach(model => {
+
+        const h = model.data?.hourly;
+
+        if(!h?.time) return;
+
+        for(let i=0;i<h.time.length;i++){
+
+            const t = new Date(h.time[i]);
+const today =
+    new Date()
+        .toISOString()
+        .substring(0,10);
+
+if(
+    h.time[i].substring(0,10)
+    !== today
+){
+    continue;
+}
+            const hh = t.getHours();
+
+            if(hh < startHour || hh >= endHour)
+                continue;
+
+            const weight =
+                weights[model.model] ?? 0;
+
+            tempSum +=
+                (h.temperature_2m?.[i] ?? 0) * weight;
+
+            const wind =
+                (h.wind_speed_10m?.[i] ?? 0)
+                * WIND_FACTOR;
+
+            windSum += wind * weight;
+
+            rainSum +=
+                (h.precipitation?.[i] ?? 0)
+                * weight;
+
+            const dir =
+                h.wind_direction_10m?.[i] ?? 0;
+
+            const rad =
+                dir * Math.PI / 180;
+
+            windX +=
+                Math.sin(rad) * wind * weight;
+
+            windY +=
+                Math.cos(rad) * wind * weight;
+
+            weightSum += weight;
+        }
+
+    });
+
+    if(weightSum === 0)
+        return null;
+
+    return {
+        temp:(tempSum/weightSum).toFixed(1),
+        wind:(windSum/weightSum).toFixed(1),
+        rain:(rainSum/weightSum).toFixed(1),
+        dir:(
+            Math.atan2(windX,windY)
+            *180/Math.PI
+            +360
+        )%360
+    };
+}
+const displayTime =
+    new Date(forecastTime)
+        .toLocaleString("sv-SE", {
+            hour: "2-digit",
+            minute: "2-digit"
+        });
+const forecastDate = new Date();
+
+const displayDate =
+    forecastDate.toLocaleDateString("sv-SE", {
+        weekday: "long",
+        year: "numeric",
+        month: "long",
+        day: "numeric"
+    });
+
+const capitalizedDate =
+    displayDate.charAt(0).toUpperCase() +
+    displayDate.slice(1);
+let tempSum = 0;
+let windSum = 0;
+let windX = 0;
+let windY = 0;
+let pressureSum = 0;
+let rainAmountSum = 0;
+
+let weightSum = 0;
+    models.forEach(model => {
+
+        if(!model.data) return;
+
+        const h = model.data.hourly;
+const idx =
+    getIndexForTime(
+        h,
+        forecastTime
+    );
+
+if(idx === -1)
+    return;
+        
+const weight =
+    weights[model.model] ?? 0;
+
+tempSum +=
+    (h.temperature_2m?.[idx] ?? 0) * weight;
+
+let adjustedWind =
+    h.wind_speed_10m?.[idx] ?? 0;
+
+windSum +=
+    (adjustedWind * WIND_FACTOR) * weight;
+
+const dir =
+    h.wind_direction_10m?.[idx] ?? 0;
+const wind =
+    (h.wind_speed_10m?.[idx] ?? 0) * WIND_FACTOR;
+
+const rad =
+    dir * Math.PI / 180;
+
+windX +=
+    Math.sin(rad) * wind * weight;
+
+windY +=
+    Math.cos(rad) * wind * weight;
+
+pressureSum +=
+    (h.surface_pressure?.[idx] ?? 0) * weight;
+
+rainAmountSum +=
+    (h.precipitation?.[idx] ?? 0) * weight;
+
+weightSum += weight;
+
+    });
+
+if(weightSum === 0) return;
+
+const avgTemp =
+    (tempSum / weightSum).toFixed(1);
+
+let avgTempClass = "";
+
+if(Number(avgTemp) <= -20)
+    avgTempClass = "temp-cold";
+
+if(Number(avgTemp) >= 30)
+    avgTempClass = "temp-hot"; 
+const avgWind =
+    (windSum / weightSum).toFixed(1);
+let avgWindClass = "";
+
+if(Number(avgWind) >= 10)
+    avgWindClass = "wind-high";
+
+else if(Number(avgWind) >= 5)
+    avgWindClass = "wind-mid";
+
+const avgWindDirection =
+(
+    Math.atan2(windX, windY)
+    * 180 / Math.PI
+    + 360
+) % 360;
+
+if (isNaN(avgWindDirection))
+    return;
+
+const avgPressure =
+    (pressureSum / weightSum).toFixed(1);
+const avgRainAmount =
+    (rainAmountSum / weightSum).toFixed(1);
+
+let avgRainAmountClass = "rain-low";
+
+if(Number(avgRainAmount) >= 2 &&
+   Number(avgRainAmount) < 10)
+{
+    avgRainAmountClass = "rain-mid";
+}
+
+if(Number(avgRainAmount) >= 10)
+{
+    avgRainAmountClass = "rain-high";
+}
+const night =
+    getPeriodData(0,6);
+
+const morning =
+    getPeriodData(6,12);
+
+const afternoon =
+    getPeriodData(12,18);
+
+const evening =
+    getPeriodData(18,24);
+    const nightWeather =
+    getPeriodWeatherText(0,6);
+
+const morningWeather =
+    getPeriodWeatherText(6,12);
+
+const afternoonWeather =
+    getPeriodWeatherText(12,18);
+
+const eveningWeather =
+    getPeriodWeatherText(18,24);
+    const currentHour = new Date().getHours();
+
+const activeNight =
+    currentHour >= 0 && currentHour < 6;
+
+const activeMorning =
+    currentHour >= 6 && currentHour < 12;
+
+const activeAfternoon =
+    currentHour >= 12 && currentHour < 18;
+
+const activeEvening =
+    currentHour >= 18;
+document.getElementById("box7").innerHTML = `
+
+<h2>
+🌤️ Dagens väder
+<br>
+
+<span style="
+    font-size:14px;
+    color:#93c5fd;
+    font-weight:normal;
+">
+    ${capitalizedDate}
+</span>
+</h2>
+
+<div style="
+display:grid;
+grid-template-columns:${window.innerWidth <= 768
+    ? 'repeat(2,1fr)'
+    : 'repeat(auto-fit,minmax(180px,1fr))'};
+gap:10px;
+margin-top:15px;
+">
+
+<div style="
+background:${activeNight ? 'rgba(96,165,250,0.20)' : 'rgba(255,255,255,0.03)'};
+border:${activeNight ? '2px solid #60a5fa' : '1px solid rgba(255,255,255,0.05)'};
+border-radius:10px;
+padding:10px;
+">
+<div style="color:#93c5fd;font-weight:bold;">
+🌙 Natt (00-06)
+</div>
+
+<div style="font-size:28px;margin:8px 0;">
+${nightWeather.split(" ")[0]}
+</div>
+
+<div style="font-weight:bold;margin-bottom:8px;">
+${nightWeather}
+</div>
+
+<div style="font-size:13px;color:#93c5fd;">
+🌡️ Temperatur
+</div>
+
+<div>
+<strong>${night?.temp ?? "--"}°C</strong>
+</div>
+
+<div style="font-size:13px;color:#93c5fd;">
+🌬️ Vind
+</div>
+
+<div>
+${getWindDirection(night?.dir ?? 0)}
+${night?.wind ?? "--"} m/s
+</div>
+
+<div style="font-size:13px;color:#93c5fd;">
+💧 Nederbörd
+</div>
+
+<div>
+${night?.rain ?? "--"} mm
+</div>
+
+</div>
+
+<div style="
+background:${activeMorning ? 'rgba(96,165,250,0.20)' : 'rgba(255,255,255,0.03)'};
+border:${activeMorning ? '2px solid #60a5fa' : '1px solid rgba(255,255,255,0.05)'};
+border-radius:10px;
+padding:10px;
+">
+<div style="color:#93c5fd;font-weight:bold;">
+🌅 Morgon (06-12)
+</div>
+
+<div style="font-size:28px;margin:8px 0;">
+${morningWeather.split(" ")[0]}
+</div>
+
+<div style="font-weight:bold;margin-bottom:8px;">
+${morningWeather}
+</div>
+
+<div style="font-size:13px;color:#93c5fd;">
+🌡️ Temperatur
+</div>
+
+<div>
+<strong>${morning?.temp ?? "--"}°C</strong>
+</div>
+
+<div style="font-size:13px;color:#93c5fd;">
+🌬️ Vind
+</div>
+
+<div>
+${getWindDirection(morning?.dir ?? 0)}
+${morning?.wind ?? "--"} m/s
+</div>
+
+<div style="font-size:13px;color:#93c5fd;">
+💧 Nederbörd
+</div>
+
+<div>
+${morning?.rain ?? "--"} mm
+</div>
+</div>
+
+<div style="
+background:${activeAfternoon ? 'rgba(96,165,250,0.20)' : 'rgba(255,255,255,0.03)'};
+border:${activeAfternoon ? '2px solid #60a5fa' : '1px solid rgba(255,255,255,0.05)'};
+border-radius:10px;
+padding:10px;
+">
+<div style="color:#93c5fd;font-weight:bold;">
+☀️ Eftermiddag (12-18)
+</div>
+
+<div style="font-size:28px;margin:8px 0;">
+${afternoonWeather.split(" ")[0]}
+</div>
+
+<div style="font-weight:bold;margin-bottom:8px;">
+${afternoonWeather}
+</div>
+<div style="font-size:13px;color:#93c5fd;">
+🌡️ Temperatur
+</div>
+
+<div>
+<strong>${afternoon?.temp ?? "--"}°C</strong>
+</div>
+
+<div style="font-size:13px;color:#93c5fd;">
+🌬️ Vind
+</div>
+
+<div>
+${getWindDirection(afternoon?.dir ?? 0)}
+${afternoon?.wind ?? "--"} m/s
+</div>
+
+<div style="font-size:13px;color:#93c5fd;">
+💧 Nederbörd
+</div>
+
+<div>
+${afternoon?.rain ?? "--"} mm
+</div>
+
+</div>
+<div style="
+background:${activeEvening ? 'rgba(96,165,250,0.20)' : 'rgba(255,255,255,0.03)'};
+border:${activeEvening ? '2px solid #60a5fa' : '1px solid rgba(255,255,255,0.05)'};
+border-radius:10px;
+padding:10px;
+">
+<div style="color:#93c5fd;font-weight:bold;">
+    🌆 Kväll (18-24)
+</div>
+
+<div style="font-size:28px;margin:8px 0;">
+${eveningWeather.split(" ")[0]}
+</div>
+
+<div style="font-weight:bold;margin-bottom:8px;">
+    ${eveningWeather}
+</div>
+
+<div style="font-size:13px;color:#93c5fd;">
+    🌡️ Temperatur
+</div>
+
+<div style="margin-bottom:8px;">
+    <strong>${evening?.temp ?? "--"}°C</strong>
+</div>
+
+<div style="font-size:13px;color:#93c5fd;">
+    🌬️ Vind
+</div>
+
+<div style="margin-bottom:8px;">
+    ${getWindDirection(evening?.dir ?? 0)}
+    ${evening?.wind ?? "--"} m/s
+</div>
+
+<div style="font-size:13px;color:#93c5fd;">
+    💧 Nederbörd
+</div>
+
+<div>
+    ${evening?.rain ?? "--"} mm
+</div>
+
+</div>
+
+</div>
+
+`;
+
+}
+
+async function loadAllData(){
+
+await Promise.all(
+models.map(loadWeather)
+);
+
+showHour(forecastIndex);
+
+await updateWeeklyForecast();
+
+}
+
+async function startDashboard(){
+
+
+    await loadAllData();
+
+    setInterval(async()=>{
+
+        forecastIndex++;
+
+        if (forecastIndex >= startIndex + 24)
+            forecastIndex = startIndex;
+
+        showHour(forecastIndex);
+
+        countdown = 5;
+
+    },5000);
+
+    setInterval(()=>{
+
+        countdown--;
+
+        if (countdown < 0)
+            countdown = 5;
+
+        const timerText =
+            document.getElementById("box7-timer");
+
+        if(timerText){
+            timerText.textContent =
+                `Nästa timme om ${countdown} sek`;
+        }
+
+        if(countdown === 5){
+        }
+
+    },1000);
+
+}
+
+startDashboard();
+
+</script>
+<script>
+if ("serviceWorker" in navigator) {
+    navigator.serviceWorker.register("./sw.js");
+}
+
+let deferredPrompt;
+const isiPhone =
+    /iPhone|iPad|iPod/.test(navigator.userAgent);
+
+if (isiPhone) {
+    document.getElementById("installBtn").style.display = "inline-block";
+}
+window.addEventListener("beforeinstallprompt", (e) => {
+
+    e.preventDefault();
+
+    deferredPrompt = e;
+
+    document.getElementById("installBtn").style.display = "inline-block";
+});
+
+async function installPWA() {
+
+    if (/iPhone|iPad|iPod/.test(navigator.userAgent)) {
+
+        alert(
+            "Öppna Dela-menyn i Safari och välj 'Lägg till på hemskärmen'."
+        );
+
+        return;
+    }
+
+    if (!deferredPrompt)
+        return;
+
+    deferredPrompt.prompt();
+
+    await deferredPrompt.userChoice;
+
+    deferredPrompt = null;
+
+    document.getElementById("installBtn").style.display = "none";
+}
+</script>
+</body>
+</html>
