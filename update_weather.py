@@ -340,7 +340,17 @@ for name, lat, lon in LOCATIONS:
     place["weekly"] = fetch_weekly(lat, lon)
 
     weather[name] = place
+print("Dag 1-3 prognoser för Torsby:")
 
+weekly = weather["Torsby"]["weekly"]["daily"]
+
+for i in range(3):
+    print(
+        weekly["time"][i],
+        weekly["temperature_2m_min"][i],
+        weekly["temperature_2m_max"][i],
+        weekly["precipitation_sum"][i]
+    )
 with open("weather.json", "w", encoding="utf-8") as f:
     json.dump(
         weather,
