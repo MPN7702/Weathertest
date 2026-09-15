@@ -418,7 +418,29 @@ for i in range(3):
     if date not in history[key]:
         history[key][date] = {}
 
-history[key][date]["smhi"] = {
+    history[key][date]["smhi"] = {
+        "minTemp": "SMHI_HAR_EJ_FYLLTS",
+        "maxTemp": "SMHI_HAR_EJ_FYLLTS",
+        "rainAmount": "SMHI_HAR_EJ_FYLLTS"
+    }
+
+    history[key][date]["yr"] = {
+        "minTemp": None,
+        "maxTemp": None,
+        "rainAmount": None
+    }
+
+    history[key][date]["dmi_seamless"] = {
+        "minTemp": None,
+        "maxTemp": None,
+        "rainAmount": None
+    }
+
+    history[key][date]["icon_eu"] = {
+        "minTemp": None,
+        "maxTemp": None,
+        "rainAmount": None
+    }
     "minTemp": "SMHI_HAR_EJ_FYLLTS",
     "maxTemp": "SMHI_HAR_EJ_FYLLTS",
     "rainAmount": "SMHI_HAR_EJ_FYLLTS"
