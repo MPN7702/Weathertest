@@ -103,6 +103,7 @@ h1{
 }
 
 #box7,
+#modelRanking,
 #weeklyForecast{
     width:60%;
     box-sizing:border-box;
@@ -237,9 +238,10 @@ h1{
         max-width:400px;
     }
 
-    #box7{
-        width:95%;
-    }
+#box7,
+#modelRanking{
+    width:95%;
+}
 
     .forecast-wrapper{
         display:block;
@@ -2234,7 +2236,14 @@ fetch("forecast-history.json")
                     border-bottom:1px solid #334155;
                 ">
                     <strong>
-                        ${medal} ${model}
+                        ${medal}
+${
+    model === "icon_eu" ? "🇩🇪 ICON EU" :
+    model === "dmi_seamless" ? "🇩🇰 DMI" :
+    model === "smhi" ? "🇸🇪 SMHI" :
+    model === "yr" ? "🇳🇴 YR" :
+    model
+}
                     </strong>
                     <br>
                     Score: ${data.score}
