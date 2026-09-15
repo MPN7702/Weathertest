@@ -380,10 +380,10 @@ for i in range(3):
     if date not in history[key]:
         history[key][date] = {}
 
-history[key][date]["smhi"] = {}
-history[key][date]["yr"] = {}
-history[key][date]["dmi_seamless"] = {}
-history[key][date]["icon_eu"] = {}
+    history[key][date]["smhi"] = {}
+    history[key][date]["yr"] = {}
+    history[key][date]["dmi_seamless"] = {}
+    history[key][date]["icon_eu"] = {}
 
 with open(
     "forecast-history.json",
