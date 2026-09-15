@@ -418,11 +418,12 @@ for i in range(3):
     if date not in history[key]:
         history[key][date] = {}
 
-    history[key][date]["smhi"] = {
-        "minTemp": "SMHI_HAR_EJ_FYLLTS",
-        "maxTemp": "SMHI_HAR_EJ_FYLLTS",
-        "rainAmount": "SMHI_HAR_EJ_FYLLTS"
-    }
+smhi_day = daily_summary(
+    weather["Torsby"]["smhi"]["hourly"],
+    i
+)
+
+history[key][date]["smhi"] = smhi_day
 
     history[key][date]["yr"] = {
         "minTemp": None,
