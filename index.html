@@ -2216,13 +2216,33 @@ console.log(stats);
 
         if(!stats)
             return;
+const rankedModels =
+    Object.entries(stats)
+        .map(([model,data]) => {
 
+            const score =
+                100
+                - (data.temp_error * 10)
+                - (data.rain_error * 2);
+
+            return {
+                model,
+                data,
+                score
+            };
+
+        })
+        .sort((a,b) => b.score - a.score);
         let html =
             "<h2>🏆 Historisk modellranking</h2>";
 
         let place = 1;
 
-        for(const [model,data] of Object.entries(stats)){
+        for(const item of rankedModels){
+
+    const model = item.model;
+    const data = item.data;
+    const score = item.score;
 
             const medal =
                 place === 1 ? "🥇" :
@@ -2247,13 +2267,7 @@ ${
 }
                     </strong>
                     <br>
-                    Score: ${
-(
-    100
-    - (data.temp_error * 10)
-    - (data.rain_error * 2)
-).toFixed(1)
-}
+Score: ${score.toFixed(1)}
                     <br>
                     Tempfel: ${data.temp_error}°C
                     <br>
