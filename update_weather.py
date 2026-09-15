@@ -352,7 +352,8 @@ for i in range(3):
         weekly["temperature_2m_max"][i],
         weekly["precipitation_sum"][i]
     )
-    history_file = Path("forecast-history.json")
+
+history_file = Path("forecast-history.json")
 
 if history_file.exists():
     with open(
@@ -367,7 +368,8 @@ else:
         "day2": {},
         "day3": {}
     }
-    weekly = weather["Torsby"]["weekly"]["daily"]
+
+weekly = weather["Torsby"]["weekly"]["daily"]
 
 for i in range(3):
 
@@ -378,7 +380,8 @@ for i in range(3):
         "maxTemp": weekly["temperature_2m_max"][i],
         "rainAmount": weekly["precipitation_sum"][i]
     }
-    with open(
+
+with open(
     "forecast-history.json",
     "w",
     encoding="utf-8"
