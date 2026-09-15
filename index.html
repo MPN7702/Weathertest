@@ -368,6 +368,9 @@ margin-bottom:15px;
 <div class="weather-box" id="box7">
     Hämtar prognos...
 </div>
+<div class="weather-box" id="modelRanking">
+    Hämtar modellranking...
+</div>
 
 
 <div class="forecast-wrapper">
@@ -2196,6 +2199,69 @@ fetch("forecast-history.json")
     .catch(err => {
         console.error("Fel vid läsning av forecast-history.json", err);
     });
+    async function updateModelRanking(){
+
+    try{
+
+        const history =
+            await fetch("forecast-history.json")
+            .then(r => r.json());
+
+        const stats =
+            history.model_stats;
+
+        if(!stats)
+            return;
+
+        let html =
+            "<h2>🏆 Modellranking</h2>";
+
+        let place = 1;
+
+        for(const [model,data] of Object.entries(stats)){
+
+            const medal =
+                place === 1 ? "🥇" :
+                place === 2 ? "🥈" :
+                place === 3 ? "🥉" :
+                `${place}.`;
+
+            html += `
+                <div style="
+                    margin-bottom:8px;
+                    padding:6px;
+                    border-bottom:1px solid #334155;
+                ">
+                    <strong>
+                        ${medal} ${model}
+                    </strong>
+                    <br>
+                    Score: ${data.score}
+                    <br>
+                    Tempfel: ${data.temp_error}°C
+                    <br>
+                    Regnfel: ${data.rain_error} mm
+                    <br>
+                    Historik: ${data.samples}
+                </div>
+            `;
+
+            place++;
+        }
+
+        document.getElementById(
+            "modelRanking"
+        ).innerHTML = html;
+
+    }catch(err){
+
+        console.error(err);
+
+    }
+
+}
+updateModelRanking();
+
 startDashboard();
 
 </script>
