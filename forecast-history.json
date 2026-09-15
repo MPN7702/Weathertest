@@ -6,18 +6,18 @@
       "rainAmount": 12.6,
       "smhi": {
         "minTemp": 14.7,
-        "maxTemp": 15.3,
+        "maxTemp": 15.2,
         "rainAmount": 3.3
       },
       "yr": {
-        "minTemp": 14.6,
-        "maxTemp": 15.6,
-        "rainAmount": 4.4
+        "minTemp": 15.1,
+        "maxTemp": 15.8,
+        "rainAmount": 4.2
       },
       "dmi_seamless": {
         "minTemp": 11.2,
         "maxTemp": 15.7,
-        "rainAmount": 16.9
+        "rainAmount": 19.5
       },
       "icon_eu": {
         "minTemp": 9.4,
@@ -33,7 +33,7 @@
       "rainAmount": 2.1,
       "smhi": {
         "minTemp": 7.9,
-        "maxTemp": 16.5,
+        "maxTemp": 16.4,
         "rainAmount": 1.0
       },
       "yr": {
@@ -42,9 +42,9 @@
         "rainAmount": 0.0
       },
       "dmi_seamless": {
-        "minTemp": 9.7,
-        "maxTemp": 17.9,
-        "rainAmount": 4.0
+        "minTemp": 10.4,
+        "maxTemp": 17.0,
+        "rainAmount": 3.7
       },
       "icon_eu": {
         "minTemp": 10.3,
@@ -69,9 +69,9 @@
         "rainAmount": 1.4
       },
       "dmi_seamless": {
-        "minTemp": 9.3,
-        "maxTemp": 16.5,
-        "rainAmount": 0.1
+        "minTemp": 8.9,
+        "maxTemp": 15.9,
+        "rainAmount": 0.0
       },
       "icon_eu": {
         "minTemp": 8.7,
@@ -99,22 +99,22 @@
       "samples": 1,
       "temp_error": 1.2,
       "temp_bias": 1.2,
-      "rain_error": 8.5,
-      "score": 79.5
-    },
-    "yr": {
-      "samples": 1,
-      "temp_error": 2.85,
-      "temp_bias": 2.85,
-      "rain_error": 4.0,
-      "score": 67.5
+      "rain_error": 11.1,
+      "score": 76.9
     },
     "smhi": {
       "samples": 1,
-      "temp_error": 2.85,
-      "temp_bias": 2.75,
+      "temp_error": 2.9,
+      "temp_bias": 2.7,
       "rain_error": 5.1,
-      "score": 66.4
+      "score": 65.9
+    },
+    "yr": {
+      "samples": 1,
+      "temp_error": 3.2,
+      "temp_bias": 3.2,
+      "rain_error": 4.2,
+      "score": 63.8
     }
   }
 }
