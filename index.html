@@ -2191,6 +2191,7 @@ fetch("forecast-history.json")
     .then(r => r.json())
     .then(data => {
         console.log("Forecast History File:", data);
+        console.log("ForecastData:", window.forecastHistory);
     })
     .catch(err => {
         console.error("Fel vid läsning av forecast-history.json", err);
