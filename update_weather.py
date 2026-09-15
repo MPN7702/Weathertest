@@ -363,11 +363,12 @@ if history_file.exists():
     ) as f:
         history = json.load(f)
 else:
-    history = {
-        "day1": {},
-        "day2": {},
-        "day3": {}
-    }
+history = {
+    "day1": {},
+    "day2": {},
+    "day3": {},
+    "actual": {}
+}
 
 weekly = weather["Torsby"]["weekly"]["daily"]
 
