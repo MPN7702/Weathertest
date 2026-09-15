@@ -392,6 +392,11 @@ def calculate_model_stats(history):
                     - actual["minTemp"]
                 )
 
+min_err = abs(
+    model_data["minTemp"]
+    - actual["minTemp"]
+)
+
 max_err = abs(
     model_data["maxTemp"]
     - actual["maxTemp"]
@@ -416,9 +421,11 @@ rain_err = abs(
     - actual["rainAmount"]
 )
 
-                temp_errors.append(
-                    (min_err + max_err) / 2
-                )
+temp_errors.append(
+    (min_err + max_err) / 2
+)
+
+rain_errors.append(rain_err)
 
                 rain_errors.append(rain_err)
 
