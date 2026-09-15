@@ -10,8 +10,8 @@
         "rainAmount": 5.2
       },
       "yr": {
-        "minTemp": 14.1,
-        "maxTemp": 15.4,
+        "minTemp": 14.3,
+        "maxTemp": 15.6,
         "rainAmount": 4.5
       },
       "dmi_seamless": {
@@ -37,7 +37,7 @@
         "rainAmount": 1.1
       },
       "yr": {
-        "minTemp": 8.6,
+        "minTemp": 8.7,
         "maxTemp": 17.6,
         "rainAmount": 0.0
       },
@@ -64,8 +64,8 @@
         "rainAmount": 0.5
       },
       "yr": {
-        "minTemp": 8.2,
-        "maxTemp": 16.2,
+        "minTemp": 8.3,
+        "maxTemp": 16.3,
         "rainAmount": 1.4
       },
       "dmi_seamless": {
@@ -85,6 +85,28 @@
       "minTemp": 9.1,
       "maxTemp": 15.4,
       "rainAmount": 8.4
+    }
+  },
+  "model_stats": {
+    "smhi": {
+      "samples": 1,
+      "temp_error": 2.7,
+      "rain_error": 3.2
+    },
+    "yr": {
+      "samples": 1,
+      "temp_error": 2.7,
+      "rain_error": 3.9
+    },
+    "dmi_seamless": {
+      "samples": 1,
+      "temp_error": 1.2,
+      "rain_error": 8.5
+    },
+    "icon_eu": {
+      "samples": 1,
+      "temp_error": 0.5,
+      "rain_error": 8.9
     }
   }
 }
