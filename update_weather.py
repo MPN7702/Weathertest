@@ -344,7 +344,7 @@ for name, lat, lon in LOCATIONS:
 print("Dag 1-3 prognoser för Torsby:")
 
 weekly = weather["Torsby"]["weekly"]["daily"]
-
+print(weather["Torsby"].keys())
 for i in range(3):
     print(
         weekly["time"][i],
@@ -363,12 +363,12 @@ if history_file.exists():
     ) as f:
         history = json.load(f)
 else:
-history = {
-    "day1": {},
-    "day2": {},
-    "day3": {},
-    "actual": {}
-}
+    history = {
+        "day1": {},
+        "day2": {},
+        "day3": {},
+        "actual": {}
+    }
 
 weekly = weather["Torsby"]["weekly"]["daily"]
 
