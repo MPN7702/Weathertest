@@ -375,12 +375,15 @@ weekly = weather["Torsby"]["weekly"]["daily"]
 for i in range(3):
 
     key = f"day{i + 1}"
+    date = weekly["time"][i]
 
-    history[key][weekly["time"][i]] = {
-        "minTemp": weekly["temperature_2m_min"][i],
-        "maxTemp": weekly["temperature_2m_max"][i],
-        "rainAmount": weekly["precipitation_sum"][i]
-    }
+    if date not in history[key]:
+        history[key][date] = {}
+
+history[key][date]["smhi"] = {}
+history[key][date]["yr"] = {}
+history[key][date]["dmi_seamless"] = {}
+history[key][date]["icon_eu"] = {}
 
 with open(
     "forecast-history.json",
