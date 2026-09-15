@@ -1,11 +1,24 @@
 {
   "day1": {
     "2026-09-15": {
-      "minTemp": 11.9,
-      "maxTemp": 15.5,
-      "rainAmount": 13.2
+      "minTemp": 11.1,
+      "maxTemp": 15.0,
+      "rainAmount": 12.6
     }
   },
-  "day2": {},
-  "day3": {}
+  "day2": {
+    "2026-09-16": {
+      "minTemp": 10.2,
+      "maxTemp": 16.9,
+      "rainAmount": 2.1
+    }
+  },
+  "day3": {
+    "2026-09-17": {
+      "minTemp": 8.6,
+      "maxTemp": 16.4,
+      "rainAmount": 0.1
+    }
+  },
+  "actual": {}
 }
