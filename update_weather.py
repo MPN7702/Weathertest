@@ -355,9 +355,9 @@ def fetch_actual_day(lat, lon, date):
     )
 
     data = fetch_json(url)
-actual_rain_hours = []
+    actual_rain_hours = []
 
-for idx, value in enumerate(
+    for idx, value in enumerate(
     data["hourly"]["precipitation"]
 ):
 
