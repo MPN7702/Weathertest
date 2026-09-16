@@ -1,4 +1,7 @@
 name: Weather Update
+concurrency:
+group: weather-update
+cancel-in-progress: true
 
 on:
   schedule:
@@ -41,7 +44,11 @@ jobs:
 
           git add weather.json forecast-history.json
 
-          git commit -m "Update weather cache" || true
+          git diff --cached --quiet && exit 0
 
-          git push
+          git commit -m "Update weather cache"
+
+          git pull --rebase origin main
+
+          git push origin main
       
