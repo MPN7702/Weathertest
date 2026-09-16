@@ -456,12 +456,13 @@ def calculate_model_stats(history):
         rain_timing_scores = []
         rain_hits_total = 0
         rain_actual_total = 0
-min_biases = []
-max_biases = []
-rain_biases = []
 
-min_errors = []
-max_errors = []
+        min_biases = []
+        max_biases = []
+        rain_biases = []
+
+        min_errors = []
+        max_errors = []
 
         for bucket in ["day1", "day2", "day3"]:
 
@@ -503,19 +504,19 @@ max_errors = []
                 min_errors.append(min_err)
                 max_errors.append(max_err)
 
-rain_err = abs(
-    model_data["rainAmount"]
-    - actual["rainAmount"]
-)
+                rain_err = abs(
+                    model_data["rainAmount"]
+                    - actual["rainAmount"]
+                )
 
-rain_bias = (
-    model_data["rainAmount"]
-    - actual["rainAmount"]
-)
+                rain_bias = (
+                    model_data["rainAmount"]
+                    - actual["rainAmount"]
+                )
 
-rain_biases.append(
-    rain_bias
-)
+                rain_biases.append(
+                    rain_bias
+                )
 
                 temp_errors.append(
                     (min_err + max_err) / 2
@@ -584,10 +585,11 @@ rain_biases.append(
                 sum(rain_errors) / len(rain_errors),
                 2
             )
-avg_rain_bias = round(
-    sum(rain_biases) / len(rain_biases),
-    2
-)
+
+            avg_rain_bias = round(
+                sum(rain_biases) / len(rain_biases),
+                2
+            )
             avg_min_bias = round(
                 sum(min_biases) / len(min_biases),
                 2
