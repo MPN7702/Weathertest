@@ -2220,12 +2220,7 @@ const rankedModels =
     Object.entries(stats)
         .map(([model,data]) => {
 
-const score = Math.max(
-    0,
-    100
-    - (data.temp_error * 10)
-    - (data.rain_error * 2)
-);
+const score = data.score ?? 0;
 
             return {
                 model,
@@ -2237,7 +2232,17 @@ const score = Math.max(
         .sort((a,b) => b.score - a.score);
         let html =
             "<h2>🏆 Historisk modellranking</h2>";
-
+html += `
+<div style="
+font-size:13px;
+color:#94a3b8;
+margin-bottom:15px;
+">
+Poängen baseras på temperaturfel,
+regnfel och hur väl modellen träffar
+tidpunkten för nederbörden (±1 timme).
+</div>
+`;
         let place = 1;
 
         for(const item of rankedModels){
@@ -2269,7 +2274,14 @@ ${
 }
                     </strong>
                     <br>
-Score: ${score.toFixed(1)}
+<div style="
+font-size:20px;
+font-weight:bold;
+color:#22c55e;
+margin-top:6px;
+">
+🎯 ${score.toFixed(1)} poäng
+</div>
 <br><br>
 
 🌡️ Tempfel totalt:
@@ -2313,7 +2325,15 @@ ${
 
 💧 Regnfel:
 ${data.rain_error.toFixed(2)} mm
+<br><br>
 
+🌧️ Regntider:
+${data.rain_timing_score?.toFixed(1) ?? 0} %
+
+<br>
+
+🕒 Träff ±1 timme
+``
 <br>
 
 📊 Historik:
