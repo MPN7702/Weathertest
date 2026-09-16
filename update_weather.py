@@ -552,8 +552,6 @@ def calculate_model_stats(history):
         )
     )
 
-    return sorted_stats
-
 weather = {
     "updated": datetime.utcnow().strftime(
         "%Y-%m-%dT%H:%M:%SZ"
