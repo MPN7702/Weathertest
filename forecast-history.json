@@ -27,13 +27,13 @@
     },
     "2026-09-16": {
       "smhi": {
-        "minTemp": 9.2,
-        "maxTemp": 15.7,
+        "minTemp": 10.3,
+        "maxTemp": 14.3,
         "rainAmount": 0.0
       },
       "yr": {
-        "minTemp": 10.0,
-        "maxTemp": 15.4,
+        "minTemp": 10.3,
+        "maxTemp": 15.8,
         "rainAmount": 0.0
       },
       "dmi_seamless": {
@@ -76,13 +76,13 @@
     },
     "2026-09-17": {
       "smhi": {
-        "minTemp": 7.4,
-        "maxTemp": 15.4,
-        "rainAmount": 0.9
+        "minTemp": 8.0,
+        "maxTemp": 15.5,
+        "rainAmount": 0.7
       },
       "yr": {
-        "minTemp": 8.1,
-        "maxTemp": 15.7,
+        "minTemp": 8.2,
+        "maxTemp": 16.2,
         "rainAmount": 1.1
       },
       "dmi_seamless": {
@@ -125,13 +125,13 @@
     },
     "2026-09-18": {
       "smhi": {
-        "minTemp": 10.1,
-        "maxTemp": 14.5,
-        "rainAmount": 3.1
+        "minTemp": 10.2,
+        "maxTemp": 14.7,
+        "rainAmount": 3.4
       },
       "yr": {
-        "minTemp": 10.8,
-        "maxTemp": 15.0,
+        "minTemp": 10.9,
+        "maxTemp": 15.5,
         "rainAmount": 1.9
       },
       "dmi_seamless": {
@@ -175,17 +175,17 @@
     },
     "yr": {
       "samples": 3,
-      "temp_error": 1.85,
-      "temp_bias": 0.28,
+      "temp_error": 1.73,
+      "temp_bias": 0.4,
       "rain_error": 2.33,
-      "score": 79.2
+      "score": 80.4
     },
     "smhi": {
       "samples": 3,
-      "temp_error": 2.17,
-      "temp_bias": -0.3,
+      "temp_error": 2.22,
+      "temp_bias": -0.35,
       "rain_error": 2.3,
-      "score": 76.0
+      "score": 75.5
     }
   }
 }
