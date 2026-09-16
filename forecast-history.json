@@ -279,8 +279,8 @@
       "min_temp_bias": 0.4,
       "max_temp_bias": 0.47,
       "rain_error": 4.3,
-      "rain_timing_score": 13.3,
-      "score": 89.1
+      "rain_timing_score": 22.2,
+      "score": 89.5
     },
     "smhi": {
       "samples": 3,
