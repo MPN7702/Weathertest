@@ -1,7 +1,9 @@
 name: Weather Update
+
 concurrency:
-group: weather-update
-cancel-in-progress: true
+  group: weather-update
+  cancel-in-progress: true
+
 
 on:
   schedule:
