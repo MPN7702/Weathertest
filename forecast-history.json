@@ -228,18 +228,7 @@
       }
     }
   },
-  "actual": {
-    "2026-09-15": {
-      "minTemp": 9.1,
-      "maxTemp": 15.4,
-      "rainAmount": 8.4
-    },
-    "2026-09-16": {
-      "minTemp": 10.3,
-      "maxTemp": 17.9,
-      "rainAmount": 1.4
-    }
-  },
+   "actual": {}
   "model_stats": {
     "dmi_seamless": {
       "samples": 3,
