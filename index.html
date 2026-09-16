@@ -2270,23 +2270,54 @@ ${
                     </strong>
                     <br>
 Score: ${score.toFixed(1)}
-                    <br>
-                    Tempfel: ${data.temp_error}°C
-                    <br>
-Bias:
+<br><br>
+
+🌡️ Tempfel totalt:
+${data.temp_error}°C
+
+<br><br>
+
+🌙 Min-temp fel:
+${data.min_temp_error}°C
+
+<br>
+
+☀️ Max-temp fel:
+${data.max_temp_error}°C
+
+<br><br>
+
+🌙 Min-temp bias:
+
 ${
-    data.temp_bias === undefined
-        ? "Ej tillräcklig historik"
-        : data.temp_bias > 0
-        ? `För varm med ${data.temp_bias.toFixed(1)}°C`
-        : data.temp_bias < 0
-        ? `För kall med ${Math.abs(data.temp_bias).toFixed(1)}°C`
+    data.min_temp_bias > 0
+        ? `För varm med ${data.min_temp_bias.toFixed(1)}°C`
+        : data.min_temp_bias < 0
+        ? `För kall med ${Math.abs(data.min_temp_bias).toFixed(1)}°C`
         : "Neutral"
 }
-                    <br>
-                    Regnfel: ${data.rain_error} mm
-                    <br>
-                    Historik: ${data.samples}
+
+<br>
+
+☀️ Max-temp bias:
+
+${
+    data.max_temp_bias > 0
+        ? `För varm med ${data.max_temp_bias.toFixed(1)}°C`
+        : data.max_temp_bias < 0
+        ? `För kall med ${Math.abs(data.max_temp_bias).toFixed(1)}°C`
+        : "Neutral"
+}
+
+<br><br>
+
+💧 Regnfel:
+${data.rain_error} mm
+
+<br>
+
+📊 Historik:
+${data.samples}
                 </div>
             `;
 
