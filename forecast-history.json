@@ -28,7 +28,7 @@
     "2026-09-16": {
       "smhi": {
         "minTemp": 10.5,
-        "maxTemp": 12.3,
+        "maxTemp": 11.6,
         "rainAmount": 0.0
       },
       "yr": {
@@ -162,30 +162,42 @@
     "dmi_seamless": {
       "samples": 3,
       "temp_error": 0.77,
-      "temp_bias": 0.07,
+      "min_temp_error": 0.87,
+      "max_temp_error": 0.67,
+      "min_temp_bias": 0.6,
+      "max_temp_bias": -0.47,
       "rain_error": 4.5,
       "score": 87.8
     },
     "icon_eu": {
       "samples": 3,
       "temp_error": 0.92,
-      "temp_bias": -0.58,
+      "min_temp_error": 0.1,
+      "max_temp_error": 1.73,
+      "min_temp_bias": 0.1,
+      "max_temp_bias": -1.27,
       "rain_error": 3.77,
       "score": 87.0
     },
     "yr": {
       "samples": 3,
       "temp_error": 2.0,
-      "temp_bias": 0.17,
+      "min_temp_error": 2.57,
+      "max_temp_error": 1.43,
+      "min_temp_bias": 1.5,
+      "max_temp_bias": -1.17,
       "rain_error": 2.33,
       "score": 77.7
     },
     "smhi": {
       "samples": 3,
-      "temp_error": 2.58,
-      "temp_bias": -0.65,
+      "temp_error": 2.7,
+      "min_temp_error": 2.73,
+      "max_temp_error": 2.67,
+      "min_temp_bias": 1.13,
+      "max_temp_bias": -2.67,
       "rain_error": 2.3,
-      "score": 71.9
+      "score": 70.7
     }
   }
 }
