@@ -562,36 +562,6 @@ def calculate_model_stats(history):
                     rain_actual_total += len(
                         actual_hours
                     )
-    rain_timing_scores.append(
-        timing_score
-    )
-
-    predicted = set(predicted_hours or [])
-
-    for actual_time in actual_hours:
-
-        actual_dt = datetime.strptime(
-            actual_time,
-            "%H:%M"
-        )
-
-        found = False
-
-        for offset in (-1, 0, 1):
-
-            check_time = (
-                actual_dt +
-                timedelta(hours=offset)
-            ).strftime("%H:%M")
-
-            if check_time in predicted:
-                found = True
-                break
-
-        if found:
-            rain_hits_total += 1
-
-    rain_actual_total += len(actual_hours)
 
         if temp_errors:
 
