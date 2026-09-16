@@ -62,9 +62,9 @@
     },
     "2026-09-17": {
       "smhi": {
-        "minTemp": 8.0,
-        "maxTemp": 15.0,
-        "rainAmount": 1.6,
+        "minTemp": 8.4,
+        "maxTemp": 15.1,
+        "rainAmount": 1.5,
         "rainHours": [
           "19:00",
           "20:00",
@@ -185,9 +185,9 @@
     },
     "2026-09-18": {
       "smhi": {
-        "minTemp": 9.4,
+        "minTemp": 9.3,
         "maxTemp": 14.7,
-        "rainAmount": 2.8,
+        "rainAmount": 2.7,
         "rainHours": [
           "00:00",
           "01:00",
@@ -327,14 +327,15 @@
     },
     "2026-09-19": {
       "smhi": {
-        "minTemp": 8.7,
+        "minTemp": 8.8,
         "maxTemp": 15.0,
-        "rainAmount": 4.2,
+        "rainAmount": 4.4,
         "rainHours": [
           "06:00",
           "07:00",
           "08:00",
           "09:00",
+          "10:00",
           "12:00"
         ]
       },
