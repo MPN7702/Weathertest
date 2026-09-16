@@ -2325,6 +2325,19 @@ ${
 
 💧 Regnfel:
 ${data.rain_error.toFixed(2)} mm
+
+<br>
+
+💧 Regnbias:
+
+${
+    data.rain_bias > 0
+        ? `För mycket regn ${data.rain_bias.toFixed(1)} mm`
+        : data.rain_bias < 0
+        ? `För lite regn ${Math.abs(data.rain_bias).toFixed(1)} mm`
+        : "Neutral"
+}
+
 <br><br>
 
 📍 ${
