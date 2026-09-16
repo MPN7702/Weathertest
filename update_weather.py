@@ -601,7 +601,11 @@ if timing_score is not None:
 
 stats[model] = {
     "samples": len(temp_errors),
+    "rain_hits":
+         rain_hits_total,
 
+    "rain_actual_hours":
+         rain_actual_total,
     "temp_error": avg_temp,
 
     "min_temp_error": avg_min_error,
