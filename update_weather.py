@@ -383,14 +383,18 @@ def calculate_rain_timing_score(
     actual_hours
 ):
 
-    if not actual_hours:
-        return None
-
     predicted = set(predicted_hours or [])
+    actual = set(actual_hours or [])
+
+    if not predicted and not actual:
+        return 100.0
+
+    if not predicted or not actual:
+        return 0.0
 
     correct = 0
 
-    for actual_time in actual_hours:
+    for actual_time in actual:
 
         actual_dt = datetime.strptime(
             actual_time,
@@ -402,8 +406,8 @@ def calculate_rain_timing_score(
         for offset in (-1, 0, 1):
 
             check_time = (
-                actual_dt
-                + timedelta(hours=offset)
+                actual_dt +
+                timedelta(hours=offset)
             ).strftime("%H:%M")
 
             if check_time in predicted:
@@ -413,10 +417,19 @@ def calculate_rain_timing_score(
         if found:
             correct += 1
 
-    return round(
-        correct / len(actual_hours) * 100,
-        1
+    precision = correct / len(predicted)
+    recall = correct / len(actual)
+
+    if precision + recall == 0:
+        return 0.0
+
+    score = (
+        2 * precision * recall
+    ) / (
+        precision + recall
     )
+
+    return round(score * 100, 1)
 def calculate_model_stats(history):
 
     models = [
