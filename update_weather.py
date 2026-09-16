@@ -316,6 +316,35 @@ def daily_summary(hourly, target_date):
     day_temps = []
     day_rain = []
 
+    rain_hours = []
+
+    for idx, t in enumerate(times):
+
+        if t[:10] == target_date:
+
+            day_temps.append(temps[idx])
+            day_rain.append(rain[idx])
+
+            if (rain[idx] or 0) >= 0.1:
+                rain_hours.append(t[11:16])
+
+    if not day_temps:
+        return None
+
+    return {
+        "minTemp": round(min(day_temps), 1),
+        "maxTemp": round(max(day_temps), 1),
+        "rainAmount": round(sum(day_rain), 1),
+        "rainHours": rain_hours
+    }
+
+    times = hourly["time"]
+    temps = hourly["temperature_2m"]
+    rain = hourly["precipitation"]
+
+    day_temps = []
+    day_rain = []
+
     for idx, t in enumerate(times):
 
         if t[:10] == target_date:
