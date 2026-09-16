@@ -428,13 +428,15 @@ def calculate_rain_timing_score(
     ) / (
         precision + recall
     )
-print(
-    "F1:",
-    "correct=", correct,
-    "predicted=", len(predicted),
-    "actual=", len(actual),
-    "score=", round(score * 100, 1)
-)
+
+    print(
+        "F1:",
+        "correct=", correct,
+        "predicted=", len(predicted),
+        "actual=", len(actual),
+        "score=", round(score * 100, 1)
+    )
+
     return round(score * 100, 1)
 def calculate_model_stats(history):
 
@@ -698,12 +700,6 @@ for date in sorted(dates_to_check):
     if date > today:
         continue
 
-history["actual"][date] = fetch_actual_day(
-    60.136,
-    13.006,
-    date
-)
-
     try:
         history["actual"][date] = fetch_actual_day(
             60.136,
@@ -721,6 +717,7 @@ history["actual"][date] = fetch_actual_day(
             f"Actual-data kunde inte hämtas för {date}:",
             e
         )
+`
 
 history["model_stats"] = calculate_model_stats(
     history
