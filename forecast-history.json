@@ -228,9 +228,9 @@
       }
     }
   },
-   "actual": {}
-  
-  "model_stats": {
+"actual": {},
+
+"model_stats": {
     "dmi_seamless": {
       "samples": 3,
       "temp_error": 0.77,
