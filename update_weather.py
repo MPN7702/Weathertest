@@ -717,7 +717,6 @@ for date in sorted(dates_to_check):
             f"Actual-data kunde inte hämtas för {date}:",
             e
         )
-`
 
 history["model_stats"] = calculate_model_stats(
     history
