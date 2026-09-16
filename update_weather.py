@@ -376,23 +376,46 @@ def fetch_actual_day(lat, lon, date):
         "rainAmount": daily["precipitation_sum"][0],
         "rainHours": actual_rain_hours
     }
+from datetime import datetime, timedelta
+
+
 def calculate_rain_timing_score(
     predicted_hours,
     actual_hours
 ):
 
-    predicted = set(predicted_hours)
-    actual = set(actual_hours)
-
-    if not actual:
+    if not actual_hours:
         return None
 
-    correct = len(
-        predicted.intersection(actual)
-    )
+    predicted = set(predicted_hours or [])
+
+    correct = 0
+
+    for actual_time in actual_hours:
+
+        actual_dt = datetime.strptime(
+            actual_time,
+            "%H:%M"
+        )
+
+        found = False
+
+        for offset in (-1, 0, 1):
+
+            check_time = (
+                actual_dt
+                + timedelta(hours=offset)
+            ).strftime("%H:%M")
+
+            if check_time in predicted:
+                found = True
+                break
+
+        if found:
+            correct += 1
 
     return round(
-        correct / len(actual) * 100,
+        correct / len(actual_hours) * 100,
         1
     )
 def calculate_model_stats(history):
