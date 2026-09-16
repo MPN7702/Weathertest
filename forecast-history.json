@@ -27,19 +27,19 @@
     },
     "2026-09-16": {
       "smhi": {
-        "minTemp": 9.0,
-        "maxTemp": 16.9,
+        "minTemp": 9.2,
+        "maxTemp": 17.0,
         "rainAmount": 0.0
       },
       "yr": {
-        "minTemp": 8.7,
+        "minTemp": 8.6,
         "maxTemp": 16.9,
         "rainAmount": 0.0
       },
       "dmi_seamless": {
-        "minTemp": 9.6,
-        "maxTemp": 16.9,
-        "rainAmount": 1.5
+        "minTemp": 10.8,
+        "maxTemp": 17.5,
+        "rainAmount": 2.0
       },
       "icon_eu": {
         "minTemp": 9.7,
@@ -76,18 +76,18 @@
     },
     "2026-09-17": {
       "smhi": {
-        "minTemp": 6.8,
-        "maxTemp": 15.9,
+        "minTemp": 7.0,
+        "maxTemp": 15.8,
         "rainAmount": 1.5
       },
       "yr": {
-        "minTemp": 7.5,
+        "minTemp": 7.3,
         "maxTemp": 16.6,
         "rainAmount": 0.9
       },
       "dmi_seamless": {
-        "minTemp": 7.3,
-        "maxTemp": 16.3,
+        "minTemp": 9.0,
+        "maxTemp": 15.9,
         "rainAmount": 0.0
       },
       "icon_eu": {
@@ -125,19 +125,19 @@
     },
     "2026-09-18": {
       "smhi": {
-        "minTemp": 9.7,
-        "maxTemp": 15.8,
+        "minTemp": 9.8,
+        "maxTemp": 16.0,
         "rainAmount": 3.5
       },
       "yr": {
-        "minTemp": 10.8,
+        "minTemp": 10.7,
         "maxTemp": 15.4,
         "rainAmount": 1.8
       },
       "dmi_seamless": {
         "minTemp": 10.3,
         "maxTemp": 16.3,
-        "rainAmount": 3.5
+        "rainAmount": 2.8
       },
       "icon_eu": {
         "minTemp": 9.1,
@@ -161,10 +161,10 @@
   "model_stats": {
     "dmi_seamless": {
       "samples": 3,
-      "temp_error": 0.85,
-      "temp_bias": -0.02,
-      "rain_error": 4.5,
-      "score": 87.0
+      "temp_error": 0.72,
+      "temp_bias": 0.28,
+      "rain_error": 4.67,
+      "score": 88.1
     },
     "icon_eu": {
       "samples": 3,
@@ -175,17 +175,17 @@
     },
     "yr": {
       "samples": 3,
-      "temp_error": 1.82,
-      "temp_bias": 0.32,
+      "temp_error": 1.83,
+      "temp_bias": 0.3,
       "rain_error": 2.33,
-      "score": 79.5
+      "score": 79.4
     },
     "smhi": {
       "samples": 3,
-      "temp_error": 2.0,
-      "temp_bias": -0.13,
+      "temp_error": 1.95,
+      "temp_bias": -0.08,
       "rain_error": 2.3,
-      "score": 77.7
+      "score": 78.2
     }
   }
 }
