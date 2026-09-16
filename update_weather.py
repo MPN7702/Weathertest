@@ -454,7 +454,8 @@ def calculate_model_stats(history):
         temp_errors = []
         rain_errors = []
         rain_timing_scores = []
-
+        rain_hits_total = 0
+        rain_actual_total = 0
         min_biases = []
         max_biases = []
 
@@ -512,15 +513,45 @@ def calculate_model_stats(history):
 
                 rain_errors.append(rain_err)
 
-                timing_score = calculate_rain_timing_score(
-                    model_data.get("rainHours", []),
-                    actual.get("rainHours", [])
-                )
+predicted_hours = model_data.get("rainHours", [])
+actual_hours = actual.get("rainHours", [])
 
-                if timing_score is not None:
-                    rain_timing_scores.append(
-                        timing_score
-                    )
+timing_score = calculate_rain_timing_score(
+    predicted_hours,
+    actual_hours
+)
+
+if timing_score is not None:
+    rain_timing_scores.append(
+        timing_score
+    )
+
+    predicted = set(predicted_hours or [])
+
+    for actual_time in actual_hours:
+
+        actual_dt = datetime.strptime(
+            actual_time,
+            "%H:%M"
+        )
+
+        found = False
+
+        for offset in (-1, 0, 1):
+
+            check_time = (
+                actual_dt +
+                timedelta(hours=offset)
+            ).strftime("%H:%M")
+
+            if check_time in predicted:
+                found = True
+                break
+
+        if found:
+            rain_hits_total += 1
+
+    rain_actual_total += len(actual_hours)
 
         if temp_errors:
 
@@ -568,24 +599,30 @@ def calculate_model_stats(history):
                 1
             )
 
-            stats[model] = {
-                "samples": len(temp_errors),
+stats[model] = {
+    "samples": len(temp_errors),
 
-                "temp_error": avg_temp,
+    "temp_error": avg_temp,
 
-                "min_temp_error": avg_min_error,
-                "max_temp_error": avg_max_error,
+    "min_temp_error": avg_min_error,
+    "max_temp_error": avg_max_error,
 
-                "min_temp_bias": avg_min_bias,
-                "max_temp_bias": avg_max_bias,
+    "min_temp_bias": avg_min_bias,
+    "max_temp_bias": avg_max_bias,
 
-                "rain_error": avg_rain,
+    "rain_error": avg_rain,
 
-                "rain_timing_score":
-                    avg_rain_timing,
+    "rain_timing_score":
+        avg_rain_timing,
 
-                "score": score
-            }
+    "rain_hits":
+        rain_hits_total,
+
+    "rain_actual_hours":
+        rain_actual_total,
+
+    "score": score
+}
 
     return dict(
         sorted(
