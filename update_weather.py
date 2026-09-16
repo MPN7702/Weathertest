@@ -1,6 +1,6 @@
 import json
 import requests
-from datetime import datetime
+from datetime import datetime, timedelta
 from pathlib import Path
 
 LOCATIONS = [
@@ -376,7 +376,6 @@ def fetch_actual_day(lat, lon, date):
         "rainAmount": daily["precipitation_sum"][0],
         "rainHours": actual_rain_hours
     }
-from datetime import datetime, timedelta
 
 
 def calculate_rain_timing_score(
