@@ -27,13 +27,13 @@
     },
     "2026-09-16": {
       "smhi": {
-        "minTemp": 9.2,
+        "minTemp": 9.3,
         "maxTemp": 17.0,
         "rainAmount": 0.0
       },
       "yr": {
-        "minTemp": 8.6,
-        "maxTemp": 16.9,
+        "minTemp": 10.5,
+        "maxTemp": 17.3,
         "rainAmount": 0.0
       },
       "dmi_seamless": {
@@ -42,9 +42,9 @@
         "rainAmount": 2.0
       },
       "icon_eu": {
-        "minTemp": 9.7,
-        "maxTemp": 15.4,
-        "rainAmount": 0.9
+        "minTemp": 9.8,
+        "maxTemp": 15.7,
+        "rainAmount": 0.8
       }
     }
   },
@@ -76,14 +76,14 @@
     },
     "2026-09-17": {
       "smhi": {
-        "minTemp": 7.0,
+        "minTemp": 7.1,
         "maxTemp": 15.8,
         "rainAmount": 1.5
       },
       "yr": {
-        "minTemp": 7.3,
-        "maxTemp": 16.6,
-        "rainAmount": 0.9
+        "minTemp": 8.8,
+        "maxTemp": 16.5,
+        "rainAmount": 0.5
       },
       "dmi_seamless": {
         "minTemp": 9.0,
@@ -91,9 +91,9 @@
         "rainAmount": 0.0
       },
       "icon_eu": {
-        "minTemp": 8.8,
-        "maxTemp": 15.0,
-        "rainAmount": 1.2
+        "minTemp": 8.1,
+        "maxTemp": 15.2,
+        "rainAmount": 0.7
       }
     }
   },
@@ -125,14 +125,14 @@
     },
     "2026-09-18": {
       "smhi": {
-        "minTemp": 9.8,
+        "minTemp": 9.9,
         "maxTemp": 16.0,
         "rainAmount": 3.5
       },
       "yr": {
-        "minTemp": 10.7,
-        "maxTemp": 15.4,
-        "rainAmount": 1.8
+        "minTemp": 11.2,
+        "maxTemp": 15.6,
+        "rainAmount": 3.8
       },
       "dmi_seamless": {
         "minTemp": 10.3,
@@ -140,9 +140,9 @@
         "rainAmount": 2.8
       },
       "icon_eu": {
-        "minTemp": 9.1,
-        "maxTemp": 15.6,
-        "rainAmount": 0.5
+        "minTemp": 8.5,
+        "maxTemp": 14.2,
+        "rainAmount": 4.0
       }
     }
   },
@@ -168,24 +168,24 @@
     },
     "icon_eu": {
       "samples": 3,
-      "temp_error": 1.03,
-      "temp_bias": -0.7,
-      "rain_error": 3.57,
-      "score": 86.1
+      "temp_error": 0.97,
+      "temp_bias": -0.63,
+      "rain_error": 3.6,
+      "score": 86.7
     },
     "yr": {
       "samples": 3,
-      "temp_error": 1.83,
-      "temp_bias": 0.3,
+      "temp_error": 1.52,
+      "temp_bias": 0.68,
       "rain_error": 2.33,
-      "score": 79.4
+      "score": 82.5
     },
     "smhi": {
       "samples": 3,
-      "temp_error": 1.95,
-      "temp_bias": -0.08,
+      "temp_error": 1.93,
+      "temp_bias": -0.07,
       "rain_error": 2.3,
-      "score": 78.2
+      "score": 78.4
     }
   }
 }
