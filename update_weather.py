@@ -367,16 +367,16 @@ def calculate_model_stats(history):
 
     stats = {}
 
-for model in models:
+    for model in models:
 
-    temp_errors = []
-    rain_errors = []
+        temp_errors = []
+        rain_errors = []
 
-    min_biases = []
-    max_biases = []
+        min_biases = []
+        max_biases = []
 
-    min_errors = []
-    max_errors = []
+        min_errors = []
+        max_errors = []
 
         for bucket in ["day1", "day2", "day3"]:
 
@@ -412,11 +412,11 @@ for model in models:
                     - actual["maxTemp"]
                 )
 
-min_biases.append(min_bias)
-max_biases.append(max_bias)
+                min_biases.append(min_bias)
+                max_biases.append(max_bias)
 
-min_errors.append(min_err)
-max_errors.append(max_err)
+                min_errors.append(min_err)
+                max_errors.append(max_err)
 
                 rain_err = abs(
                     model_data["rainAmount"]
@@ -441,25 +441,25 @@ max_errors.append(max_err)
                 2
             )
 
-avg_min_bias = round(
-    sum(min_biases) / len(min_biases),
-    2
-)
+            avg_min_bias = round(
+                sum(min_biases) / len(min_biases),
+                2
+            )
 
-avg_max_bias = round(
-    sum(max_biases) / len(max_biases),
-    2
-)
+            avg_max_bias = round(
+                sum(max_biases) / len(max_biases),
+                2
+            )
 
-avg_min_error = round(
-    sum(min_errors) / len(min_errors),
-    2
-)
+            avg_min_error = round(
+                sum(min_errors) / len(min_errors),
+                2
+            )
 
-avg_max_error = round(
-    sum(max_errors) / len(max_errors),
-    2
-)
+            avg_max_error = round(
+                sum(max_errors) / len(max_errors),
+                2
+            )
 
             score = round(
                 100
@@ -468,22 +468,23 @@ avg_max_error = round(
                 1
             )
 
-stats[model] = {
-    "samples": len(temp_errors),
+            stats[model] = {
+                "samples": len(temp_errors),
 
-    "temp_error": avg_temp,
+                "temp_error": avg_temp,
 
-    "min_temp_error": avg_min_error,
-    "max_temp_error": avg_max_error,
+                "min_temp_error": avg_min_error,
+                "max_temp_error": avg_max_error,
 
-    "min_temp_bias": avg_min_bias,
-    "max_temp_bias": avg_max_bias,
+                "min_temp_bias": avg_min_bias,
+                "max_temp_bias": avg_max_bias,
 
-    "rain_error": avg_rain,
-    "score": score
-}
+                "rain_error": avg_rain,
+                "score": score
+            }
 
     sorted_stats = dict(
+ 
         sorted(
             stats.items(),
             key=lambda x: x[1]["score"],
