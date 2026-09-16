@@ -355,25 +355,27 @@ def fetch_actual_day(lat, lon, date):
     )
 
     data = fetch_json(url)
+
     actual_rain_hours = []
 
     for idx, value in enumerate(
-    data["hourly"]["precipitation"]
-):
+        data["hourly"]["precipitation"]
+    ):
 
-    if value >= 0.1:
+        if value >= 0.1:
 
-        actual_rain_hours.append(
-            data["hourly"]["time"][idx][11:16]
-        )
+            actual_rain_hours.append(
+                data["hourly"]["time"][idx][11:16]
+            )
+
     daily = data["daily"]
 
-return {
-    "minTemp": daily["temperature_2m_min"][0],
-    "maxTemp": daily["temperature_2m_max"][0],
-    "rainAmount": daily["precipitation_sum"][0],
-    "rainHours": actual_rain_hours
-}
+    return {
+        "minTemp": daily["temperature_2m_min"][0],
+        "maxTemp": daily["temperature_2m_max"][0],
+        "rainAmount": daily["precipitation_sum"][0],
+        "rainHours": actual_rain_hours
+    }
 def calculate_rain_timing_score(
     predicted_hours,
     actual_hours
@@ -409,6 +411,7 @@ def calculate_model_stats(history):
         temp_errors = []
         rain_errors = []
         rain_timing_scores = []
+
         min_biases = []
         max_biases = []
 
@@ -465,15 +468,17 @@ def calculate_model_stats(history):
                 )
 
                 rain_errors.append(rain_err)
-timing_score = calculate_rain_timing_score(
-    model_data.get("rainHours", []),
-    actual.get("rainHours", [])
-)
 
-if timing_score is not None:
-    rain_timing_scores.append(
-        timing_score
-    )
+                timing_score = calculate_rain_timing_score(
+                    model_data.get("rainHours", []),
+                    actual.get("rainHours", [])
+                )
+
+                if timing_score is not None:
+                    rain_timing_scores.append(
+                        timing_score
+                    )
+
         if temp_errors:
 
             avg_temp = round(
@@ -505,22 +510,24 @@ if timing_score is not None:
                 sum(max_errors) / len(max_errors),
                 2
             )
-avg_rain_timing = round(
-    sum(rain_timing_scores)
-    / len(rain_timing_scores),
-    1
-) if rain_timing_scores else 0
+
+            avg_rain_timing = round(
+                sum(rain_timing_scores)
+                / len(rain_timing_scores),
+                1
+            ) if rain_timing_scores else 0
+
             score = round(
                 100
                 - (avg_temp * 10)
-                - avg_rain,
+                - avg_rain
+                + (avg_rain_timing * 0.05),
                 1
             )
 
             stats[model] = {
                 "samples": len(temp_errors),
-                "rain_timing_score":
-                    avg_rain_timing,
+
                 "temp_error": avg_temp,
 
                 "min_temp_error": avg_min_error,
@@ -530,11 +537,14 @@ avg_rain_timing = round(
                 "max_temp_bias": avg_max_bias,
 
                 "rain_error": avg_rain,
+
+                "rain_timing_score":
+                    avg_rain_timing,
+
                 "score": score
             }
 
-    sorted_stats = dict(
- 
+    return dict(
         sorted(
             stats.items(),
             key=lambda x: x[1]["score"],
