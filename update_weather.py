@@ -449,16 +449,7 @@ def calculate_model_stats(history):
 
     stats = {}
 
-    for model in models:
-
-        temp_errors = []
-        rain_errors = []
-        rain_timing_scores = []
-        rain_hits_total = 0
-        rain_actual_total = 0
-
-        min_biases = []
-        for model in models:
+for model in models:
 
     temp_errors = []
     rain_errors = []
@@ -469,7 +460,11 @@ def calculate_model_stats(history):
     counted_actual_dates = set()
 
     min_biases = []
-        max_biases = []
+    max_biases = []
+    rain_biases = []
+
+    min_errors = []
+    max_errors = []
         rain_biases = []
 
         min_errors = []
@@ -554,9 +549,9 @@ def calculate_model_stats(history):
                         timing_score
                     )
 
-                    predicted = set(
-                        predicted_hours or []
-                    )
+predicted = set(
+    predicted_hours or []
+)
 
 if date not in counted_actual_dates:
 
@@ -586,6 +581,9 @@ if date not in counted_actual_dates:
     rain_actual_total += len(
         actual_hours
     )
+
+    counted_actual_dates.add(date)
+
 
     counted_actual_dates.add(date)
 
@@ -638,7 +636,13 @@ if date not in counted_actual_dates:
                 + (avg_rain_timing * 0.05),
                 1
             )
-
+print(
+    model,
+    "hits:",
+    rain_hits_total,
+    "actual:",
+    rain_actual_total
+)
             stats[model] = {
                 "samples": len(temp_errors),
 
