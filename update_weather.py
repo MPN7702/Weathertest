@@ -537,29 +537,28 @@ def calculate_model_stats(history):
                 if not model_data:
                     continue
 
-if (
-    model_data.get("weathercode") is not None
-    and
-    actual.get("weathercode") is not None
-):
-    if (
-        weather_group(model_data["weathercode"])
-        ==
-        weather_group(actual["weathercode"])
-    ):
-        weather_hits += 1
+                if (
+                    model_data.get("weathercode") is not None
+                    and
+                    actual.get("weathercode") is not None
+                ):
 
-    weather_total += 1
+                    if (
+                        weather_group(
+                            model_data["weathercode"]
+                        )
+                        ==
+                        weather_group(
+                            actual["weathercode"]
+                        )
+                    ):
+                        weather_hits += 1
 
-                weather_total += 1
+                    weather_total += 1
+
                 min_err = abs(
                     model_data["minTemp"]
                     - actual["minTemp"]
-                )
-
-                max_err = abs(
-                    model_data["maxTemp"]
-                    - actual["maxTemp"]
                 )
 
                 min_bias = (
