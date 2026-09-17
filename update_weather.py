@@ -638,31 +638,31 @@ def calculate_model_stats(history):
                 rain_actual_total
             )
 
-stats[model] = {
-    "samples": len(temp_errors),
+            stats[model] = {
+                "samples": len(temp_errors),
 
-    "temp_error": avg_temp,
+                "temp_error": avg_temp,
 
-    "min_temp_error": avg_min_error,
-    "max_temp_error": avg_max_error,
+                "min_temp_error": avg_min_error,
+                "max_temp_error": avg_max_error,
 
-    "min_temp_bias": avg_min_bias,
-    "max_temp_bias": avg_max_bias,
+                "min_temp_bias": avg_min_bias,
+                "max_temp_bias": avg_max_bias,
 
-    "rain_error": avg_rain,
-    "rain_bias": avg_rain_bias,
+                "rain_error": avg_rain,
+                "rain_bias": avg_rain_bias,
 
-    "rain_timing_score":
-        avg_rain_timing,
+                "rain_timing_score":
+                    avg_rain_timing,
 
-    "rain_hits":
-        rain_hits_total,
+                "rain_hits":
+                    rain_hits_total,
 
-    "rain_actual_hours":
-        rain_actual_total,
+                "rain_actual_hours":
+                    rain_actual_total,
 
-    "score": score
-}
+                "score": score
+            }
 
     return dict(
         sorted(
