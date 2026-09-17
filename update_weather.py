@@ -697,11 +697,22 @@ def calculate_model_stats(history):
                 1
             ) if rain_timing_scores else 0
 
+temp_score = max(
+    0,
+    100 - (avg_temp * 10)
+)
+
+rain_score = max(
+    0,
+    100 - (avg_rain * 5)
+)
+
+timing_score = avg_rain_timing
+
 score = round(
-    100
-    - (avg_temp * 8)
-    - (avg_rain * 1.5)
-    + (avg_rain_timing * 0.15),
+      temp_score * 0.40
+    + rain_score * 0.20
+    + timing_score * 0.40,
     1
 )
 
