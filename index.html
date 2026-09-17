@@ -2331,32 +2331,46 @@ ${
 
 <br><br>
 
-💧 Regnfel:
-${data.rain_error.toFixed(2)} mm
+💧 Regnmängd
 
 <br>
 
-💧 Regnbias:
+Fel:
+${data.rain_error.toFixed(1)} mm
+
+<br>
+
+Bias:
 
 ${
     data.rain_bias > 0
-        ? `För mycket regn ${data.rain_bias.toFixed(1)} mm`
+        ? `För mycket regn (+${data.rain_bias.toFixed(1)} mm)`
         : data.rain_bias < 0
-        ? `För lite regn ${Math.abs(data.rain_bias).toFixed(1)} mm`
+        ? `För lite regn (-${Math.abs(data.rain_bias).toFixed(1)} mm)`
         : "Neutral"
 }
 
+<br><br>
+
+🌧️ Regntimmar
+
 <br>
 
-📍 ${
+${
     data.rain_hits ?? 0
 } av ${
     data.rain_actual_hours ?? 0
-} regntimmar träffade
+} träffade
 
 <br>
 
-🌦️ Väderträff:
+Träff inom ±1 timme
+
+<br><br>
+
+🌦️ Vädertyp
+
+<br>
 
 ${
     (data.weather_accuracy ?? 0) >= 80
@@ -2365,11 +2379,7 @@ ${
         ? "🟡"
         : "🔴"
 }
-${data.weather_accuracy ?? 0} %
-
-<br>
-
-🕒 Träff ±1 timme
+${(data.weather_accuracy ?? 0).toFixed(1)} %
 
 <br>
 
