@@ -88,6 +88,30 @@ def weathercode_from_yr(symbol):
 
 
 def weathercode_from_smhi(symbol):
+    def weather_group(code):
+
+    if code in [0, 1]:
+        return "clear"
+
+    if code in [2, 3]:
+        return "cloudy"
+
+    if code in [45, 48]:
+        return "fog"
+
+    if code in [51, 53, 55, 56, 57]:
+        return "drizzle"
+
+    if code in [61, 63, 65, 66, 67, 80, 81, 82]:
+        return "rain"
+
+    if code in [71, 73, 75, 77, 85, 86]:
+        return "snow"
+
+    if code in [95, 96, 99]:
+        return "thunder"
+
+    return "other"
     mapping = {
         1: 0,
         2: 1,
@@ -511,11 +535,17 @@ def calculate_model_stats(history):
                     continue
 
                 if (
-                    model_data.get("weathercode")
-                    ==
-                    actual.get("weathercode")
-                ):
-                    weather_hits += 1
+if (
+    weather_group(
+        model_data.get("weathercode")
+    )
+    ==
+    weather_group(
+        actual.get("weathercode")
+    )
+):
+    weather_hits += 1
+`
 
                 weather_total += 1
                 min_err = abs(
@@ -695,13 +725,24 @@ def calculate_model_stats(history):
                 "rain_hits":
                     rain_hits_total,
 
-                "rain_actual_hours":
-                    rain_actual_total,
-"weather_hits": weather_hits,
+"rain_actual_hours":
+    rain_actual_total,
 
-"weather_total": weather_total,
+"weather_hits":
+    weather_hits,
+
+"weather_total":
+    weather_total,
 
 "weather_accuracy":
+    round(
+        weather_hits * 100 /
+        weather_total,
+        1
+    ) if weather_total else 0,
+
+"score":
+    score
     round(
         weather_hits * 100 /
         weather_total,
