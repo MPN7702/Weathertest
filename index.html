@@ -2223,9 +2223,10 @@ fetch("forecast-history.json")
 
     try{
 
-        const history =
-            await fetch("forecast-history.json")
-            .then(r => r.json());
+const history =
+    await fetch(
+        `forecast-history.json?t=${Date.now()}`
+    ).then(r => r.json());
 
         const stats =
             history.model_stats;
