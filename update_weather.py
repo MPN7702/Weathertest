@@ -686,12 +686,25 @@ if temp_errors:
 
     timing_score = avg_rain_timing
 
-    score = round(
-          temp_score * 0.40
-        + rain_score * 0.20
-        + timing_score * 0.40,
-        1
-    )
+temp_score = max(
+    0,
+    100 - (avg_temp * 10)
+)
+
+rain_score = max(
+    0,
+    100 - (avg_rain * 5)
+)
+
+timing_score = avg_rain_timing
+
+score = round(
+      temp_score * 0.40
+    + rain_score * 0.20
+    + timing_score * 0.40,
+    1
+)
+``
 
     print(
         model,
