@@ -146,7 +146,6 @@ def weathercode_from_smhi(symbol):
     }
 
     return mapping.get(symbol, 3)
-`
 
 
 def convert_smhi(smhi):
