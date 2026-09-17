@@ -2369,7 +2369,8 @@ ${
         : "🔴"
 }
 ${(data.weather_accuracy ?? 0).toFixed(1)} %
-
+📊 Träff:
+${data.weather_hits ?? 0}/${data.weather_total ?? 0}
 <br>
 
 📊 Dygn:
