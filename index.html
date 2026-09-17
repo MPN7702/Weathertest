@@ -1209,19 +1209,31 @@ getPeriodWeather(0,6,"🌙","00-06");
 getPeriodWeather(6,16,"☀️","06-16");
 getPeriodWeather(16,24,"🌆","16-00");
 
-const weatherText =
-    weatherDescriptions.join("<br>");
-
-const weatherTextColored =
-    weatherText.replaceAll(
-        "⚡ Åska",
-        '<span style="color:#ef4444;">⚡ Åska</span>'
+const weatherTypes =
+    weatherDescriptions.map(text =>
+        text.split(": ")[1]
     );
-const uniqueWeatherTexts =
-    [...new Set(weatherDescriptions)];
 
-const showWeatherOverview =
-    uniqueWeatherTexts.length > 1;
+const uniqueWeatherTypes =
+    [...new Set(weatherTypes)];
+
+let weatherTextColored;
+
+if(uniqueWeatherTypes.length === 1){
+
+    weatherTextColored =
+        `${uniqueWeatherTypes[0]} hela dygnet`;
+
+}else{
+
+    weatherTextColored =
+        weatherDescriptions.join("<br>")
+            .replaceAll(
+                "⚡ Åska",
+                '<span style="color:#ef4444;">⚡ Åska</span>'
+            );
+
+}
 window.forecastHistory.push({
     dayOffset,
     forecastDate: currentDay,
@@ -1293,16 +1305,11 @@ ${rainFlag
 <br><br>
 
 ${
-    showWeatherOverview
-    ? `
 🌦️ Översikt:
 <br>
 <strong>${weatherTextColored}</strong>
 
 <br><br>
-`
-    : ""
-}
 
 <div style="
 font-size:13px;
