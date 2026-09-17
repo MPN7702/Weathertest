@@ -537,16 +537,19 @@ def calculate_model_stats(history):
                 if not model_data:
                     continue
 
-                if (
-                    weather_group(
-                        model_data.get("weathercode")
-                    )
-                    ==
-                    weather_group(
-                        actual.get("weathercode")
-                    )
-                ):
-                    weather_hits += 1
+if (
+    model_data.get("weathercode") is not None
+    and
+    actual.get("weathercode") is not None
+):
+    if (
+        weather_group(model_data["weathercode"])
+        ==
+        weather_group(actual["weathercode"])
+    ):
+        weather_hits += 1
+
+    weather_total += 1
 
                 weather_total += 1
                 min_err = abs(
