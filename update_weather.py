@@ -458,6 +458,17 @@ def calculate_model_stats(history):
         rain_actual_total = 0
 
         min_biases = []
+        for model in models:
+
+    temp_errors = []
+    rain_errors = []
+    rain_timing_scores = []
+    rain_hits_total = 0
+    rain_actual_total = 0
+
+    counted_actual_dates = set()
+
+    min_biases = []
         max_biases = []
         rain_biases = []
 
@@ -547,32 +558,36 @@ def calculate_model_stats(history):
                         predicted_hours or []
                     )
 
-                    for actual_time in actual_hours:
+if date not in counted_actual_dates:
 
-                        actual_dt = datetime.strptime(
-                            actual_time,
-                            "%H:%M"
-                        )
+    for actual_time in actual_hours:
 
-                        found = False
+        actual_dt = datetime.strptime(
+            actual_time,
+            "%H:%M"
+        )
 
-                        for offset in (-1, 0, 1):
+        found = False
 
-                            check_time = (
-                                actual_dt +
-                                timedelta(hours=offset)
-                            ).strftime("%H:%M")
+        for offset in (-1, 0, 1):
 
-                            if check_time in predicted:
-                                found = True
-                                break
+            check_time = (
+                actual_dt +
+                timedelta(hours=offset)
+            ).strftime("%H:%M")
 
-                        if found:
-                            rain_hits_total += 1
+            if check_time in predicted:
+                found = True
+                break
 
-                    rain_actual_total += len(
-                        actual_hours
-                    )
+        if found:
+            rain_hits_total += 1
+
+    rain_actual_total += len(
+        actual_hours
+    )
+
+    counted_actual_dates.add(date)
 
         if temp_errors:
 
