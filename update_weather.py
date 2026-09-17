@@ -556,25 +556,25 @@ def calculate_model_stats(history):
 
                     weather_total += 1
 
-min_err = abs(
-    model_data["minTemp"]
-    - actual["minTemp"]
-)
+                min_err = abs(
+                    model_data["minTemp"]
+                    - actual["minTemp"]
+                )
 
-max_err = abs(
-    model_data["maxTemp"]
-    - actual["maxTemp"]
-)
+                max_err = abs(
+                    model_data["maxTemp"]
+                    - actual["maxTemp"]
+                )
 
-min_bias = (
-    model_data["minTemp"]
-    - actual["minTemp"]
-)
+                min_bias = (
+                    model_data["minTemp"]
+                    - actual["minTemp"]
+                )
 
-max_bias = (
-    model_data["maxTemp"]
-    - actual["maxTemp"]
-)
+                max_bias = (
+                    model_data["maxTemp"]
+                    - actual["maxTemp"]
+                )
 
                 min_biases.append(min_bias)
                 max_biases.append(max_bias)
