@@ -710,9 +710,9 @@ def calculate_model_stats(history):
             timing_score = avg_rain_timing
 
             score = round(
-                  temp_score * 0.40
-                + rain_score * 0.20
-                + timing_score * 0.40,
+                  temp_score * 0.10
+                + rain_score * 0.40
+                + timing_score * 0.50,
                 1
             )
 
