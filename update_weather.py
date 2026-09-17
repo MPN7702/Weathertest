@@ -449,22 +449,19 @@ def calculate_model_stats(history):
 
     stats = {}
 
-for model in models:
+    for model in models:
 
-    temp_errors = []
-    rain_errors = []
-    rain_timing_scores = []
-    rain_hits_total = 0
-    rain_actual_total = 0
+        temp_errors = []
+        rain_errors = []
+        rain_timing_scores = []
 
-    counted_actual_dates = set()
+        rain_hits_total = 0
+        rain_actual_total = 0
 
-    min_biases = []
-    max_biases = []
-    rain_biases = []
+        counted_actual_dates = set()
 
-    min_errors = []
-    max_errors = []
+        min_biases = []
+        max_biases = []
         rain_biases = []
 
         min_errors = []
@@ -520,9 +517,7 @@ for model in models:
                     - actual["rainAmount"]
                 )
 
-                rain_biases.append(
-                    rain_bias
-                )
+                rain_biases.append(rain_bias)
 
                 temp_errors.append(
                     (min_err + max_err) / 2
@@ -531,11 +526,13 @@ for model in models:
                 rain_errors.append(rain_err)
 
                 predicted_hours = model_data.get(
-                    "rainHours", []
+                    "rainHours",
+                    []
                 )
 
                 actual_hours = actual.get(
-                    "rainHours", []
+                    "rainHours",
+                    []
                 )
 
                 timing_score = calculate_rain_timing_score(
@@ -543,49 +540,44 @@ for model in models:
                     actual_hours
                 )
 
-                if timing_score is not None:
+                rain_timing_scores.append(
+                    timing_score
+                )
 
-                    rain_timing_scores.append(
-                        timing_score
+                if date not in counted_actual_dates:
+
+                    predicted = set(
+                        predicted_hours or []
                     )
 
-predicted = set(
-    predicted_hours or []
-)
+                    for actual_time in actual_hours:
 
-if date not in counted_actual_dates:
+                        actual_dt = datetime.strptime(
+                            actual_time,
+                            "%H:%M"
+                        )
 
-    for actual_time in actual_hours:
+                        found = False
 
-        actual_dt = datetime.strptime(
-            actual_time,
-            "%H:%M"
-        )
+                        for offset in (-1, 0, 1):
 
-        found = False
+                            check_time = (
+                                actual_dt
+                                + timedelta(hours=offset)
+                            ).strftime("%H:%M")
 
-        for offset in (-1, 0, 1):
+                            if check_time in predicted:
+                                found = True
+                                break
 
-            check_time = (
-                actual_dt +
-                timedelta(hours=offset)
-            ).strftime("%H:%M")
+                        if found:
+                            rain_hits_total += 1
 
-            if check_time in predicted:
-                found = True
-                break
+                    rain_actual_total += len(
+                        actual_hours
+                    )
 
-        if found:
-            rain_hits_total += 1
-
-    rain_actual_total += len(
-        actual_hours
-    )
-
-    counted_actual_dates.add(date)
-
-
-    counted_actual_dates.add(date)
+                    counted_actual_dates.add(date)
 
         if temp_errors:
 
@@ -603,6 +595,7 @@ if date not in counted_actual_dates:
                 sum(rain_biases) / len(rain_biases),
                 2
             )
+
             avg_min_bias = round(
                 sum(min_biases) / len(min_biases),
                 2
@@ -636,13 +629,15 @@ if date not in counted_actual_dates:
                 + (avg_rain_timing * 0.05),
                 1
             )
-print(
-    model,
-    "hits:",
-    rain_hits_total,
-    "actual:",
-    rain_actual_total
-)
+
+            print(
+                model,
+                "hits:",
+                rain_hits_total,
+                "actual:",
+                rain_actual_total
+            )
+
             stats[model] = {
                 "samples": len(temp_errors),
 
@@ -654,12 +649,11 @@ print(
                 "min_temp_bias": avg_min_bias,
                 "max_temp_bias": avg_max_bias,
 
-"rain_error": avg_rain,
+                "rain_error": avg_rain,
+                "rain_bias": avg_rain_bias,
 
-"rain_bias": avg_rain_bias,
-
-"rain_timing_score":
-    avg_rain_timing,
+                "rain_timing_score":
+                    avg_rain_timing,
 
                 "rain_hits":
                     rain_hits_total,
@@ -677,8 +671,6 @@ print(
             reverse=True
         )
     )
-
-weather = {
     "updated": datetime.utcnow().strftime(
         "%Y-%m-%dT%H:%M:%SZ"
     )
