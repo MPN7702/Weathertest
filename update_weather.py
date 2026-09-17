@@ -763,6 +763,7 @@ def calculate_model_stats(history):
                 "score":
                     score
             }
+            
     return dict(
         sorted(
             stats.items(),
