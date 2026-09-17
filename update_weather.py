@@ -895,7 +895,10 @@ for date in sorted(dates_to_check):
             f"Actual-data kunde inte hämtas för {date}:",
             e
         )
-
+print(
+    "Antal actual-dygn:",
+    len(history.get("actual", {}))
+)
 history["model_stats"] = calculate_model_stats(
     history
 )
