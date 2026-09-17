@@ -88,7 +88,7 @@ def weathercode_from_yr(symbol):
 
 
 def weathercode_from_smhi(symbol):
-    def weather_group(code):
+def weather_group(code):
 
     if code in [0, 1]:
         return "clear"
@@ -535,17 +535,15 @@ def calculate_model_stats(history):
                     continue
 
                 if (
-if (
-    weather_group(
-        model_data.get("weathercode")
-    )
-    ==
-    weather_group(
-        actual.get("weathercode")
-    )
-):
-    weather_hits += 1
-`
+                    weather_group(
+                        model_data.get("weathercode")
+                    )
+                    ==
+                    weather_group(
+                        actual.get("weathercode")
+                    )
+                ):
+                    weather_hits += 1
 
                 weather_total += 1
                 min_err = abs(
@@ -725,30 +723,24 @@ if (
                 "rain_hits":
                     rain_hits_total,
 
-"rain_actual_hours":
-    rain_actual_total,
+                "rain_actual_hours":
+                    rain_actual_total,
 
-"weather_hits":
-    weather_hits,
+                "weather_hits":
+                    weather_hits,
 
-"weather_total":
-    weather_total,
+                "weather_total":
+                    weather_total,
 
-"weather_accuracy":
-    round(
-        weather_hits * 100 /
-        weather_total,
-        1
-    ) if weather_total else 0,
+                "weather_accuracy":
+                    round(
+                        weather_hits * 100 /
+                        weather_total,
+                        1
+                    ) if weather_total else 0,
 
-"score":
-    score
-    round(
-        weather_hits * 100 /
-        weather_total,
-        1
-    ) if weather_total else 0,
-                "score": score
+                "score":
+                    score
             }
 
     return dict(
