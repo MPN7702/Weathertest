@@ -726,7 +726,8 @@ def calculate_model_stats(history):
 
             stats[model] = {
                 "samples": len(temp_errors),
-
+                "actual_days":
+                    len(history.get("actual", {})),
                 "temp_error": avg_temp,
 
                 "min_temp_error": avg_min_error,
