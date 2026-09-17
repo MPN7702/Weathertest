@@ -312,11 +312,13 @@ def daily_summary(hourly, target_date):
     times = hourly["time"]
     temps = hourly["temperature_2m"]
     rain = hourly["precipitation"]
+    weathercodes = hourly["weathercode"]
 
     day_temps = []
     day_rain = []
 
     rain_hours = []
+    weather_votes = {}
 
     for idx, t in enumerate(times):
 
@@ -325,18 +327,31 @@ def daily_summary(hourly, target_date):
             day_temps.append(temps[idx])
             day_rain.append(rain[idx])
 
+            code = weathercodes[idx]
+
+            weather_votes[code] = (
+                weather_votes.get(code, 0) + 1
+            )
+
             if (rain[idx] or 0) >= 0.1:
                 rain_hours.append(t[11:16])
 
     if not day_temps:
         return None
 
+    dominant_weathercode = max(
+        weather_votes,
+        key=weather_votes.get
+    )
+
     return {
         "minTemp": round(min(day_temps), 1),
         "maxTemp": round(max(day_temps), 1),
         "rainAmount": round(sum(day_rain), 1),
-        "rainHours": rain_hours
+        "rainHours": rain_hours,
+        "weathercode": dominant_weathercode
     }
+``
 
 def fetch_actual_day(lat, lon, date):
 
@@ -350,17 +365,23 @@ def fetch_actual_day(lat, lon, date):
         "temperature_2m_min,"
         "temperature_2m_max,"
         "precipitation_sum"
-        "&hourly=precipitation"
+        "&hourly=precipitation,weathercode"
         "&timezone=auto"
     )
 
     data = fetch_json(url)
 
     actual_rain_hours = []
+actual_weather_votes = {}
+for idx, value in enumerate(
+    data["hourly"]["precipitation"]
+):
 
-    for idx, value in enumerate(
-        data["hourly"]["precipitation"]
-    ):
+    code = data["hourly"]["weathercode"][idx]
+
+    actual_weather_votes[code] = (
+        actual_weather_votes.get(code, 0) + 1
+    )
 
         if value >= 0.1:
 
@@ -370,12 +391,18 @@ def fetch_actual_day(lat, lon, date):
 
     daily = data["daily"]
 
-    return {
-        "minTemp": daily["temperature_2m_min"][0],
-        "maxTemp": daily["temperature_2m_max"][0],
-        "rainAmount": daily["precipitation_sum"][0],
-        "rainHours": actual_rain_hours
-    }
+dominant_weathercode = max(
+    actual_weather_votes,
+    key=actual_weather_votes.get
+)
+
+return {
+    "minTemp": daily["temperature_2m_min"][0],
+    "maxTemp": daily["temperature_2m_max"][0],
+    "rainAmount": daily["precipitation_sum"][0],
+    "rainHours": actual_rain_hours,
+    "weathercode": dominant_weathercode
+}
 
 
 def calculate_rain_timing_score(
@@ -457,6 +484,8 @@ def calculate_model_stats(history):
 
         rain_hits_total = 0
         rain_actual_total = 0
+        weather_hits = 0
+        weather_total = 0
 
         counted_actual_dates = set()
 
@@ -480,7 +509,14 @@ def calculate_model_stats(history):
 
                 if not model_data:
                     continue
+if (
+    model_data.get("weathercode")
+    ==
+    actual.get("weathercode")
+):
+    weather_hits += 1
 
+weather_total += 1
                 min_err = abs(
                     model_data["minTemp"]
                     - actual["minTemp"]
@@ -660,7 +696,16 @@ def calculate_model_stats(history):
 
                 "rain_actual_hours":
                     rain_actual_total,
+"weather_hits": weather_hits,
 
+"weather_total": weather_total,
+
+"weather_accuracy":
+    round(
+        weather_hits * 100 /
+        weather_total,
+        1
+    ) if weather_total else 0,
                 "score": score
             }
 
