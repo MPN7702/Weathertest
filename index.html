@@ -2356,7 +2356,21 @@ ${
 
 <br>
 
+🌦️ Väderträff:
+
+${
+    (data.weather_accuracy ?? 0) >= 80
+        ? "🟢"
+        : (data.weather_accuracy ?? 0) >= 60
+        ? "🟡"
+        : "🔴"
+}
+${data.weather_accuracy ?? 0} %
+
+<br>
+
 🕒 Träff ±1 timme
+
 <br>
 
 📊 Historik:
