@@ -87,7 +87,6 @@ def weathercode_from_yr(symbol):
     return 3
 
 
-def weathercode_from_smhi(symbol):
 def weather_group(code):
 
     if code in [0, 1]:
@@ -112,6 +111,10 @@ def weather_group(code):
         return "thunder"
 
     return "other"
+
+
+def weathercode_from_smhi(symbol):
+
     mapping = {
         1: 0,
         2: 1,
@@ -143,6 +146,7 @@ def weather_group(code):
     }
 
     return mapping.get(symbol, 3)
+`
 
 
 def convert_smhi(smhi):
