@@ -1217,6 +1217,11 @@ const weatherTextColored =
         "⚡ Åska",
         '<span style="color:#ef4444;">⚡ Åska</span>'
     );
+const uniqueWeatherTexts =
+    [...new Set(weatherDescriptions)];
+
+const showWeatherOverview =
+    uniqueWeatherTexts.length > 1;
 window.forecastHistory.push({
     dayOffset,
     forecastDate: currentDay,
@@ -1287,11 +1292,18 @@ ${rainFlag
 </span>
 <br><br>
 
+${
+    showWeatherOverview
+    ? `
 🌦️ Översikt:
 <br>
 <strong>${weatherTextColored}</strong>
 
 <br><br>
+`
+    : ""
+}
+``
 
 <div style="
 font-size:13px;
