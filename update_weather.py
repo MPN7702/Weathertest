@@ -351,7 +351,6 @@ def daily_summary(hourly, target_date):
         "rainHours": rain_hours,
         "weathercode": dominant_weathercode
     }
-``
 
 def fetch_actual_day(lat, lon, date):
 
@@ -372,16 +371,17 @@ def fetch_actual_day(lat, lon, date):
     data = fetch_json(url)
 
     actual_rain_hours = []
-actual_weather_votes = {}
-for idx, value in enumerate(
-    data["hourly"]["precipitation"]
-):
+    actual_weather_votes = {}
 
-    code = data["hourly"]["weathercode"][idx]
+    for idx, value in enumerate(
+        data["hourly"]["precipitation"]
+    ):
 
-    actual_weather_votes[code] = (
-        actual_weather_votes.get(code, 0) + 1
-    )
+        code = data["hourly"]["weathercode"][idx]
+
+        actual_weather_votes[code] = (
+            actual_weather_votes.get(code, 0) + 1
+        )
 
         if value >= 0.1:
 
@@ -391,18 +391,18 @@ for idx, value in enumerate(
 
     daily = data["daily"]
 
-dominant_weathercode = max(
-    actual_weather_votes,
-    key=actual_weather_votes.get
-)
+    dominant_weathercode = max(
+        actual_weather_votes,
+        key=actual_weather_votes.get
+    )
 
-return {
-    "minTemp": daily["temperature_2m_min"][0],
-    "maxTemp": daily["temperature_2m_max"][0],
-    "rainAmount": daily["precipitation_sum"][0],
-    "rainHours": actual_rain_hours,
-    "weathercode": dominant_weathercode
-}
+    return {
+        "minTemp": daily["temperature_2m_min"][0],
+        "maxTemp": daily["temperature_2m_max"][0],
+        "rainAmount": daily["precipitation_sum"][0],
+        "rainHours": actual_rain_hours,
+        "weathercode": dominant_weathercode
+    }
 
 
 def calculate_rain_timing_score(
@@ -509,14 +509,15 @@ def calculate_model_stats(history):
 
                 if not model_data:
                     continue
-if (
-    model_data.get("weathercode")
-    ==
-    actual.get("weathercode")
-):
-    weather_hits += 1
 
-weather_total += 1
+                if (
+                    model_data.get("weathercode")
+                    ==
+                    actual.get("weathercode")
+                ):
+                    weather_hits += 1
+
+                weather_total += 1
                 min_err = abs(
                     model_data["minTemp"]
                     - actual["minTemp"]
