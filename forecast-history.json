@@ -62,7 +62,7 @@
     },
     "2026-09-17": {
       "smhi": {
-        "minTemp": 8.4,
+        "minTemp": 8.6,
         "maxTemp": 15.1,
         "rainAmount": 1.5,
         "rainHours": [
@@ -74,7 +74,7 @@
         ]
       },
       "yr": {
-        "minTemp": 8.8,
+        "minTemp": 9.0,
         "maxTemp": 15.4,
         "rainAmount": 1.4,
         "rainHours": [
@@ -84,25 +84,23 @@
         ]
       },
       "dmi_seamless": {
-        "minTemp": 7.9,
-        "maxTemp": 16.0,
-        "rainAmount": 0.5,
+        "minTemp": 8.4,
+        "maxTemp": 15.9,
+        "rainAmount": 0.8,
         "rainHours": [
-          "14:00",
-          "21:00",
+          "13:00",
+          "22:00",
           "23:00"
         ]
       },
       "icon_eu": {
         "minTemp": 8.9,
-        "maxTemp": 15.3,
-        "rainAmount": 1.1,
+        "maxTemp": 15.4,
+        "rainAmount": 0.5,
         "rainHours": [
-          "00:00",
           "19:00",
           "20:00",
-          "22:00",
-          "23:00"
+          "21:00"
         ]
       }
     }
@@ -185,8 +183,8 @@
     },
     "2026-09-18": {
       "smhi": {
-        "minTemp": 9.3,
-        "maxTemp": 14.7,
+        "minTemp": 9.4,
+        "maxTemp": 14.6,
         "rainAmount": 2.7,
         "rainHours": [
           "00:00",
@@ -202,7 +200,7 @@
         ]
       },
       "yr": {
-        "minTemp": 10.0,
+        "minTemp": 10.1,
         "maxTemp": 14.6,
         "rainAmount": 1.3,
         "rainHours": [
@@ -212,26 +210,27 @@
         ]
       },
       "dmi_seamless": {
-        "minTemp": 9.2,
-        "maxTemp": 13.4,
-        "rainAmount": 5.2,
+        "minTemp": 10.1,
+        "maxTemp": 13.7,
+        "rainAmount": 5.9,
         "rainHours": [
           "00:00",
           "01:00",
           "02:00",
+          "03:00",
           "11:00",
           "13:00",
           "14:00",
-          "16:00",
-          "17:00"
+          "15:00"
         ]
       },
       "icon_eu": {
         "minTemp": 9.8,
         "maxTemp": 14.8,
-        "rainAmount": 3.6,
+        "rainAmount": 4.4,
         "rainHours": [
           "00:00",
+          "01:00",
           "09:00",
           "10:00",
           "11:00",
@@ -327,15 +326,16 @@
     },
     "2026-09-19": {
       "smhi": {
-        "minTemp": 8.8,
+        "minTemp": 8.9,
         "maxTemp": 15.0,
-        "rainAmount": 4.4,
+        "rainAmount": 4.6,
         "rainHours": [
           "06:00",
           "07:00",
           "08:00",
           "09:00",
           "10:00",
+          "11:00",
           "12:00"
         ]
       },
@@ -348,7 +348,7 @@
         ]
       },
       "dmi_seamless": {
-        "minTemp": 7.8,
+        "minTemp": 9.8,
         "maxTemp": 16.0,
         "rainAmount": 2.6,
         "rainHours": [
@@ -402,7 +402,7 @@
       ]
     },
     "2026-09-16": {
-      "minTemp": 10.6,
+      "minTemp": 10.5,
       "maxTemp": 16.5,
       "rainAmount": 1.5,
       "rainHours": [
@@ -412,64 +412,76 @@
         "03:00",
         "08:00"
       ]
+    },
+    "2026-09-17": {
+      "minTemp": 9.0,
+      "maxTemp": 15.4,
+      "rainAmount": 0.7,
+      "rainHours": [
+        "15:00",
+        "16:00",
+        "17:00",
+        "22:00",
+        "23:00"
+      ]
     }
   },
   "model_stats": {
     "icon_eu": {
-      "samples": 3,
-      "temp_error": 0.55,
-      "min_temp_error": 0.3,
-      "max_temp_error": 0.8,
+      "samples": 6,
+      "temp_error": 0.44,
+      "min_temp_error": 0.2,
+      "max_temp_error": 0.68,
       "min_temp_bias": -0.1,
-      "max_temp_bias": -0.33,
-      "rain_error": 3.57,
-      "rain_bias": 3.57,
-      "rain_timing_score": 0.0,
-      "rain_hits": 0,
-      "rain_actual_hours": 20,
-      "score": 90.9
+      "max_temp_bias": -0.45,
+      "rain_error": 2.15,
+      "rain_bias": 2.08,
+      "rain_timing_score": 15.3,
+      "rain_hits": 5,
+      "rain_actual_hours": 35,
+      "score": 94.2
     },
     "dmi_seamless": {
-      "samples": 3,
-      "temp_error": 0.8,
-      "min_temp_error": 1.13,
-      "max_temp_error": 0.47,
-      "min_temp_bias": 0.27,
-      "max_temp_bias": 0.47,
-      "rain_error": 4.3,
-      "rain_bias": 4.3,
-      "rain_timing_score": 22.2,
-      "rain_hits": 2,
-      "rain_actual_hours": 20,
-      "score": 88.8
-    },
-    "smhi": {
-      "samples": 3,
-      "temp_error": 2.32,
-      "min_temp_error": 2.8,
-      "max_temp_error": 1.83,
-      "min_temp_bias": 1.0,
-      "max_temp_bias": -1.83,
-      "rain_error": 2.5,
-      "rain_bias": -2.5,
-      "rain_timing_score": 0.0,
-      "rain_hits": 0,
-      "rain_actual_hours": 20,
-      "score": 74.3
+      "samples": 6,
+      "temp_error": 0.67,
+      "min_temp_error": 0.83,
+      "max_temp_error": 0.5,
+      "min_temp_bias": -0.13,
+      "max_temp_bias": 0.5,
+      "rain_error": 2.32,
+      "rain_bias": 2.02,
+      "rain_timing_score": 31.9,
+      "rain_hits": 7,
+      "rain_actual_hours": 35,
+      "score": 92.6
     },
     "yr": {
-      "samples": 3,
-      "temp_error": 2.4,
-      "min_temp_error": 3.03,
-      "max_temp_error": 1.77,
-      "min_temp_bias": 1.77,
-      "max_temp_bias": -0.77,
-      "rain_error": 2.53,
-      "rain_bias": -2.53,
-      "rain_timing_score": 0.0,
-      "rain_hits": 0,
-      "rain_actual_hours": 20,
-      "score": 73.5
+      "samples": 6,
+      "temp_error": 1.38,
+      "min_temp_error": 1.7,
+      "max_temp_error": 1.07,
+      "min_temp_bias": 0.87,
+      "max_temp_bias": -0.27,
+      "rain_error": 1.58,
+      "rain_bias": -0.95,
+      "rain_timing_score": 15.0,
+      "rain_hits": 4,
+      "rain_actual_hours": 35,
+      "score": 85.4
+    },
+    "smhi": {
+      "samples": 6,
+      "temp_error": 1.58,
+      "min_temp_error": 1.98,
+      "max_temp_error": 1.17,
+      "min_temp_bias": -0.05,
+      "max_temp_bias": -0.93,
+      "rain_error": 1.6,
+      "rain_bias": -1.03,
+      "rain_timing_score": 13.3,
+      "rain_hits": 4,
+      "rain_actual_hours": 35,
+      "score": 83.3
     }
   }
 }
