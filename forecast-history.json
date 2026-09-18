@@ -161,6 +161,67 @@
         ],
         "weathercode": 3
       }
+    },
+    "2026-09-19": {
+      "smhi": {
+        "minTemp": 10.6,
+        "maxTemp": 17.1,
+        "rainAmount": 2.7,
+        "rainHours": [
+          "06:00",
+          "07:00",
+          "08:00",
+          "09:00",
+          "10:00",
+          "11:00",
+          "12:00",
+          "13:00"
+        ],
+        "weathercode": 3
+      },
+      "yr": {
+        "minTemp": 10.5,
+        "maxTemp": 15.9,
+        "rainAmount": 2.2,
+        "rainHours": [
+          "06:00",
+          "07:00",
+          "08:00",
+          "09:00",
+          "10:00"
+        ],
+        "weathercode": 3
+      },
+      "dmi_seamless": {
+        "minTemp": 10.4,
+        "maxTemp": 16.5,
+        "rainAmount": 2.8,
+        "rainHours": [
+          "09:00",
+          "10:00",
+          "11:00",
+          "17:00"
+        ],
+        "weathercode": 3
+      },
+      "icon_eu": {
+        "minTemp": 10.1,
+        "maxTemp": 16.2,
+        "rainAmount": 5.8,
+        "rainHours": [
+          "08:00",
+          "09:00",
+          "10:00",
+          "11:00",
+          "12:00",
+          "13:00",
+          "14:00",
+          "15:00",
+          "16:00",
+          "17:00"
+        ],
+        "weathercode": 3
+      }
     }
   },
   "day2": {
@@ -363,6 +424,39 @@
         ],
         "weathercode": 3
       }
+    },
+    "2026-09-20": {
+      "smhi": {
+        "minTemp": 9.9,
+        "maxTemp": 16.3,
+        "rainAmount": 0.0,
+        "rainHours": [],
+        "weathercode": 0
+      },
+      "yr": {
+        "minTemp": 9.7,
+        "maxTemp": 15.8,
+        "rainAmount": 0.0,
+        "rainHours": [],
+        "weathercode": 0
+      },
+      "dmi_seamless": {
+        "minTemp": 8.7,
+        "maxTemp": 16.1,
+        "rainAmount": 0.0,
+        "rainHours": [],
+        "weathercode": 0
+      },
+      "icon_eu": {
+        "minTemp": 7.9,
+        "maxTemp": 15.9,
+        "rainAmount": 0.2,
+        "rainHours": [
+          "15:00",
+          "16:00"
+        ],
+        "weathercode": 1
+      }
     }
   },
   "day3": {
@@ -542,6 +636,36 @@
       "icon_eu": {
         "minTemp": 8.0,
         "maxTemp": 16.0,
+        "rainAmount": 0.0,
+        "rainHours": [],
+        "weathercode": 1
+      }
+    },
+    "2026-09-21": {
+      "smhi": {
+        "minTemp": 9.0,
+        "maxTemp": 16.1,
+        "rainAmount": 0.0,
+        "rainHours": [],
+        "weathercode": 1
+      },
+      "yr": {
+        "minTemp": 9.1,
+        "maxTemp": 16.2,
+        "rainAmount": 0.0,
+        "rainHours": [],
+        "weathercode": 2
+      },
+      "dmi_seamless": {
+        "minTemp": 6.7,
+        "maxTemp": 16.5,
+        "rainAmount": 0.0,
+        "rainHours": [],
+        "weathercode": 3
+      },
+      "icon_eu": {
+        "minTemp": 5.5,
+        "maxTemp": 16.2,
         "rainAmount": 0.0,
         "rainHours": [],
         "weathercode": 1
