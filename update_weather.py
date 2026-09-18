@@ -601,11 +601,12 @@ def calculate_model_stats(history):
 
                 rain_errors.append(rain_err)
 
-                predicted_hours = model_data.get(
-                    "rainHours",
-                    []
-                    rain_predicted_total += len(predicted_hours)
-                )
+predicted_hours = model_data.get(
+    "rainHours",
+    []
+)
+
+rain_predicted_total += len(predicted_hours)
 
                 actual_hours = actual.get(
                     "rainHours",
