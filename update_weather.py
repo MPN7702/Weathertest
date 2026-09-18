@@ -842,6 +842,7 @@ for i in range(3):
     key = f"day{i + 1}"
     date = weekly["time"][i][:10]
 
+    # Spara bara första prognosen som hamnar i denna bucket
     if date in history[key]:
         continue
 
@@ -864,7 +865,6 @@ for i in range(3):
             date
         )
     }
-
 dates_to_check = set()
 
 for bucket in ["day1", "day2", "day3"]:
