@@ -842,29 +842,28 @@ for i in range(3):
     key = f"day{i + 1}"
     date = weekly["time"][i][:10]
 
-    if date not in history[key]:
+    if date in history[key]:
+        continue
 
-        history[key][date] = {}
-
-        history[key][date]["smhi"] = daily_summary(
-            weather"]["hourly"],
+    history[key][date] = {
+        "smhi": daily_summary(
+            weather["Torsby"]["smhi"]["hourly"],
             date
-        )
-
-        history[key][date]["yr"] = daily_summary(
+       r": daily_summary(
             weather["Torsby"]["yr"]["hourly"],
             date
-        )
+        ),
 
-        history[key][date]["dmi_seamless"] = daily_summary(
+        "dmi_seamless": daily_summary(
             weather["Torsby"]["dmi_seamless"]["hourly"],
             date
-        )
+        ),
 
-        history[key][date]["icon_eu"] = daily_summary(
+        "icon_eu": daily_summary(
             weather["Torsby"]["icon_eu"]["hourly"],
             date
         )
+    }
 
 dates_to_check = set()
 
