@@ -511,6 +511,7 @@ def calculate_model_stats(history):
 
         rain_hits_total = 0
         rain_actual_total = 0
+        rain_predicted_total = 0
         weather_hits = 0
         weather_total = 0
 
@@ -603,6 +604,7 @@ def calculate_model_stats(history):
                 predicted_hours = model_data.get(
                     "rainHours",
                     []
+                    rain_predicted_total += len(predicted_hours)
                 )
 
                 actual_hours = actual.get(
@@ -742,11 +744,14 @@ def calculate_model_stats(history):
                 "rain_timing_score":
                     avg_rain_timing,
 
-                "rain_hits":
-                    rain_hits_total,
+"rain_hits":
+    rain_hits_total,
 
-                "rain_actual_hours":
-                    rain_actual_total,
+"rain_predicted_hours":
+    rain_predicted_total,
+
+"rain_actual_hours":
+    rain_actual_total,
 
                 "weather_hits":
                     weather_hits,
