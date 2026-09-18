@@ -2345,11 +2345,15 @@ ${
 
 <br>
 
-${
-    data.rain_hits ?? 0
-} av ${
-    data.rain_actual_hours ?? 0
-} träffade
+✅ Träffar: ${data.rain_hits ?? 0}
+
+<br>
+
+☔ Prognostiserade: ${data.rain_predicted_hours ?? 0}
+
+<br>
+
+🌧️ Verkliga: ${data.rain_actual_hours ?? 0}
 
 <br>
 
