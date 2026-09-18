@@ -850,7 +850,8 @@ for i in range(3):
         "smhi": daily_summary(
             weather["Torsby"]["smhi"]["hourly"],
             date
-       r": daily_summary(
+
+        "yr": daily_summary(
             weather["Torsby"]["yr"]["hourly"],
             date
         ),
