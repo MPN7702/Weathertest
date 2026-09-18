@@ -842,11 +842,13 @@ for i in range(3):
     key = f"day{i + 1}"
     date = weekly["time"][i][:10]
 
+if date not in history[key]:
+
     history[key][date] = {}
 
     history[key][date]["smhi"] = daily_summary(
-    weather["Torsby"]["smhi"]["hourly"],
-    date
+   ["Torsby"]["smhi"]["hourly"],
+        date
     )
 
     history[key][date]["yr"] = daily_summary(
