@@ -605,17 +605,17 @@ def calculate_model_stats(history):
                 )
 
                 if (
-    "windSpeed" in model_data
-    and
-    "windSpeed" in actual
-):
+                    "windSpeed" in model_data
+                    and
+                    "windSpeed" in actual
+                ):
 
-    wind_err = abs(
-        model_data["windSpeed"]
-        - actual["windSpeed"]
-    )
+                    wind_err = abs(
+                        model_data["windSpeed"]
+                        - actual["windSpeed"]
+                    )
 
-                wind_errors.append(wind_err)
+                    wind_errors.append(wind_err)
                 rain_bias = (
                     model_data["rainAmount"]
                     - actual["rainAmount"]
