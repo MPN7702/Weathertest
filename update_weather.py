@@ -343,7 +343,7 @@ def daily_summary(hourly, target_date):
 
     day_temps = []
     day_rain = []
-day_winds = []
+    day_winds = []
     rain_hours = []
     weather_votes = {}
 
@@ -353,9 +353,10 @@ day_winds = []
 
             day_temps.append(temps[idx])
             day_rain.append(rain[idx])
-day_winds.append(
-    hourly["wind_speed_10m"][idx]
-)
+
+            day_winds.append(
+                hourly["wind_speed_10m"][idx]
+            )
             code = weathercodes[idx]
 
             weather_votes[code] = (
@@ -384,10 +385,6 @@ day_winds.append(
         "rainHours": rain_hours,
         "weathercode": dominant_weathercode
     }
-
-    "rainHours": rain_hours,
-    "weathercode": dominant_weathercode
-}
 
 def fetch_actual_day(lat, lon, date):
 
