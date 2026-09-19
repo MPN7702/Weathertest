@@ -373,15 +373,17 @@ day_winds.append(
         key=weather_votes.get
     )
 
-return {
-    "minTemp": round(min(day_temps), 1),
-    "maxTemp": round(max(day_temps), 1),
-    "rainAmount": round(sum(day_rain), 1),
-
-    "windSpeed": round(
-        sum(day_winds) / len(day_winds),
-        1
-    ),
+    return {
+        "minTemp": round(min(day_temps), 1),
+        "maxTemp": round(max(day_temps), 1),
+        "rainAmount": round(sum(day_rain), 1),
+        "windSpeed": round(
+            sum(day_winds) / len(day_winds),
+            1
+        ),
+        "rainHours": rain_hours,
+        "weathercode": dominant_weathercode
+    }
 
     "rainHours": rain_hours,
     "weathercode": dominant_weathercode
