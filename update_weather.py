@@ -404,9 +404,19 @@ def fetch_actual_day(lat, lon, date):
 
     data = fetch_json(url)
 
-    actual_rain_hours = []
-    actual_weather_votes = {}
-        for idx, value in enumerate(
+actual_rain_hours = []
+actual_weather_votes = {}
+
+wind_values = data["hourly"]["wind_speed_10m"]
+
+avg_wind = round(
+    sum(wind_values) / len(wind_values),
+    1
+)
+
+for idx, value in enumerate(
+    data["hourly"]["precipitation"]
+):
         data["hourly"]["precipitation"]
     ):
 
@@ -421,11 +431,6 @@ def fetch_actual_day(lat, lon, date):
             actual_rain_hours.append(
                 data["hourly"]["time"][idx][11:16]
             )
-        avg_wind = round(
-    sum(data["hourly"]["wind_speed_10m"])
-    / len(data["hourly"]["wind_speed_10m"]),
-    1
-)
     wind_values = data["hourly"]["wind_speed_10m"]
 
 avg_wind = round(
@@ -519,7 +524,7 @@ def calculate_model_stats(history):
         "icon_eu"
     ]
 
-stats = {}
+    stats = {}
 
     for model in models:
 
@@ -606,12 +611,13 @@ stats = {}
                     model_data["rainAmount"]
                     - actual["rainAmount"]
                 )
-wind_err = abs(
-    model_data["windSpeed"]
-    - actual["windSpeed"]
-)
 
-wind_errors.append(wind_err)
+                wind_err = abs(
+                    model_data["windSpeed"]
+                    - actual["windSpeed"]
+                )
+
+                wind_errors.append(wind_err)
                 rain_bias = (
                     model_data["rainAmount"]
                     - actual["rainAmount"]
