@@ -388,7 +388,7 @@ def daily_summary(hourly, target_date):
 
 def fetch_actual_day(lat, lon, date):
 
-url = (
+    url = (
     "https://archive-api.open-meteo.com/v1/archive"
     f"?latitude={lat}"
     f"&longitude={lon}"
