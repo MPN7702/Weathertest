@@ -2333,8 +2333,22 @@ ${
 ${(data.wind_error ?? 0).toFixed(1)} m/s
 
 <br><br>
-<b>💧 Regnbias</b>
 
+<b>🌬️ Vindbias</b>
+<br>
+
+${
+    data.wind_bias > 0
+        ? `För stark vind (+${data.wind_bias.toFixed(1)} m/s)`
+        : data.wind_bias < 0
+            ? `För svag vind (${data.wind_bias.toFixed(1)} m/s)`
+            : `Ingen systematisk avvikelse`
+}
+
+<br><br>
+
+<b>💧 Regnbias</b>
+<br>
 <br>
 
 ${
