@@ -772,15 +772,11 @@ def calculate_model_stats(history):
 
                 "rain_timing_score":
                     avg_rain_timing,
-
-"rain_hits":
-    rain_hits_total,
-
-"rain_predicted_hours":
-    rain_predicted_total,
-
-"rain_actual_hours":
-    rain_actual_total,
+                "rain_hits": rain_hits_total,
+                "rain_predicted_hours":
+                rain_predicted_total,
+                "rain_actual_hours":
+                rain_actual_total,
 
                 "weather_hits":
                     weather_hits,
