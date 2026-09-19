@@ -406,6 +406,12 @@ def fetch_actual_day(lat, lon, date):
 
     actual_rain_hours = []
     actual_weather_votes = {}
+    wind_values = data["hourly"]["wind_speed_10m"]
+
+avg_wind = round(
+    sum(wind_values) / len(wind_values),
+    1
+)
 
     for idx, value in enumerate(
         data["hourly"]["precipitation"]
@@ -715,10 +721,10 @@ wind_errors.append(wind_err)
                 sum(max_errors) / len(max_errors),
                 2
             )
-avg_wind_error = round(
-    sum(wind_errors) / len(wind_errors),
-    2
-)
+            avg_wind_error = round(
+                sum(wind_errors) / len(wind_errors),
+                2
+            )
             avg_rain_timing = round(
                 sum(rain_timing_scores)
                 / len(rain_timing_scores),
