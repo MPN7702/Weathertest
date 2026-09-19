@@ -343,7 +343,7 @@ def daily_summary(hourly, target_date):
 
     day_temps = []
     day_rain = []
-
+day_winds = []
     rain_hours = []
     weather_votes = {}
 
@@ -353,7 +353,9 @@ def daily_summary(hourly, target_date):
 
             day_temps.append(temps[idx])
             day_rain.append(rain[idx])
-
+day_winds.append(
+    hourly["wind_speed_10m"][idx]
+)
             code = weathercodes[idx]
 
             weather_votes[code] = (
@@ -371,13 +373,19 @@ def daily_summary(hourly, target_date):
         key=weather_votes.get
     )
 
-    return {
-        "minTemp": round(min(day_temps), 1),
-        "maxTemp": round(max(day_temps), 1),
-        "rainAmount": round(sum(day_rain), 1),
-        "rainHours": rain_hours,
-        "weathercode": dominant_weathercode
-    }
+return {
+    "minTemp": round(min(day_temps), 1),
+    "maxTemp": round(max(day_temps), 1),
+    "rainAmount": round(sum(day_rain), 1),
+
+    "windSpeed": round(
+        sum(day_winds) / len(day_winds),
+        1
+    ),
+
+    "rainHours": rain_hours,
+    "weathercode": dominant_weathercode
+}
 
 def fetch_actual_day(lat, lon, date):
 
@@ -505,9 +513,10 @@ def calculate_model_stats(history):
 
     for model in models:
 
-        temp_errors = []
-        rain_errors = []
-        rain_timing_scores = []
+temp_errors = []
+rain_errors = []
+rain_timing_scores = []
+wind_errors = []
 
         rain_hits_total = 0
         rain_actual_total = 0
@@ -587,7 +596,12 @@ def calculate_model_stats(history):
                     model_data["rainAmount"]
                     - actual["rainAmount"]
                 )
+wind_err = abs(
+    model_data["windSpeed"]
+    - actual["windSpeed"]
+)
 
+wind_errors.append(wind_err)
                 rain_bias = (
                     model_data["rainAmount"]
                     - actual["rainAmount"]
@@ -695,7 +709,10 @@ def calculate_model_stats(history):
                 sum(max_errors) / len(max_errors),
                 2
             )
-
+avg_wind_error = round(
+    sum(wind_errors) / len(wind_errors),
+    2
+)
             avg_rain_timing = round(
                 sum(rain_timing_scores)
                 / len(rain_timing_scores),
@@ -742,6 +759,7 @@ def calculate_model_stats(history):
                 "max_temp_bias": avg_max_bias,
 
                 "rain_error": avg_rain,
+                "wind_error": avg_wind_error,
                 "rain_bias": avg_rain_bias,
 
                 "rain_timing_score":
