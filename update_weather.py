@@ -398,7 +398,7 @@ def fetch_actual_day(lat, lon, date):
         "temperature_2m_min,"
         "temperature_2m_max,"
         "precipitation_sum"
-        "&hourly=precipitation,weathercode"
+        "&hourly=precipitation,weathercode,wind_speed_10m"
         "&timezone=auto"
     )
 
@@ -422,7 +422,11 @@ def fetch_actual_day(lat, lon, date):
             actual_rain_hours.append(
                 data["hourly"]["time"][idx][11:16]
             )
-
+        avg_wind = round(
+    sum(data["hourly"]["wind_speed_10m"])
+    / len(data["hourly"]["wind_speed_10m"]),
+    1
+)
     daily = data["daily"]
 
     dominant_weathercode = max(
@@ -430,13 +434,16 @@ def fetch_actual_day(lat, lon, date):
         key=actual_weather_votes.get
     )
 
-    return {
-        "minTemp": daily["temperature_2m_min"][0],
-        "maxTemp": daily["temperature_2m_max"][0],
-        "rainAmount": daily["precipitation_sum"][0],
-        "rainHours": actual_rain_hours,
-        "weathercode": dominant_weathercode
-    }
+return {
+    "minTemp": daily["temperature_2m_min"][0],
+    "maxTemp": daily["temperature_2m_max"][0],
+    "rainAmount": daily["precipitation_sum"][0],
+
+    "windSpeed": avg_wind,
+
+    "rainHours": actual_rain_hours,
+    "weathercode": dominant_weathercode
+}
 
 
 def calculate_rain_timing_score(
