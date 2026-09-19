@@ -222,6 +222,42 @@
         ],
         "weathercode": 3
       }
+    },
+    "2026-09-20": {
+      "smhi": {
+        "minTemp": 8.8,
+        "maxTemp": 16.1,
+        "rainAmount": 0.0,
+        "windSpeed": 13.6,
+        "rainHours": [],
+        "weathercode": 0
+      },
+      "yr": {
+        "minTemp": 9.9,
+        "maxTemp": 16.2,
+        "rainAmount": 0.0,
+        "windSpeed": 13.4,
+        "rainHours": [],
+        "weathercode": 2
+      },
+      "dmi_seamless": {
+        "minTemp": 9.0,
+        "maxTemp": 16.1,
+        "rainAmount": 0.0,
+        "windSpeed": 11.9,
+        "rainHours": [],
+        "weathercode": 0
+      },
+      "icon_eu": {
+        "minTemp": 8.2,
+        "maxTemp": 15.5,
+        "rainAmount": 0.1,
+        "windSpeed": 11.5,
+        "rainHours": [
+          "12:00"
+        ],
+        "weathercode": 2
+      }
     }
   },
   "day2": {
@@ -457,6 +493,40 @@
         ],
         "weathercode": 1
       }
+    },
+    "2026-09-21": {
+      "smhi": {
+        "minTemp": 5.2,
+        "maxTemp": 17.4,
+        "rainAmount": 0.0,
+        "windSpeed": 14.0,
+        "rainHours": [],
+        "weathercode": 0
+      },
+      "yr": {
+        "minTemp": 6.4,
+        "maxTemp": 17.4,
+        "rainAmount": 0.0,
+        "windSpeed": 13.5,
+        "rainHours": [],
+        "weathercode": 0
+      },
+      "dmi_seamless": {
+        "minTemp": 6.9,
+        "maxTemp": 17.5,
+        "rainAmount": 0.0,
+        "windSpeed": 10.6,
+        "rainHours": [],
+        "weathercode": 0
+      },
+      "icon_eu": {
+        "minTemp": 5.7,
+        "maxTemp": 16.3,
+        "rainAmount": 0.0,
+        "windSpeed": 13.0,
+        "rainHours": [],
+        "weathercode": 0
+      }
     }
   },
   "day3": {
@@ -669,6 +739,42 @@
         "rainAmount": 0.0,
         "rainHours": [],
         "weathercode": 1
+      }
+    },
+    "2026-09-22": {
+      "smhi": {
+        "minTemp": 1.1,
+        "maxTemp": 13.1,
+        "rainAmount": 0.0,
+        "windSpeed": 2.5,
+        "rainHours": [],
+        "weathercode": 0
+      },
+      "yr": {
+        "minTemp": 4.6,
+        "maxTemp": 15.1,
+        "rainAmount": 0.0,
+        "windSpeed": 2.6,
+        "rainHours": [],
+        "weathercode": 0
+      },
+      "dmi_seamless": {
+        "minTemp": 4.4,
+        "maxTemp": 14.2,
+        "rainAmount": 0.1,
+        "windSpeed": 3.1,
+        "rainHours": [
+          "23:00"
+        ],
+        "weathercode": 0
+      },
+      "icon_eu": {
+        "minTemp": 3.4,
+        "maxTemp": 13.1,
+        "rainAmount": 0.0,
+        "windSpeed": 3.6,
+        "rainHours": [],
+        "weathercode": 3
       }
     }
   },
