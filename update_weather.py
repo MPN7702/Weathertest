@@ -605,24 +605,25 @@ def calculate_model_stats(history):
                     - actual["rainAmount"]
                 )
 
-if (
-    "windSpeed" in model_data
-    and
-    "windSpeed" in actual
-):
+                if (
+                    "windSpeed" in model_data
+                    and
+                    "windSpeed" in actual
+                ):
 
-    wind_err = abs(
-        model_data["windSpeed"]
-        - actual["windSpeed"]
-    )
+                    wind_err = abs(
+                        model_data["windSpeed"]
+                        - actual["windSpeed"]
+                    )
 
-    wind_bias = (
-        model_data["windSpeed"]
-        - actual["windSpeed"]
-    )
+                    wind_bias = (
+                        model_data["windSpeed"]
+                        - actual["windSpeed"]
+                    )
 
-    wind_errors.append(wind_err)
-    wind_biases.append(wind_bias)
+                    wind_errors.append(wind_err)
+                    wind_biases.append(wind_bias)
+
                 rain_bias = (
                     model_data["rainAmount"]
                     - actual["rainAmount"]
@@ -734,10 +735,11 @@ if (
                 sum(wind_errors) / len(wind_errors),
                 2
             ) if wind_errors else 0
+
             avg_wind_bias = round(
-    sum(wind_biases) / len(wind_biases),
-    2
-) if wind_biases else 0
+                sum(wind_biases) / len(wind_biases),
+                2
+            ) if wind_biases else 0
             avg_rain_timing = round(
                 sum(rain_timing_scores)
                 / len(rain_timing_scores),
