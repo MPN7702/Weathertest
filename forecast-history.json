@@ -677,6 +677,7 @@
       "minTemp": 9.1,
       "maxTemp": 15.4,
       "rainAmount": 8.8,
+      "windSpeed": 12.4,
       "rainHours": [
         "08:00",
         "12:00",
@@ -695,6 +696,7 @@
       "minTemp": 10.5,
       "maxTemp": 16.5,
       "rainAmount": 1.5,
+      "windSpeed": 13.1,
       "rainHours": [
         "00:00",
         "01:00",
@@ -708,6 +710,7 @@
       "minTemp": 8.5,
       "maxTemp": 14.7,
       "rainAmount": 1.2,
+      "windSpeed": 6.5,
       "rainHours": [
         "14:00",
         "15:00",
@@ -722,6 +725,7 @@
       "minTemp": 9.9,
       "maxTemp": 15.7,
       "rainAmount": 3.6,
+      "windSpeed": 14.0,
       "rainHours": [
         "00:00",
         "02:00",
@@ -744,6 +748,7 @@
       "minTemp": 9.4,
       "maxTemp": 17.2,
       "rainAmount": 2.4,
+      "windSpeed": 19.3,
       "rainHours": [
         "03:00",
         "10:00",
@@ -767,6 +772,7 @@
       "min_temp_bias": 0.36,
       "max_temp_bias": 0.03,
       "rain_error": 2.23,
+      "wind_error": 0,
       "rain_bias": 1.74,
       "rain_timing_score": 60.9,
       "rain_hits": 19,
@@ -786,6 +792,7 @@
       "min_temp_bias": 0.2,
       "max_temp_bias": -0.56,
       "rain_error": 1.74,
+      "wind_error": 0,
       "rain_bias": 0.86,
       "rain_timing_score": 48.3,
       "rain_hits": 15,
@@ -805,6 +812,7 @@
       "min_temp_bias": 0.72,
       "max_temp_bias": -0.72,
       "rain_error": 1.24,
+      "wind_error": 0,
       "rain_bias": -0.99,
       "rain_timing_score": 36.6,
       "rain_hits": 10,
@@ -824,6 +832,7 @@
       "min_temp_bias": 1.23,
       "max_temp_bias": -0.57,
       "rain_error": 1.57,
+      "wind_error": 0,
       "rain_bias": -1.44,
       "rain_timing_score": 22.3,
       "rain_hits": 5,
