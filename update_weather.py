@@ -404,19 +404,17 @@ def fetch_actual_day(lat, lon, date):
 
     data = fetch_json(url)
 
-actual_rain_hours = []
-actual_weather_votes = {}
+    actual_rain_hours = []
+    actual_weather_votes = {}
 
-wind_values = data["hourly"]["wind_speed_10m"]
+    wind_values = data["hourly"]["wind_speed_10m"]
 
-avg_wind = round(
-    sum(wind_values) / len(wind_values),
-    1
-)
+    avg_wind = round(
+        sum(wind_values) / len(wind_values),
+        1
+    )
 
-for idx, value in enumerate(
-    data["hourly"]["precipitation"]
-):
+    for idx, value in enumerate(
         data["hourly"]["precipitation"]
     ):
 
@@ -431,12 +429,6 @@ for idx, value in enumerate(
             actual_rain_hours.append(
                 data["hourly"]["time"][idx][11:16]
             )
-    wind_values = data["hourly"]["wind_speed_10m"]
-
-avg_wind = round(
-    sum(wind_values) / len(wind_values),
-    1
-)
 
     daily = data["daily"]
 
