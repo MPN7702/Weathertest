@@ -389,17 +389,7 @@ def daily_summary(hourly, target_date):
 def fetch_actual_day(lat, lon, date):
 
     url = (
-        "https://archive-api.open-meteo.com/v1/archive"
-        f"?latitude={lat}"
-        f"&longitude={lon}"
-        f"&start_date={date}"
-        f"&end_date={date}"
-        "&daily="
-        "temperature_2m_min,"
-        "temperature_2m_max,"
-        "precipitation_sum"
-        "&hourly=precipitation,weathercode,wind_speed_10m"
-        "&timezone=auto"
+        ...
     )
 
     data = fetch_json(url)
