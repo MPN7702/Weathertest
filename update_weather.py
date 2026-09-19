@@ -517,12 +517,12 @@ def calculate_model_stats(history):
 
     stats = {}
 
-    for model in models:
+for model in models:
 
-temp_errors = []
-rain_errors = []
-rain_timing_scores = []
-wind_errors = []
+        temp_errors = []
+        rain_errors = []
+        rain_timing_scores = []
+        wind_errors = []
 
         rain_hits_total = 0
         rain_actual_total = 0
