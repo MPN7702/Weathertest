@@ -406,14 +406,7 @@ def fetch_actual_day(lat, lon, date):
 
     actual_rain_hours = []
     actual_weather_votes = {}
-    wind_values = data["hourly"]["wind_speed_10m"]
-
-avg_wind = round(
-    sum(wind_values) / len(wind_values),
-    1
-)
-
-    for idx, value in enumerate(
+        for idx, value in enumerate(
         data["hourly"]["precipitation"]
     ):
 
@@ -433,6 +426,13 @@ avg_wind = round(
     / len(data["hourly"]["wind_speed_10m"]),
     1
 )
+    wind_values = data["hourly"]["wind_speed_10m"]
+
+avg_wind = round(
+    sum(wind_values) / len(wind_values),
+    1
+)
+
     daily = data["daily"]
 
     dominant_weathercode = max(
@@ -440,16 +440,14 @@ avg_wind = round(
         key=actual_weather_votes.get
     )
 
-return {
-    "minTemp": daily["temperature_2m_min"][0],
-    "maxTemp": daily["temperature_2m_max"][0],
-    "rainAmount": daily["precipitation_sum"][0],
-
-    "windSpeed": avg_wind,
-
-    "rainHours": actual_rain_hours,
-    "weathercode": dominant_weathercode
-}
+    return {
+        "minTemp": daily["temperature_2m_min"][0],
+        "maxTemp": daily["temperature_2m_max"][0],
+        "rainAmount": daily["precipitation_sum"][0],
+        "windSpeed": avg_wind,
+        "rainHours": actual_rain_hours,
+        "weathercode": dominant_weathercode
+    }
 
 
 def calculate_rain_timing_score(
@@ -521,9 +519,9 @@ def calculate_model_stats(history):
         "icon_eu"
     ]
 
-    stats = {}
+stats = {}
 
-for model in models:
+    for model in models:
 
         temp_errors = []
         rain_errors = []
