@@ -486,8 +486,9 @@ const sunset =
         minute:"2-digit"
     });
 
-let maxTemps = [];
-let minTemps = [];
+let weightedMaxTemp = 0;
+let weightedMinTemp = 0;
+let tempWeightTotal = 0;
 
 models.forEach(model => {
 
@@ -512,32 +513,35 @@ models.forEach(model => {
         }
     }
 
-    if (dayTemps.length) {
+if (dayTemps.length) {
 
-        maxTemps.push(
-            Math.max(...dayTemps)
-        );
+    const weight =
+        weights[model.model] ?? 0;
 
-        minTemps.push(
-            Math.min(...dayTemps)
-        );
-    }
+    weightedMaxTemp +=
+        Math.max(...dayTemps) * weight;
+
+    weightedMinTemp +=
+        Math.min(...dayTemps) * weight;
+
+    tempWeightTotal += weight;
+}
 
 });
-if(!maxTemps.length || !minTemps.length)
+if(tempWeightTotal === 0)
     continue;
 
 const maxTemp =
-    (
-        maxTemps.reduce((a,b)=>a+b,0)
-        / maxTemps.length
-    ).toFixed(1);
+(
+    weightedMaxTemp
+    / tempWeightTotal
+).toFixed(1);
 
 const minTemp =
-    (
-        minTemps.reduce((a,b)=>a+b,0)
-        / minTemps.length
-    ).toFixed(1);
+(
+    weightedMinTemp
+    / tempWeightTotal
+).toFixed(1);
             tempHistory.push(
     (Number(maxTemp) + Number(minTemp)) / 2
 );
@@ -559,7 +563,8 @@ const hourlyTimes =
 if (!hourlyTimes)
     continue;
 
-let rainTotals = [];
+let weightedRain = 0;
+let rainWeightTotal = 0;
 
 models.forEach(model => {
 
@@ -581,17 +586,21 @@ models.forEach(model => {
         }
     }
 
-    rainTotals.push(modelRainSum);
+    const weight =
+    weights[model.model] ?? 0;
+
+weightedRain +=
+    modelRainSum * weight;
+
+rainWeightTotal += weight;
 
 });
-if(!rainTotals.length)
+if(rainWeightTotal === 0)
     continue;
 const rainAmount =
 (
-    rainTotals.reduce(
-        (a,b) => a + b,
-        0
-    ) / rainTotals.length
+    weightedRain
+    / rainWeightTotal
 ).toFixed(1);
 
 let rainAmountClass = "rain-low";
@@ -972,7 +981,8 @@ else if(
 
 }
 
-let pressures = [];
+let weightedPressure = 0;
+let pressureWeightTotal = 0;
 
 models.forEach(model => {
 
@@ -1001,29 +1011,33 @@ models.forEach(model => {
         }
     }
 
-    if (dayPressures.length) {
+if (dayPressures.length) {
 
-        pressures.push(
+    const avgPressureModel =
 
-            dayPressures.reduce(
-                (a,b) => a + b,
-                0
-            ) / dayPressures.length
-
-        );
-
-    }
-
-});
-if(!pressures.length)
-    continue;
-const pressure =
-    (
-        pressures.reduce(
+        dayPressures.reduce(
             (a,b) => a + b,
             0
-        ) / pressures.length
-    ).toFixed(1);
+        ) / dayPressures.length;
+
+    const weight =
+        weights[model.model] ?? 0;
+
+    weightedPressure +=
+        avgPressureModel * weight;
+
+    pressureWeightTotal +=
+        weight;
+}
+
+});
+if(pressureWeightTotal === 0)
+    continue;
+const pressure =
+(
+    weightedPressure
+    / pressureWeightTotal
+).toFixed(1);
             pressureHistory.push(
     Number(pressure)
 );
