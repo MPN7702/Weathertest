@@ -1237,7 +1237,8 @@ if(uniqueWeatherTypes.length === 1){
             );
 
 }
-            const moonIllumination = 8;
+            const moonIllumination =
+    getMoonIllumination(date);
 
 const cloudCover =
     weatherTextColored.includes("Klart")
@@ -1467,6 +1468,26 @@ source.data =
     }
 
 }
+    function getMoonIllumination(date){
+
+    const lp = 2551443;
+
+    const newMoon =
+        new Date("2000-01-06T18:14:00Z");
+
+    const phase =
+        ((date - newMoon) / 1000) % lp;
+
+    const illumination =
+        (1 - Math.cos(
+            2 * Math.PI * phase / lp
+        )) / 2;
+
+    return Math.round(
+        illumination * 100
+    );
+}
+
 function getWindDirection(degrees) {
 
     const directions = [
