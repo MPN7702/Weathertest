@@ -2378,6 +2378,13 @@ regnfel och hur väl modellen träffar
 tidpunkten för nederbörden (±1 timme).
 </div>
 `;
+        html += `
+<div style="
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:10px;
+">
+`;
         let place = 1;
 
         for(const item of rankedModels){
@@ -2392,12 +2399,13 @@ tidpunkten för nederbörden (±1 timme).
                 place === 3 ? "🥉" :
                 `${place}.`;
 
-            html += `
-                <div style="
-                    margin-bottom:8px;
-                    padding:6px;
-                    border-bottom:1px solid #334155;
-                ">
+html += `
+    <div style="
+        padding:10px;
+        border:1px solid #334155;
+        border-radius:8px;
+        background:rgba(255,255,255,0.03);
+    ">
                     <strong>
                         ${medal}
 ${
@@ -2514,7 +2522,7 @@ ${data.actual_days ?? 0}
 
             place++;
         }
-
+html += `</div>`;
         document.getElementById(
             "modelRanking"
         ).innerHTML = html;
