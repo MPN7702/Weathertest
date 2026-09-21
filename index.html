@@ -1240,15 +1240,53 @@ if(uniqueWeatherTypes.length === 1){
             const moonIllumination =
     getMoonIllumination(date);
 
-const cloudCover =
-    weatherTextColored.includes("Klart")
-        ? 5
-        : weatherTextColored.includes("Mest klart")
-        ? 20
-        : weatherTextColored.includes("Delvis molnigt")
-        ? 50
-        : weatherTextColored.includes("Mulet")
-        ? 95
+let cloudSum = 0;
+let cloudCount = 0;
+            models.forEach(model => {
+
+    const hourly =
+        model.data?.hourly;
+
+    if(
+        !hourly?.time ||
+        !hourly?.cloud_cover
+    ){
+        return;
+    }
+
+    for(let h = 0; h < hourly.time.length; h++){
+
+        const time =
+            hourly.time[h];
+
+        const hour =
+            Number(
+                time.substring(11,13)
+            );
+
+        if(
+            !time.startsWith(currentDay)
+        ){
+            continue;
+        }
+
+        if(
+            hour >= 22 ||
+            hour <= 4
+        ){
+
+            cloudSum +=
+                hourly.cloud_cover[h];
+
+            cloudCount++;
+        }
+
+    }
+
+});
+            const cloudCover =
+    cloudCount > 0
+        ? cloudSum / cloudCount
         : 50;
 
 let nightScore =
