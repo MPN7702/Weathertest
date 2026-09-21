@@ -34,7 +34,20 @@ def fetch_json(url):
             last_error = e
 
     raise last_error
+def fetch_kp_index():
 
+    url = (
+        "https://services.swpc.noaa.gov/products/noaa-planetary-k-index.json"
+    )
+
+    data = fetch_json(url)
+
+    latest = data[-1]
+
+    return {
+        "kp": latest["Kp"],
+        "time": latest["time_tag"]
+    }
 
 def weathercode_from_yr(symbol):
     symbol = str(symbol).lower()
@@ -829,6 +842,8 @@ weather = {
         "%Y-%m-%dT%H:%M:%SZ"
     )
 }
+
+weather["space_weather"] = fetch_kp_index()
 
 for name, lat, lon in LOCATIONS:
     print("Hämtar:", name)
