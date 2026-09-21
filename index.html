@@ -262,7 +262,24 @@ margin-bottom:6px;
         font-size:12px;
         color:#94a3b8;
     }
+.night-box{
+    position:absolute;
+    top:10px;
+    right:10px;
 
+    background:#0f172a;
+    border:1px solid #334155;
+
+    border-radius:8px;
+    padding:6px 8px;
+
+    font-size:12px;
+    line-height:1.4;
+
+    text-align:center;
+
+    min-width:60px;
+}
 }
 #forecastContent{
     display:grid;
@@ -485,7 +502,10 @@ const sunset =
         hour:"2-digit",
         minute:"2-digit"
     });
-
+const moonIllumination = 8;
+const nightScore = 92;
+const auroraScore = 74;
+            
 let weightedMaxTemp = 0;
 let weightedMinTemp = 0;
 let tempWeightTotal = 0;
@@ -1292,6 +1312,12 @@ window.forecastHistory.push({
 });
 html += `
                 <div class="forecast-day">
+
+<div class="night-box">
+🌑 ${nightScore}
+<br>
+🌌 ${auroraScore}
+</div>
 
 <strong style="color:#60a5fa;font-size:18px;">
 ${weekday} ${dayDate}
