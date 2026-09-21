@@ -885,8 +885,7 @@ const rainMin =
 
 const rainMax =
     Math.max(...rainModelValues).toFixed(1);
-            console.log("maxTemps=", maxTemps);
-console.log("minTemps=", minTemps);
+
 const maxTempSpread =
     Math.max(...maxTemps)
     -
@@ -1288,11 +1287,7 @@ let cloudCount = 0;
     cloudCount > 0
         ? cloudSum / cloudCount
         : 50;
-console.log(
-    weekday,
-    "Moln:",
-    cloudCover.toFixed(0) + "%"
-);
+
 let nightScore =
     100 -
     (moonIllumination * 0.25) -
@@ -1435,7 +1430,6 @@ color:#fbbf24;
 
         document.getElementById("forecastContent").innerHTML =
             html;
-console.log("ForecastHistory", window.forecastHistory);
     } catch (error) {
 
         document.getElementById("forecastContent").innerHTML =
@@ -1470,7 +1464,6 @@ const weights = {
     yr: 0.10
 
 };
-    console.log("AKTIVA VIKTER:", weights);
     const WIND_FACTOR = 0.27778;
 
 const models = [
@@ -2341,8 +2334,6 @@ async function startDashboard(){
 fetch("forecast-history.json")
     .then(r => r.json())
     .then(data => {
-        console.log("Forecast History File:", data);
-        console.log("ForecastData:", window.forecastHistory);
     })
     .catch(err => {
         console.error("Fel vid läsning av forecast-history.json", err);
@@ -2358,7 +2349,6 @@ const history =
 
         const stats =
             history.model_stats;
-console.log(stats);
 
         if(!stats)
             return;
