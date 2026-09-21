@@ -222,34 +222,7 @@ h1{
     color:#94a3b8;
     font-size:12px;
 }
-.night-box{
-    position:absolute;
-    top:10px;
-    right:10px;
 
-    background:#0f172a;
-    border:1px solid #334155;
-
-    border-radius:8px;
-    padding:6px 8px;
-
-    z-index:9999;
-
-    min-width:60px;
-}
-  .sun-box{
-    position:absolute;
-    top:10px;
-    left:10px;
-
-    background:#0f172a;
-    border:1px solid #334155;
-
-    border-radius:8px;
-    padding:6px 8px;
-
-    z-index:9999;
-}  
 </style>
 
 </head>
@@ -1357,20 +1330,6 @@ window.forecastHistory.push({
 html += `
 <div class="forecast-day">
 
-<div class="sun-box">
-☀️ Sol
-<br>
-🌅 ${sunrise}
-<br>
-🌇 ${sunset}
-</div>
-
-<div class="night-box">
-✨ Sikt mot himlen: ${nightScore}%
-<br>
-🌌 Norrskenschans: ${auroraScore}%
-</div>
-
 <strong style="color:#60a5fa;font-size:18px;">
 ${weekday} ${dayDate}
 </strong><br>
@@ -1436,6 +1395,24 @@ ${rainFlag
 <strong>${weatherTextColored}</strong>
 
 <br><br>
+
+✨ Sikt mot himlen:
+<strong>${nightScore}%</strong>
+
+<br>
+
+🌌 Norrskenschans:
+<strong>${auroraScore}%</strong>
+
+<br><br>
+
+☀️ Sol
+<br>
+🌅 ${sunrise}
+<br>
+🌇 ${sunset}
+
+<br>
 
 
                 </div>
