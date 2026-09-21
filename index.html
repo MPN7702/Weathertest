@@ -1303,9 +1303,33 @@ nightScore = Math.max(
     Math.round(nightScore)
 );
 
-let auroraScore =
+const kp =
+    window.cachedWeather
+        ?.space_weather
+        ?.kp ?? 0;
+
+const kpScore =
+    Math.min(
+        100,
+        kp * 20
+    );
+
+let visibilityScore =
     nightScore -
-    (cloudCover * 1.0);
+    (cloudCover * 0.8);
+
+visibilityScore = Math.max(
+    0,
+    visibilityScore
+);
+
+let auroraScore =
+(
+    kpScore * 0.5
+) +
+(
+    visibilityScore * 0.5
+);
 
 auroraScore = Math.max(
     0,
