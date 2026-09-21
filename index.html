@@ -490,6 +490,9 @@ let weightedMaxTemp = 0;
 let weightedMinTemp = 0;
 let tempWeightTotal = 0;
 
+let maxTemps = [];
+let minTemps = [];
+
 models.forEach(model => {
 
     const hourly =
@@ -514,6 +517,13 @@ models.forEach(model => {
     }
 
 if (dayTemps.length) {
+    maxTemps.push(
+    Math.max(...dayTemps)
+);
+
+minTemps.push(
+    Math.min(...dayTemps)
+);
 
     const weight =
         weights[model.model] ?? 0;
