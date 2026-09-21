@@ -205,7 +205,7 @@ h1{
 
 #forecastContent{
     display:grid;
-    grid-template-columns:repeat(2,1fr);
+    grid-template-columns:repeat(3,1fr);
     gap:8px;
 }
 .forecast-wrapper{
@@ -443,8 +443,20 @@ const sunset =
         minute:"2-digit"
     });
 const moonIllumination = 8;
-const nightScore = 92;
-const auroraScore = 74;
+
+let nightScore = 100;
+
+nightScore -= moonIllumination * 0.5;
+
+nightScore = Math.max(
+    0,
+    Math.round(nightScore)
+);
+
+const auroraScore = Math.max(
+    0,
+    Math.round(nightScore - 20)
+);
             
 let weightedMaxTemp = 0;
 let weightedMinTemp = 0;
