@@ -1295,7 +1295,8 @@ console.log(
 );
 let nightScore =
     100 -
-    (moonIllumination * 0.15);
+    (moonIllumination * 0.25) -
+    (cloudCover * 0.15);
 
 nightScore = Math.max(
     10,
