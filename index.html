@@ -1295,19 +1295,20 @@ console.log(
 );
 let nightScore =
     100 -
-    (cloudCover * 0.8) -
-    (moonIllumination * 0.2);
+    (moonIllumination * 0.25);
 
 nightScore = Math.max(
-    0,
+    10,
     Math.round(nightScore)
 );
 
-const auroraScore = Math.max(
+let auroraScore =
+    nightScore -
+    (cloudCover * 0.9);
+
+auroraScore = Math.max(
     0,
-    Math.round(
-        nightScore - (cloudCover * 0.2)
-    )
+    Math.round(auroraScore)
 );
 window.forecastHistory.push({
     dayOffset,
