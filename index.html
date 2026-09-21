@@ -1288,7 +1288,11 @@ let cloudCount = 0;
     cloudCount > 0
         ? cloudSum / cloudCount
         : 50;
-
+console.log(
+    weekday,
+    "Moln:",
+    cloudCover.toFixed(0) + "%"
+);
 let nightScore =
     100 -
     (cloudCover * 0.8) -
