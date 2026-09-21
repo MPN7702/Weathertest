@@ -439,21 +439,6 @@ const sunset =
         hour:"2-digit",
         minute:"2-digit"
     });
-const moonIllumination = 8;
-
-let nightScore = 100;
-
-nightScore -= moonIllumination * 0.5;
-
-nightScore = Math.max(
-    0,
-    Math.round(nightScore)
-);
-
-const auroraScore = Math.max(
-    0,
-    Math.round(nightScore - 20)
-);
             
 let weightedMaxTemp = 0;
 let weightedMinTemp = 0;
@@ -1252,6 +1237,35 @@ if(uniqueWeatherTypes.length === 1){
             );
 
 }
+            const moonIllumination = 8;
+
+const cloudCover =
+    weatherTextColored.includes("Klart")
+        ? 5
+        : weatherTextColored.includes("Mest klart")
+        ? 20
+        : weatherTextColored.includes("Delvis molnigt")
+        ? 50
+        : weatherTextColored.includes("Mulet")
+        ? 95
+        : 50;
+
+let nightScore =
+    100 -
+    (cloudCover * 0.8) -
+    (moonIllumination * 0.5);
+
+nightScore = Math.max(
+    0,
+    Math.round(nightScore)
+);
+
+const auroraScore = Math.max(
+    0,
+    Math.round(
+        nightScore - (cloudCover * 0.2)
+    )
+);
 window.forecastHistory.push({
     dayOffset,
     forecastDate: currentDay,
