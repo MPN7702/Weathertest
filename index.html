@@ -728,8 +728,13 @@ if(
 ){
     rainTimes = "Osäkra tider";
 }
+let weightedWindSpeed = 0;
+let weightedWindGust = 0;
+let windWeightTotal = 0;
+
 let windSpeeds = [];
 let windGusts = [];
+
 let windX = 0;
 let windY = 0;
 
@@ -785,31 +790,49 @@ windY +=
         }
     }
 
-    if (dayWinds.length) {
+if (dayWinds.length) {
 
-        windSpeeds.push(
-            dayWinds.reduce((a,b)=>a+b,0)
-            / dayWinds.length
-        );
+    const avgWind =
 
-    }
+        dayWinds.reduce(
+            (a,b)=>a+b,
+            0
+        ) / dayWinds.length;
 
-    if (dayGusts.length) {
+    const weight =
+        weights[model.model] ?? 0;
 
-        windGusts.push(
-            Math.max(...dayGusts)
-        );
+    weightedWindSpeed +=
+        avgWind * weight;
 
-    }
+    windWeightTotal +=
+        weight;
+
+    windSpeeds.push(avgWind);
+}
+
+if (dayGusts.length) {
+
+    const modelGust =
+        Math.max(...dayGusts);
+
+    const weight =
+        weights[model.model] ?? 0;
+
+    weightedWindGust +=
+        modelGust * weight;
+
+    windGusts.push(modelGust);
+}
 
 });
 
 const windSpeed =
-    windSpeeds.length
+    windWeightTotal > 0
         ? (
             (
-                windSpeeds.reduce((a,b)=>a+b,0)
-                / windSpeeds.length
+                weightedWindSpeed
+                / windWeightTotal
             ) * WIND_FACTOR
           ).toFixed(1)
         : "--";
@@ -828,11 +851,11 @@ if(Number(windSpeed) >= 10)
 else if(Number(windSpeed) >= 5)
     windClass = "wind-mid";
 const windGust =
-    windGusts.length
+    windWeightTotal > 0
         ? (
             (
-                windGusts.reduce((a,b)=>a+b,0)
-                / windGusts.length
+                weightedWindGust
+                / windWeightTotal
             ) * WIND_FACTOR
           ).toFixed(1)
         : "--";
