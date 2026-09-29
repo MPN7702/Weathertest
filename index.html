@@ -2552,6 +2552,32 @@ ${
 
 Träff inom ±1 timme
 
+<br>
+
+🕒 Medelavvikelse:
+<strong>
+${
+    (data.rain_avg_deviation ?? 0) > 0
+        ? "+"
+        : ""
+}${(data.rain_avg_deviation ?? 0).toFixed(1)} h
+</strong>
+
+<br>
+
+<span style="
+font-size:12px;
+color:#93c5fd;
+">
+${
+    (data.rain_avg_deviation ?? 0) > 0
+        ? "Regnet kommer i snitt senare än prognosen"
+        : (data.rain_avg_deviation ?? 0) < 0
+        ? "Regnet kommer i snitt tidigare än prognosen"
+        : "Ingen systematisk avvikelse"
+}
+</span>
+
 <br><br>
 
 <b>🌦️ Vädertyp</b>
