@@ -542,6 +542,7 @@ def calculate_model_stats(history):
         rain_hits_total = 0
         rain_actual_total = 0
         rain_predicted_total = 0
+        rain_deviations = []
         weather_hits = 0
         weather_total = 0
 
@@ -680,6 +681,41 @@ def calculate_model_stats(history):
                         predicted_hours or []
                     )
 
+                    for forecast_time in predicted_hours:
+
+                        forecast_dt = datetime.strptime(
+                            forecast_time,
+                            "%H:%M"
+                        )
+
+                        nearest_diff = None
+
+                        for actual_time in actual_hours:
+
+                            actual_dt = datetime.strptime(
+                                actual_time,
+                                "%H:%M"
+                            )
+
+                            diff = (
+                                actual_dt - forecast_dt
+                            ).total_seconds() / 3600
+
+                            if (
+                                nearest_diff is None
+                                or
+                                abs(diff) < abs(nearest_diff)
+                            ):
+                                nearest_diff = diff
+
+                        if (
+                            nearest_diff is not None
+                            and abs(nearest_diff) > 1
+                        ):
+                            rain_deviations.append(
+                                nearest_diff
+                            )
+
                     for actual_time in actual_hours:
 
                         actual_dt = datetime.strptime(
@@ -759,6 +795,11 @@ def calculate_model_stats(history):
                 / len(rain_timing_scores),
                 1
             ) if rain_timing_scores else 0
+            avg_rain_deviation = round(
+                sum(rain_deviations)
+                / len(rain_deviations),
+                1
+            ) if rain_deviations else 0.0
 
             temp_score = max(
                 0,
@@ -806,6 +847,9 @@ def calculate_model_stats(history):
 
                 "rain_timing_score":
                     avg_rain_timing,
+
+                "rain_avg_deviation":
+                    avg_rain_deviation,
                 "rain_hits": rain_hits_total,
                 "rain_predicted_hours":
                 rain_predicted_total,
