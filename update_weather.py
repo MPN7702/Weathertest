@@ -828,6 +828,18 @@ def calculate_model_stats(history):
                 rain_actual_total
             )
 
+            rain_precision = round(
+                rain_hits_total * 100 /
+                rain_predicted_total,
+                1
+            ) if rain_predicted_total else 0
+
+            rain_recall = round(
+                rain_hits_total * 100 /
+                rain_actual_total,
+                1
+            ) if rain_actual_total else 0
+
             stats[model] = {
                 "samples": len(temp_errors),
                 "actual_days":
@@ -850,6 +862,11 @@ def calculate_model_stats(history):
 
                 "rain_avg_deviation":
                     avg_rain_deviation,
+                "rain_precision":
+                   rain_precision,
+
+                 "rain_recall":
+                   rain_recall,
                 "rain_hits": rain_hits_total,
                 "rain_predicted_hours":
                 rain_predicted_total,
