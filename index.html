@@ -2385,7 +2385,7 @@ async function startDashboard(){
     },1000);
 
 }
-fetch("forecast-history.json")
+fetch("https://mpn7702.github.io/weather_dashboard/forecast-history.json")
     .then(r => r.json())
     .then(data => {
     })
@@ -2397,9 +2397,7 @@ fetch("forecast-history.json")
     try{
 
 const history =
-    await fetch(
-        `forecast-history.json?t=${Date.now()}`
-    ).then(r => r.json());
+    await fetch(`https://mpn7702.github.io/weather_dashboard/forecast-history.json?t=${Date.now()}`).then(r => r.json());
 
         const stats =
             history.model_stats;
