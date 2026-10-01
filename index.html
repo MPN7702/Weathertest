@@ -395,7 +395,7 @@ if(window.cachedWeather){
 }else{
 
     const response =
-        await fetch("weather.json");
+        await fetch("https://mpn7702.github.io/weather_dashboard/weather.json");
 
     cache =
         await response.json();
@@ -1560,7 +1560,7 @@ async function loadWeather(source){
         if(!window.cachedWeather){
 
             const response =
-                await fetch("./weather.json");
+                await fetch("https://mpn7702.github.io/weather_dashboard/weather.json");
 
             window.cachedWeather =
                 await response.json();
