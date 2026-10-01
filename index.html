@@ -2385,19 +2385,19 @@ async function startDashboard(){
     },1000);
 
 }
-fetch("https://mpn7702.github.io/weather_dashboard/forecast-history.json")
+fetch("https://mpn7702.github.io/weather_dashboard/forecast_history.json")
     .then(r => r.json())
     .then(data => {
     })
     .catch(err => {
-        console.error("Fel vid läsning av forecast-history.json", err);
+        console.error("Fel vid läsning av forecast_history.json", err);
     });
     async function updateModelRanking(){
 
     try{
 
 const history =
-    await fetch(`https://mpn7702.github.io/weather_dashboard/forecast-history.json?t=${Date.now()}`).then(r => r.json());
+    await fetch(`https://mpn7702.github.io/weather_dashboard/forecast_history.json?t=${Date.now()}`).then(r => r.json());
 
         const stats =
             history.model_stats;
